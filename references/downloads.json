@@ -1,0 +1,222 @@
+{
+  "1312.5602": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/1312.5602v1",
+    "path": "RL/papers/pdf/1312.5602.pdf",
+    "bytes": 483443,
+    "sha256": "8db04120cace173151c77e0faa6f3eaa4207009da66b9417597dc70bfee56d9c",
+    "checked_at_utc": "2026-09-26T07:33:05.386089+00:00",
+    "downloaded_at_utc": "2026-09-26T06:06:49.585885+00:00",
+    "pdf_pages": 9
+  },
+  "1506.02438": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/1506.02438v6",
+    "path": "RL/papers/pdf/1506.02438.pdf",
+    "bytes": 1798117,
+    "sha256": "5aa736ccf3517a1f36d0ca8146982e69beaf9a2bdccac2ae324f780743bc045e",
+    "checked_at_utc": "2026-09-26T07:33:05.387885+00:00",
+    "downloaded_at_utc": "2026-09-26T06:06:51.680702+00:00",
+    "pdf_pages": 14
+  },
+  "1707.06347": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/1707.06347v2",
+    "path": "RL/papers/pdf/1707.06347.pdf",
+    "bytes": 2923532,
+    "sha256": "e78feadadbdbb0b601b3c2bcc81404722cd431a489b307545f9b7bea1e8c4f5b",
+    "checked_at_utc": "2026-09-26T07:33:05.391047+00:00",
+    "downloaded_at_utc": "2026-09-26T06:06:54.386575+00:00",
+    "pdf_pages": 12
+  },
+  "2203.02155": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2203.02155v1",
+    "path": "post_train/papers/pdf/2203.02155.pdf",
+    "bytes": 1797405,
+    "sha256": "c1984bb50a5b90fddb895fdc3a0f72e5bc977148c9f63ef6040cbe7a3e1f0d98",
+    "checked_at_utc": "2026-09-26T07:33:05.396428+00:00",
+    "downloaded_at_utc": "2026-09-26T06:06:57.253682+00:00",
+    "pdf_pages": 68
+  },
+  "2305.18290": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2305.18290v1",
+    "path": "post_train/papers/pdf/2305.18290.pdf",
+    "bytes": 1286755,
+    "sha256": "304d57efe53317673ee5e93e1e1d990e3231fb4e24198aedd4829968e2c3cfbb",
+    "checked_at_utc": "2026-09-26T07:33:05.399403+00:00",
+    "downloaded_at_utc": "2026-09-26T06:06:59.715491+00:00",
+    "pdf_pages": 26
+  },
+  "2402.03300": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2402.03300v3",
+    "path": "post_train/papers/pdf/2402.03300.pdf",
+    "bytes": 1844642,
+    "sha256": "6cc20b3c5b8d25b8b53868fc4ec1792c144f07d67bdf7395138efd4422197e7b",
+    "checked_at_utc": "2026-09-26T07:33:05.403906+00:00",
+    "downloaded_at_utc": "2026-09-26T06:07:02.193390+00:00",
+    "pdf_pages": 30
+  },
+  "2501.12948": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2501.12948v1",
+    "path": "post_train/papers/pdf/2501.12948.pdf",
+    "bytes": 1312189,
+    "sha256": "52d8ca3ac93e88cef9944e1fd03b0e04aec5954495a8250fb2fadf8fa20a4dad",
+    "checked_at_utc": "2026-09-26T07:33:05.409625+00:00",
+    "downloaded_at_utc": "2026-09-26T06:07:04.505612+00:00",
+    "pdf_pages": 22
+  },
+  "rl_theory_2026": {
+    "status": "ok",
+    "url": "https://rltheorybook.github.io/rltheorybook_ABJKS.pdf",
+    "path": "RL/books/pdf/rl_theory_2026.pdf",
+    "bytes": 1183518,
+    "sha256": "0841cd0234a93f523ca06c5c6d211fe071d6742d2768764347a7541f76ad09f0",
+    "checked_at_utc": "2026-09-26T07:33:05.413526+00:00",
+    "downloaded_at_utc": "2026-09-26T06:08:24.912441+00:00",
+    "pdf_pages": 227
+  },
+  "2504.12501": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2504.12501v12",
+    "path": "post_train/books/pdf/2504.12501v12.pdf",
+    "bytes": 11594452,
+    "sha256": "b2aa204bb6d098c50af4c61e25fd8faf2a06980ae2194a9b97006b6dc387feaf",
+    "checked_at_utc": "2026-09-26T07:33:05.416481+00:00",
+    "downloaded_at_utc": "2026-09-26T06:08:28.007341+00:00",
+    "pdf_pages": 243
+  },
+  "2502.02538": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2502.02538v2",
+    "path": "RL/papers/pdf/2502.02538.pdf",
+    "bytes": 2725987,
+    "sha256": "858cffdbd3e40e0da548cff85dd1f3313f32aaaffcdda7c74443f6124d7faabb",
+    "checked_at_utc": "2026-09-26T07:33:05.428777+00:00",
+    "downloaded_at_utc": "2026-09-26T06:08:31.936856+00:00",
+    "pdf_pages": 24
+  },
+  "2503.20783": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2503.20783v2",
+    "path": "post_train/papers/pdf/2503.20783.pdf",
+    "bytes": 1620055,
+    "sha256": "98243d51297f011fb5baad8a70a972d061ffbef618f1d7cfc10deea37c5887d0",
+    "checked_at_utc": "2026-09-26T07:33:05.433527+00:00",
+    "downloaded_at_utc": "2026-09-26T06:08:37.556192+00:00",
+    "pdf_pages": 20
+  },
+  "2605.02909": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2605.02909v2",
+    "path": "post_train/papers/pdf/2605.02909.pdf",
+    "bytes": 3164876,
+    "sha256": "0dfa285ece2be0138f42c708a2de7fdf40d45ca6c2c9436da9eee097f3a67fdb",
+    "checked_at_utc": "2026-09-26T07:33:05.436093+00:00",
+    "downloaded_at_utc": "2026-09-26T06:08:40.077733+00:00",
+    "pdf_pages": 25
+  },
+  "2609.24489": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2609.24489v1",
+    "path": "RL/papers/pdf/2609.24489.pdf",
+    "bytes": 1727128,
+    "sha256": "f261ba1fc904a487e18e09e0a530a0399ef5aa0ad56757cfdc5c67816a35031d",
+    "checked_at_utc": "2026-09-26T07:33:05.440768+00:00",
+    "downloaded_at_utc": "2026-09-26T06:08:43.202985+00:00",
+    "pdf_pages": 42
+  },
+  "2609.28765": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2609.28765v1",
+    "path": "post_train/papers/pdf/2609.28765.pdf",
+    "bytes": 3638812,
+    "sha256": "2bf9ab8f16f43fb78751358895ab58b087c66bc30a7656d626274bc8fd26d1dd",
+    "checked_at_utc": "2026-09-26T07:33:05.443602+00:00",
+    "downloaded_at_utc": "2026-09-26T06:08:45.733504+00:00",
+    "pdf_pages": 31
+  },
+  "1706.03762": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/1706.03762v1",
+    "path": "transformer/papers/pdf/1706.03762.pdf",
+    "bytes": 2128686,
+    "sha256": "0a9bff1be3575cf9fe26a4a3d3a9175bc791ecec90de8b9deba4cff75d2b9476",
+    "checked_at_utc": "2026-09-26T07:33:05.449682+00:00",
+    "downloaded_at_utc": "2026-09-26T07:14:19.262281+00:00",
+    "pdf_pages": 15
+  },
+  "2203.15556": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2203.15556v1",
+    "path": "transformer/papers/pdf/2203.15556.pdf",
+    "bytes": 6004349,
+    "sha256": "3fd3632a8ef48171bd25282990221d49535d75356192f068b3b2ebe08f2aedd4",
+    "checked_at_utc": "2026-09-26T07:33:05.453911+00:00",
+    "downloaded_at_utc": "2026-09-26T07:14:23.168988+00:00",
+    "pdf_pages": 36
+  },
+  "1910.02054": {
+    "status": "ok",
+    "checked_at_utc": "2026-09-26T07:33:05.460063+00:00",
+    "url": "https://arxiv.org/pdf/1910.02054v3",
+    "path": "transformer/papers/pdf/1910.02054.pdf",
+    "bytes": 779206,
+    "sha256": "c531734c7d9ee647fda9b4f0e1a6abd6d58ad34e862bc945451b09032be3167e",
+    "downloaded_at_utc": "2026-09-26T07:14:53.585626+00:00",
+    "pdf_pages": 24
+  },
+  "2412.19437": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2412.19437v1",
+    "path": "transformer/papers/pdf/2412.19437.pdf",
+    "bytes": 1887607,
+    "sha256": "a67e18a4ca6e2c81abc030239a3ee53705f656b79efab8ce1d6b5ac25630c2a5",
+    "checked_at_utc": "2026-09-26T07:33:05.462971+00:00",
+    "downloaded_at_utc": "2026-09-26T07:14:26.879188+00:00",
+    "pdf_pages": 53
+  },
+  "2210.03629": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2210.03629v3",
+    "path": "agent_design/papers/pdf/2210.03629.pdf",
+    "bytes": 633805,
+    "sha256": "f285b0971ae4a790e402fb93966bed3adde2cf0a04977d08b2b40d6ab0cace69",
+    "checked_at_utc": "2026-09-26T07:33:05.466077+00:00",
+    "downloaded_at_utc": "2026-09-26T07:14:29.518751+00:00",
+    "pdf_pages": 33
+  },
+  "2303.11366": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2303.11366v4",
+    "path": "agent_design/papers/pdf/2303.11366.pdf",
+    "bytes": 591097,
+    "sha256": "6059b6f89fea9959bd3dab553fbb97756a3dfb1b15e3cbab2fbf3ab6664333bd",
+    "checked_at_utc": "2026-09-26T07:33:05.467951+00:00",
+    "downloaded_at_utc": "2026-09-26T07:14:31.744936+00:00",
+    "pdf_pages": 19
+  },
+  "2503.09516": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2503.09516v5",
+    "path": "agentic_rl/papers/pdf/2503.09516.pdf",
+    "bytes": 645723,
+    "sha256": "524306de91f80d7755c43f8daad11eb463832762ba1debe0f37788bdbb3a6a0d",
+    "checked_at_utc": "2026-09-26T07:33:05.469684+00:00",
+    "downloaded_at_utc": "2026-09-26T07:18:01.405254+00:00",
+    "pdf_pages": 31
+  },
+  "2508.03680": {
+    "status": "ok",
+    "url": "https://arxiv.org/pdf/2508.03680v1",
+    "path": "agentic_rl/papers/pdf/2508.03680.pdf",
+    "bytes": 2065451,
+    "sha256": "e223648a09b021785a46f60dd5ce13301622eca930ff91a5b45e971b53422561",
+    "checked_at_utc": "2026-09-26T07:33:05.472280+00:00",
+    "downloaded_at_utc": "2026-09-26T07:18:03.794982+00:00",
+    "pdf_pages": 20
+  }
+}

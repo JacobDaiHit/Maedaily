@@ -1,0 +1,63 @@
+# 实验 1：同一个 MDP，三种获得答案的方式
+
+若还不能口头解释“退出 1 分”和“先投入再完成 1.6 分”，先做[三个短程序实验](../短程序实验.md)。本页的完整程序接着验证价值迭代与 Q-learning，首次阅读可以稍后再来。
+
+这个实验对应第 1–3 章：先手算解析答案，再用已知模型做价值迭代，最后让 Q-learning 只从交互样本学习。它只依赖 Python 标准库，不需要 GPU、NumPy、PyTorch 或 Gymnasium。目的是验证回报、Bellman 更新、探索与终止处理的理解，不用于宣称深度强化学习性能。
+
+## 环境与独立答案
+
+| 状态 | 行动 | 下一状态 | 奖励 | 真正终止 |
+|---|---|---|---:|---|
+| start | quit | terminal | 1 | 是 |
+| start | invest | work | -0.2 | 否 |
+| work | finish | terminal | 2 | 是 |
+| work | wait | work | -0.1 | 否 |
+
+固定折扣 $\gamma=0.9$ 时，$V^*(\mathrm{work})=2$，$V^*(\mathrm{start})=1.6$。四个最优行动价值依次为 $1,1.6,2,1.7$。答案直接来自环境定义，不以另一个学习算法输出冒充真值。最优策略是 `start → invest`、`work → finish`；一次最优回合只有两步。
+
+默认最多收集 3 步就重置。这是外部采样上限，不是 MDP 的任务终止。某条轨迹如果连续等待而触及上限，更新仍保留最后状态的价值自举。脚本还单独校验奖励为 0、下一价值为 2、折扣为 0.9 的边界：真正终止的目标为 0，外部截断的目标为 1.8。
+
+## 运行命令
+
+在仓库根目录的 PowerShell 中运行：
+
+```powershell
+python RL/experiments/tabular_mdp.py --seed 7 --episodes 20000 --require-q-error 0.000001 --output-dir RL/experiments/results
+```
+
+`--seed` 固定行为策略的随机种子；`--episodes` 是训练回合数；`--require-q-error` 将最终最大行动价值误差作为可失败的验收条件；`--output-dir` 指定 CSV 与 JSON 的保存目录。省略输出目录时仅打印结果。脚本不会安装依赖或访问网络；同一目录中的同名结果会被本次运行覆盖，保留不同实验请指定不同目录。
+
+默认探索率 `--epsilon 0.2`，每个状态行动对第 $n$ 次访问的步长为 $n^{-0.6}$。探索率保持非零以覆盖所有行动；这不意味着最终评测还要随机探索。报告的贪心策略从训练表中导出，再用解析式计算其真实起点价值。
+
+## 读代码的顺序
+
+1. `TRANSITIONS` 定义真实任务；`analytic_solution` 推出独立参照答案。
+2. `td_target` 只根据 `terminated` 决定是否自举。
+3. `value_iteration` 使用已知转移做同步更新，并计算 Bellman 残差。
+4. `choose_action` 用 ε-greedy 与随机打破并列来采样。
+5. `q_learning` 只读实际转移、更新一个表项，记录访问次数与曲线。
+6. `exact_start_value` 评价贪心策略，即使策略选择一直等待也能用无穷几何级数计算。
+
+`summary.json` 保存配置、边界检查、解析价值、价值迭代误差、四个 Q 值、访问次数、贪心策略与截断次数。`learning_curve.csv` 保存不同训练回合处的误差和策略价值，横轴是已完成训练回合；它没有把不同回合长度偷偷当成相同环境步数。若研究样本效率，下一步应另加实际交互步数计数并以其为横轴。
+
+## 完成标准
+
+能够在不运行代码时写出四个解析 Q 值；价值迭代的最大价值误差低于 $10^{-10}$；默认 Q-learning 运行达到 $10^{-6}$ 的最大误差阈值；最优贪心起点价值为 1.6；能解释截断次数为什么不等于失败任务数。确定性环境里误差可以非常小，但不能据此推断随机奖励、巨大状态空间或神经网络也有同样精度。
+
+## 三个对照实验
+
+```powershell
+python RL/experiments/tabular_mdp.py --seed 11 --gamma 0.5 --output-dir RL/experiments/results_gamma05
+python RL/experiments/tabular_mdp.py --seed 19 --epsilon 0.05 --episodes 1000 --output-dir RL/experiments/results_low_exploration
+python RL/experiments/tabular_mdp.py --seed 23 --max-steps 2 --output-dir RL/experiments/results_short_rollout
+```
+
+第一个实验中进入工作的行动价值变为 $-0.2+0.5\times2=0.8$，所以最优起点行动应改为退出。第二个实验观察低探索与短预算是否造成部分行动访问不足，不预先保证必然失败。第三个实验增加截断机会，但只要自举正确、覆盖充分，任务的解析最优价值不应变化。
+
+不要为了演示错误直接改掉正确函数并覆盖主结果。若要做消融，可复制脚本到独立实验分支，故意把截断也当终止，比较 `work/wait` 的系统性低估，并明确记录修改。
+
+## 实际运行记录
+
+本仓库的默认运行结果保存在 [results/summary.json](results/summary.json) 与 [results/learning_curve.csv](results/learning_curve.csv)。运行日期为 2026-09-26，Python 3.13：价值迭代在第 3 轮确认不再变化，Bellman 残差为 0；Q-learning 最大误差为 $5.55\times10^{-15}$，贪心起点价值为 1.6，外部截断 168 次。另实际验证了 $\gamma=0.5$ 时起点策略改为退出，以及采样上限 2 步时仍得到最优起点价值 1.6。默认结果的访问次数与完整精度以 JSON 为准。这些是小环境的教学验收结果，不能替代多种子统计结论。
+
+公式参考[Q-learning 原论文](https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf)，终止与截断语义参考 [Gymnasium 官方文档](https://gymnasium.farama.org/tutorials/gymnasium_basics/handling_time_limits/)。本实验环境、解析校验与脚本为原创教学实现。

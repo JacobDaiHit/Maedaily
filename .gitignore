@@ -1,1 +1,6 @@
 GOAL.md
+
+# 每次学习运行自动生成的个人结果；固定教学参照仍保留在各实验目录。
+study_runs/
+.venv-maedaily/
+__pycache__/

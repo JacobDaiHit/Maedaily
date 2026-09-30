@@ -1,0 +1,55 @@
+{
+  "environment": "three_state_deterministic_mdp",
+  "config": {
+    "seed": 7,
+    "episodes": 20000,
+    "gamma": 0.9,
+    "epsilon": 0.2,
+    "max_steps": 3,
+    "learning_rate": "N(s,a)^(-0.6)",
+    "record_every": 500
+  },
+  "boundary_checks": {
+    "status": "passed",
+    "terminated_target": 0.0,
+    "truncated_target": 1.8,
+    "two_step_return": 1.6
+  },
+  "analytic_values": {
+    "start": 1.6,
+    "work": 2.0,
+    "terminal": 0.0
+  },
+  "value_iteration": {
+    "iterations": 3,
+    "values": {
+      "start": 1.6,
+      "work": 2.0,
+      "terminal": 0.0
+    },
+    "max_value_error": 0.0,
+    "bellman_residual": 0.0
+  },
+  "q_learning": {
+    "q": {
+      "start/quit": 1.0,
+      "start/invest": 1.5999999999999945,
+      "work/finish": 2.0,
+      "work/wait": 1.7
+    },
+    "visits": {
+      "start/quit": 2042,
+      "start/invest": 17958,
+      "work/finish": 17790,
+      "work/wait": 1977
+    },
+    "max_q_error": 5.551115123125783e-15,
+    "policy": {
+      "start": "invest",
+      "work": "finish"
+    },
+    "greedy_start_value": 1.6,
+    "truncations": 168,
+    "threshold_passed": true
+  }
+}

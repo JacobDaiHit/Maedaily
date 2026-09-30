@@ -1,0 +1,11 @@
+# 激活函数：从局部导数到现代前馈模块
+
+先从“输入 2，想预测 5”的小模型想起：线性计算能调权重，却无法表达所有弯曲关系；激活函数在中间加入非线性。按[从零上手](从零上手.md)先走通直线、ReLU、sigmoid 和梯度的例子，再用[函数总览](activate_func.md)查具体公式、[Dead ReLU 笔记](Dead_Neuron.md)分析一个失效条件、[门控与归一化](从激活函数到门控与归一化.md)理解完整模块。每看到一个新函数，先画形状、算导数、再讨论训练效果。
+
+第一次接触激活函数，先读 [激活与序列模型补课](../入门/激活与序列模型补课.md) 的前两节，手算 ReLU 和 sigmoid，再进入本目录。
+
+原有总览与 Dead Neuron 笔记保留作查阅材料。里面的“不会死亡”“梯度稳定”“更适合大模型”等简写，需要结合数据分布、优化器和具体结构判断；条件补充见[门控、归一化与条件补充](从激活函数到门控与归一化.md)。
+
+学习重点不是背全部激活名字，而是能算导数、解释饱和、识别张量形状，并分清逐元素非线性、门控乘法、归一化和残差的作用。完成后去 [框架自动微分](../pytorch&mindspore/README.md) 检验导数，再去 [Transformer](../transformer/README.md) 看模块组合。
+
+参考：[Deep Learning 第 6 章](https://www.deeplearningbook.org/contents/mlp.html)、[GLU Variants Improve Transformer](https://arxiv.org/abs/2002.05202)。这是一条帮助理解设计动机的学习线，不把现代激活函数的发展归结为仅仅解决 Dead ReLU。

@@ -1,0 +1,28 @@
+[
+  {
+    "id": "2503.09516",
+    "title": "Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning",
+    "version": "v5",
+    "pdf_url": "https://arxiv.org/pdf/2503.09516v5",
+    "source_url": "https://arxiv.org/abs/2503.09516v5",
+    "local_pdf": "agentic_rl/papers/pdf/2503.09516.pdf",
+    "note_file": "agentic_rl/papers/notes/2025_Search_R1.md",
+    "kind": "paper",
+    "folder": "agentic_rl",
+    "retrieved_at": "2026-09-26",
+    "publication_status": "COLM 2025; official accepted-paper list: https://colmweb.org/2025/AcceptedPapers.html"
+  },
+  {
+    "id": "2508.03680",
+    "title": "Agent Lightning: Train ANY AI Agents with Reinforcement Learning",
+    "version": "v1",
+    "pdf_url": "https://arxiv.org/pdf/2508.03680v1",
+    "source_url": "https://arxiv.org/abs/2508.03680v1",
+    "local_pdf": "agentic_rl/papers/pdf/2508.03680.pdf",
+    "note_file": "agentic_rl/papers/notes/2025_Agent_Lightning.md",
+    "kind": "paper",
+    "folder": "agentic_rl",
+    "retrieved_at": "2026-09-26",
+    "publication_status": "arXiv preprint; peer-reviewed venue not verified as of 2026-09-26"
+  }
+]

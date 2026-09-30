@@ -1,0 +1,28 @@
+[
+  {
+    "id": "2210.03629",
+    "version": "v3",
+    "pdf_url": "https://arxiv.org/pdf/2210.03629v3",
+    "source_url": "https://arxiv.org/abs/2210.03629v3",
+    "local_pdf": "agent_design/papers/pdf/2210.03629.pdf",
+    "note_file": "agent_design/papers/notes/2022_ReAct.md",
+    "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+    "kind": "paper",
+    "folder": "agent_design",
+    "retrieved_at": "2026-09-26",
+    "publication_status": "ICLR 2023 conference paper; arXiv v3 (2023-03-10), camera-ready status verified on arXiv and author repository"
+  },
+  {
+    "id": "2303.11366",
+    "version": "v4",
+    "pdf_url": "https://arxiv.org/pdf/2303.11366v4",
+    "source_url": "https://arxiv.org/abs/2303.11366v4",
+    "local_pdf": "agent_design/papers/pdf/2303.11366.pdf",
+    "note_file": "agent_design/papers/notes/2023_Reflexion.md",
+    "title": "Reflexion: Language Agents with Verbal Reinforcement Learning",
+    "kind": "paper",
+    "folder": "agent_design",
+    "retrieved_at": "2026-09-26",
+    "publication_status": "NeurIPS 2023 Main Conference Track; arXiv v4 (2023-10-10); official proceedings verified, notes use arXiv v4 tables"
+  }
+]

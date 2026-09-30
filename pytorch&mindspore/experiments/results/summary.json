@@ -1,0 +1,74 @@
+{
+  "verified_date": "2026-09-26",
+  "python": "3.11.15",
+  "python_executable": "D:\\anaconda\\envs\\pytorch_env\\python.exe",
+  "torch": "2.7.1+cu118",
+  "device": "cpu",
+  "dtype": "torch.float64",
+  "threads": 1,
+  "seed": 7,
+  "steps": 800,
+  "optimizer": "SGD",
+  "learning_rate": 0.05,
+  "momentum": 0.9,
+  "training_examples": 20,
+  "validation_examples": 4,
+  "gradient_checks": {
+    "loss_at_probe": 15.739999999999998,
+    "autograd": [
+      -6.800000000000001,
+      7.0,
+      -0.7999999999999994
+    ],
+    "analytic": [
+      -6.800000000000001,
+      7.0,
+      -0.7999999999999996
+    ],
+    "finite_difference": [
+      -6.799999999529405,
+      7.000000000978446,
+      -0.8000000013552722
+    ],
+    "finite_difference_step": 1e-06,
+    "max_analytic_error": 2.220446049250313e-16,
+    "max_finite_difference_error": 1.3552727828880506e-09,
+    "relative_finite_difference_error": 1.9361039752837333e-10,
+    "broadcast_wrong_loss": 1.3333333333333333,
+    "broadcast_correct_loss": 0.0,
+    "accumulated_scalar_gradient": -12.0,
+    "binary_uniform_ce": 0.6931471805599453,
+    "binary_ce_gradient": [
+      [
+        -0.5,
+        0.5
+      ]
+    ],
+    "status": "passed"
+  },
+  "training": {
+    "initial_train_mse": 19.668559025155247,
+    "final_train_mse": 1.656607900964125e-30,
+    "validation_mse": 3.944304526105059e-31,
+    "learned_weight_and_bias": [
+      2.0,
+      -2.999999999999999,
+      0.5
+    ],
+    "analytic_weight_and_bias": [
+      2.0,
+      -3.0,
+      0.5
+    ],
+    "max_parameter_error": 8.881784197001252e-16
+  },
+  "recovery": {
+    "saved_step": 40,
+    "reload_max_prediction_error": 0.0,
+    "next_step_max_parameter_error": 0.0,
+    "without_optimizer_next_step_error": 0.1042456137238914,
+    "resume_max_parameter_error": 0.0,
+    "status": "passed"
+  },
+  "scope": "CPU training-mechanics check on a noiseless linear problem; not an LLM or GPU benchmark"
+}

@@ -1,0 +1,284 @@
+{
+  "experiment": "tiny_causal_digit_language_model",
+  "run_timestamp": "2026-09-26T15:28:31.969342+08:00",
+  "environment": {
+    "python": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+    "python_executable": "D:\\anaconda\\envs\\pytorch_env\\python.exe",
+    "pytorch": "2.7.1+cu118",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "device": "cpu",
+    "intraop_threads": 1,
+    "interop_threads": 1,
+    "deterministic_algorithms": true
+  },
+  "config": {
+    "seed": 7,
+    "model": {
+      "d_model": 32,
+      "heads": 2,
+      "max_context": 16
+    },
+    "layers": 1,
+    "normalization": "pre-LN",
+    "activation": "GELU",
+    "dropout": 0.0,
+    "optimizer": "AdamW",
+    "weight_decay": 0.01,
+    "clip_gradient_norm": 1.0,
+    "vocab_size": 13,
+    "learning_rates": [
+      0.001,
+      0.003
+    ]
+  },
+  "data": {
+    "grammar": "digits increase/decrease modulo 10; BOS and EOS included",
+    "train_digit_lengths": [
+      6,
+      8,
+      10
+    ],
+    "validation_digit_lengths": [
+      7,
+      9
+    ],
+    "train_sequences": 60,
+    "validation_sequences": 40,
+    "full_sequence_overlap": 0,
+    "split_limit": "held-out lengths within the training length range; shared grammar and overlapping prefixes; no out-of-domain claim"
+  },
+  "comparison": "same seed, initialization, minibatch index stream and update count; one seed only",
+  "runs": [
+    {
+      "learning_rate": 0.001,
+      "parameter_count": 14112,
+      "steps": 200,
+      "batch_size": 16,
+      "processed_training_tokens": 28794,
+      "training_and_periodic_eval_seconds": 5.411403199999768,
+      "max_preclip_gradient_norm": 5.051605224609375,
+      "initial_train": {
+        "loss": 2.5635729754412617,
+        "tokens": 540,
+        "token_accuracy": 0.0962962962962963
+      },
+      "initial_validation": {
+        "loss": 2.5700133429633247,
+        "tokens": 360,
+        "token_accuracy": 0.09444444444444444
+      },
+      "final_train": {
+        "loss": 0.5914630254109701,
+        "tokens": 540,
+        "token_accuracy": 0.7685185185185185
+      },
+      "final_validation": {
+        "loss": 1.0535254690382216,
+        "tokens": 360,
+        "token_accuracy": 0.7
+      },
+      "checks": {
+        "label_shift_and_ignore_gradient": true,
+        "analytic_cross_entropy": 0.02931114286184311,
+        "causal_prefix_max_abs_difference": 0.0,
+        "padding_nll_abs_difference": 4.76837158203125e-07,
+        "evaluation_partition_loss_difference": 1.7660635176497408e-09,
+        "checkpoint_reload_max_abs_difference": 0.0,
+        "temporary_checkpoint_removed": true,
+        "all_training_gradients_finite": true,
+        "all_updated_parameters_finite": true,
+        "training_loss_fell_at_least_30_percent": true,
+        "validation_loss_decreased": true
+      },
+      "greedy_generations": [
+        {
+          "prefix_digits": [
+            7,
+            8
+          ],
+          "continuation": [
+            "9",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        },
+        {
+          "prefix_digits": [
+            2,
+            1
+          ],
+          "continuation": [
+            "0",
+            "9",
+            "8",
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        },
+        {
+          "prefix_digits": [
+            9,
+            0
+          ],
+          "continuation": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        },
+        {
+          "prefix_digits": [
+            0,
+            9
+          ],
+          "continuation": [
+            "8",
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "2",
+            "1",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        }
+      ]
+    },
+    {
+      "learning_rate": 0.003,
+      "parameter_count": 14112,
+      "steps": 200,
+      "batch_size": 16,
+      "processed_training_tokens": 28794,
+      "training_and_periodic_eval_seconds": 5.481840299995383,
+      "max_preclip_gradient_norm": 3.9930100440979004,
+      "initial_train": {
+        "loss": 2.5635729754412617,
+        "tokens": 540,
+        "token_accuracy": 0.0962962962962963
+      },
+      "initial_validation": {
+        "loss": 2.5700133429633247,
+        "tokens": 360,
+        "token_accuracy": 0.09444444444444444
+      },
+      "final_train": {
+        "loss": 0.5271955843325015,
+        "tokens": 540,
+        "token_accuracy": 0.7648148148148148
+      },
+      "final_validation": {
+        "loss": 1.1876252916124133,
+        "tokens": 360,
+        "token_accuracy": 0.6833333333333333
+      },
+      "checks": {
+        "label_shift_and_ignore_gradient": true,
+        "analytic_cross_entropy": 0.02931114286184311,
+        "causal_prefix_max_abs_difference": 0.0,
+        "padding_nll_abs_difference": 9.5367431640625e-07,
+        "evaluation_partition_loss_difference": 1.50115401220674e-08,
+        "checkpoint_reload_max_abs_difference": 0.0,
+        "temporary_checkpoint_removed": true,
+        "all_training_gradients_finite": true,
+        "all_updated_parameters_finite": true,
+        "training_loss_fell_at_least_30_percent": true,
+        "validation_loss_decreased": true
+      },
+      "greedy_generations": [
+        {
+          "prefix_digits": [
+            7,
+            8
+          ],
+          "continuation": [
+            "9",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        },
+        {
+          "prefix_digits": [
+            2,
+            1
+          ],
+          "continuation": [
+            "0",
+            "9",
+            "8",
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        },
+        {
+          "prefix_digits": [
+            9,
+            0
+          ],
+          "continuation": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        },
+        {
+          "prefix_digits": [
+            0,
+            9
+          ],
+          "continuation": [
+            "8",
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        }
+      ]
+    }
+  ],
+  "scope": "real CPU LM training; synthetic grammar only; no GPU memory/performance measurement; not complete project A acceptance"
+}

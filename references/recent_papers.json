@@ -1,0 +1,72 @@
+[
+  {
+    "id": "2502.02538",
+    "version": "v2",
+    "kind": "paper",
+    "folder": "RL",
+    "pdf_url": "https://arxiv.org/pdf/2502.02538v2",
+    "source_url": "https://arxiv.org/abs/2502.02538v2",
+    "local_pdf": "RL/papers/pdf/2502.02538.pdf",
+    "retrieved_at": "2026-09-26",
+    "title": "Flow Q-Learning",
+    "note_file": "RL/papers/notes/2502.02538_flow_q_learning.md",
+    "publication_status": "ICML 2025；PMLR 官方论文集已核实",
+    "version_date": "2025-05-25"
+  },
+  {
+    "id": "2609.24489",
+    "version": "v1",
+    "kind": "paper",
+    "folder": "RL",
+    "pdf_url": "https://arxiv.org/pdf/2609.24489v1",
+    "source_url": "https://arxiv.org/abs/2609.24489v1",
+    "local_pdf": "RL/papers/pdf/2609.24489.pdf",
+    "retrieved_at": "2026-09-26",
+    "title": "Lifted Bellman Linear Programming for Offline Reinforcement Learning",
+    "note_file": "RL/papers/notes/2609.24489_lifted_bellman_lp.md",
+    "publication_status": "arXiv 预印本；正式发表状态未核实",
+    "version_date": "2026-09-21"
+  },
+  {
+    "id": "2503.20783",
+    "version": "v2",
+    "kind": "paper",
+    "folder": "post_train",
+    "pdf_url": "https://arxiv.org/pdf/2503.20783v2",
+    "source_url": "https://arxiv.org/abs/2503.20783v2",
+    "local_pdf": "post_train/papers/pdf/2503.20783.pdf",
+    "retrieved_at": "2026-09-26",
+    "title": "Understanding R1-Zero-Like Training: A Critical Perspective",
+    "note_file": "post_train/papers/notes/2503.20783_dr_grpo.md",
+    "publication_status": "COLM 2025 Spotlight；官方列表和 OpenReview 已核实",
+    "version_date": "2025-10-06"
+  },
+  {
+    "id": "2605.02909",
+    "version": "v2",
+    "kind": "paper",
+    "folder": "post_train",
+    "pdf_url": "https://arxiv.org/pdf/2605.02909v2",
+    "source_url": "https://arxiv.org/abs/2605.02909v2",
+    "local_pdf": "post_train/papers/pdf/2605.02909.pdf",
+    "retrieved_at": "2026-09-26",
+    "title": "Delay, Plateau, or Collapse: Evaluating the Impact of Systematic Verification Error on RLVR",
+    "note_file": "post_train/papers/notes/2605.02909_verifier_errors.md",
+    "publication_status": "作者页面与 arXiv 标注 COLM 2026；会议官方录用记录未独立核实",
+    "version_date": "2026-08-17"
+  },
+  {
+    "id": "2609.28765",
+    "version": "v1",
+    "kind": "paper",
+    "folder": "post_train",
+    "pdf_url": "https://arxiv.org/pdf/2609.28765v1",
+    "source_url": "https://arxiv.org/abs/2609.28765v1",
+    "local_pdf": "post_train/papers/pdf/2609.28765.pdf",
+    "retrieved_at": "2026-09-26",
+    "title": "Reinforcement Learning with Verifiable Rewards for Small Search Agents",
+    "note_file": "post_train/papers/notes/2609.28765_small_search_agents.md",
+    "publication_status": "arXiv 预印本；正式发表状态未核实",
+    "version_date": "2026-09-23"
+  }
+]
