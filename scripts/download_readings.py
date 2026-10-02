@@ -37,7 +37,11 @@ def main() -> int:
         if args.ids and ident not in args.ids:
             continue
         target = (ROOT / item["local_pdf"]).resolve()
-        if not target.is_relative_to(ROOT) or target.suffix != ".pdf":
+        try:
+            target.relative_to(ROOT)
+        except ValueError:
+            raise ValueError("Manifest destination must stay inside this repository")
+        if target.suffix != ".pdf":
             raise ValueError("Manifest destination must be a PDF inside this repository")
         now = datetime.now(timezone.utc).isoformat()
         try:

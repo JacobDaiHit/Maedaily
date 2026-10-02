@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+from datetime import datetime
 import json
 from pathlib import Path
 import platform
@@ -212,7 +213,8 @@ def main() -> None:
         raise AssertionError("CPU deterministic checkpoint recovery differs from the uninterrupted run.")
 
     summary = {
-        "verified_date": "2026-09-26", "python": platform.python_version(),
+        "verified_date": datetime.now().astimezone().date().isoformat(),
+        "run_timestamp": datetime.now().astimezone().isoformat(), "python": platform.python_version(),
         "python_executable": sys.executable, "torch": torch.__version__,
         "device": str(DEVICE), "dtype": str(DTYPE), "threads": torch.get_num_threads(),
         "seed": SEED, "steps": STEPS, "optimizer": "SGD",

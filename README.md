@@ -1,8 +1,12 @@
 # Maedaily：用中文学会训练、后训练与工具交互
 
+**想做完整自测或准备面试，打开 [各专题题目索引](references/面试复习与题目索引.md)。** 题目均给出完整条件、参考答案、常见追问与回答；基础讲解、手算与实验排错按专题连接。
+
+面向基模／后训练算法实习的课程已按[全项目审查与能力验收](references/全项目审查与实习能力验收.md)展开推导、实现、排错和研究作业。该页记录官方岗位依据、正文与程序核验，以及学习者需要提交的项目证据；阅读数量不代替求职能力验收。
+
 这个项目帮助你从“能看懂一个例子”走到“能训练、能解释、能排错”。第一遍读中文精讲，照着手算并运行小实验；第二遍进入系统章节和论文省流；第三步再完成真实模型项目。核心讲解和练习答案都在仓库里，不要求先读英文原书。
 
-主线是：**训练基础 → 语言模型 → 监督微调（SFT）/ 直接偏好优化（DPO）→ 强化学习 / 可验证奖励强化学习（RLVR）→ Agent 与多步交互训练**。SFT 学示范答案，DPO 学回答之间的偏好，RLVR 用可执行的规则给生成结果评分。Agent 指能依据工具反馈继续选择动作的系统。循环神经网络（RNN）、激活函数、预训练与系统知识按需要接入。教学内容更新：2026-09-29。
+主线是：**训练基础 → 语言模型 → 监督微调（SFT）/ 直接偏好优化（DPO）→ 强化学习 / 可验证奖励强化学习（RLVR）→ Agent 与多步交互训练**。SFT 学示范答案，DPO 学回答之间的偏好，RLVR 用可执行的规则给生成结果评分。Agent 指能依据工具反馈继续选择动作的系统。循环神经网络（RNN）、激活函数、预训练与系统知识按需要接入。教学内容更新：2026-10-02。
 
 ## 第一次来，今天就这样开始
 
@@ -36,7 +40,7 @@ python scripts/run_lesson.py first
 | 1 | [第一课：从预测到学习](入门/第一课_从预测到学习.md) | 一次参数更新、概率、负对数、折扣回报 | `first` |
 | 2 | [张量与训练框架](pytorch&mindspore/从零上手.md) | 形状、广播、自动微分、训练/验证、保存恢复 | `linear` |
 | 3 | [激活与序列模型补课](入门/激活与序列模型补课.md) | 非线性、三步 RNN、门控、为什么需要 attention | 手算与文内短代码 |
-| 4 | [Transformer 从零上手](transformer/从零上手.md) | token 到向量、三位置注意力、mask、标签移位、小 LM | `lm` |
+| 4 | [Transformer 从零上手](transformer/从零上手.md) | token 到向量、三位置注意力、mask、标签移位、小 LM；[Embedding 原理](transformer/chapters/01_Embedding与表示学习.md)按需展开 | `lm` |
 | 5 | [后训练从零上手](post_train/从零上手.md) | 同一道题的 SFT / 偏好 / RLVR 数据、DPO 与组优势 | `posttrain` |
 | 6 | [强化学习从零上手](RL/从零上手.md) | 状态、策略、回报、Bellman、MC/TD/Q、策略梯度与 PPO | `rl` |
 | 7 | [工具交互第一课](入门/工具交互第一课.md) | 请求/观察/重试、检索、轨迹 mask、奖励与调用预算 | `agent`、`trajectory` |
@@ -53,19 +57,25 @@ python scripts/run_lesson.py first
 python scripts/run_lesson.py --list
 python scripts/run_lesson.py linear
 python scripts/run_lesson.py lm
+python scripts/run_lesson.py lm-resume
+python scripts/run_lesson.py data-asset
+python scripts/run_lesson.py embedding
+python scripts/run_lesson.py attention
 python scripts/run_lesson.py rl
 python scripts/run_lesson.py posttrain
 python scripts/run_lesson.py agent
 python scripts/run_lesson.py trajectory
 ```
 
-只运行正在学的那一课即可。它们不需要 API 密钥或模型下载；`linear`、`lm` 使用 PyTorch 和 CPU，其余只用 Python 标准库。本机指定 PyTorch 环境的写法是：
+只运行正在学的那一课即可。它们不需要 API 密钥或模型下载；`linear`、`lm`、`lm-resume`、`attention` 使用 PyTorch 和 CPU，其余只用 Python 标准库。本机指定 PyTorch 环境的写法是：
 
 ```powershell
 python scripts/run_lesson.py lm --python 'D:/anaconda/envs/pytorch_env/python.exe'
 ```
 
 每次自动创建一个独立的 `study_runs/时间_课程名/`，终端会打印位置。先看其中的 **`结果说明.txt`**，再看 `console.txt` 完整日志。`run.json` 记录命令与是否通过；训练类课程还有 `summary.json` 和 `learning_curve.csv`。个人运行目录已加入 Git 忽略，各实验目录中原有的教学参照结果另行保留。
+
+新增 `lm-resume` 和 `data-asset` 的检查点、对照表或数据审计文件放在本轮目录的 `artifacts/` 子目录。分别按[模型续训实验](transformer/experiments/模型续训实验.md)和[数据资产实验](post_train/experiments/数据资产实验.md)查看；日志与中文结果说明仍在父目录。
 
 指定输出位置可以用 `--output-dir 'study_runs/第一次线性训练'`；目录已有内容时会停止，避免把上次结果覆盖掉。
 
@@ -74,12 +84,16 @@ python scripts/run_lesson.py lm --python 'D:/anaconda/envs/pytorch_env/python.ex
 | `first` | 损失 4.5 → 1.125 | 手写解析梯度完成一次更新 |
 | `linear` | 学到权重约 `[2,-3]`、偏置 0.5；恢复下一步误差 0 | 真实 PyTorch 训练；遗漏动量会改变下一步更新 |
 | `lm` | lr=0.001 的验证损失约 1.053525；lr=0.003 约 1.187625 | 同一初始化和预算下，训练更低不一定验证更好 |
+| `lm-resume` | 连续 40 步与完整恢复的 20+20 步，每步参数和损失差 0 | 保存模型、AdamW、数据位置与随机源；遗漏状态的两种对照都会产生差异 |
+| `data-asset` | 50 条输入保留 44 条、过滤 6 条；分组切分为 28/6/10 | 保留来源、审计和版本，逐字重建；显式题族与精确重复不跨划分 |
+| `embedding` | SGNS 损失 2.006409 → 1.858407；有限差分误差约 1.55e-10 | 核对查表、负采样、pooling、温度与检索排序 |
+| `attention` | RoPE 缓存与完整因果计算误差 0；错误矩形 mask 偏差约 2.388 | 核对 Attention 梯度、在线 softmax 与 MLA 等价 |
 | `rl` | 起点价值 1.6，选择先投入再完成 | 表格 Q-learning 与独立手算一致 |
 | `posttrain` | 45 项数值检查；DPO loss 约 0.554355 | 检查概率、掩码、偏好、组优势和验证器 |
-| `agent` | 41 项检查；正常计算和暂时故障恢复都得到 4 | 检查规则控制器的工具流程 |
+| `agent` | 42 项检查；正常计算和暂时故障恢复都得到 4 | 检查规则控制器的工具流程与请求级重试编号 |
 | `trajectory` | 正确动作 mask 的损失 0.25 | 工具观察不应混入策略动作损失 |
 
-不同机器的耗时和浮点末位可能不同，先看脚本检查是否通过和结果方向是否一致。微型 LM 是真实的数字语法模型训练；后训练数学、工具状态机与轨迹核算还不包含真实 LLM 的 SFT / DPO / RLVR 训练，这些继续作为年度项目完成。
+不同机器的耗时和浮点末位可能不同，先看脚本检查是否通过和结果方向是否一致。微型 LM 是真实的数字语法模型训练；后训练数学、工具状态机与轨迹核算还不包含真实 LLM 的 SFT / DPO / RLVR 训练。进入年度项目 B/C 时，按[真实模型训练工坊](post_train/experiments/真实模型训练与验收.md)逐阶段检查配置、监督、参数更新、采样与保存恢复，并按[数据资产与评测交付规范](references/数据资产与评测交付规范.md)建立主任务、迁移与回归三个评测面板。
 
 ## 教材里的重要内容，已经整理到哪里
 
@@ -100,13 +114,15 @@ python scripts/run_lesson.py lm --python 'D:/anaconda/envs/pytorch_env/python.ex
 | [激活函数](激活函数/README.md) | 从例子理解非线性，再查导数、饱和、门控、残差与归一化 | 第 1 月按缺口补 |
 | [pytorch&mindspore](pytorch&mindspore/README.md) | 4 章把计算契约、梯度、训练和排错讲完整 | 第 1 月；先 PyTorch，MindSpore 对照选读 |
 | [RNN](RNN/README.md) | 三步递推导读、原笔记及梯度、门控与 attention 起点 | 第 1 月作序列基础 |
-| [transformer](transformer/README.md) | 5 章覆盖结构、LM、缓存、数据与系统 | 第 1 月前两章，第 7–8 月数据/系统 |
+| [transformer](transformer/README.md) | 6 篇覆盖 Embedding、注意力、LM、缓存、数据与系统 | 第 1 月表示基础、注意力与 LM，第 7–8 月数据/系统 |
 | [RL](RL/README.md) | 8 章从 MDP 到 PPO、探索与离线 RL | 第 4 月主读，前期按需要补 |
 | [post_train](post_train/README.md) | 7 章从 SFT 到 DPO、RLHF、RLVR 与评测 | 第 2–6 月主线 |
 | [agent_design](agent_design/README.md) | 3 章讲工具、记忆、检索、规划与可靠性 | 为交互训练准备系统基础 |
 | [agentic_rl](agentic_rl/README.md) | 3 章讲多步奖励、信用分配、训练系统与实验设计 | 第 9–10 月可选专题 |
 
 正文中的公式和条件是第二遍重点。每章至少能解释一个公式、定位一段代码、说明一个失败条件，然后再扩展规模。[发展脉络](references/学习路线与发展脉络.md) 解释方法为何出现；[年度任务与验收](references/年度学习任务与验收.md) 把它们连到项目 A/B/C。术语、论文与版本记录可从[阅读附录](references/README.md)按问题查阅。本地详细目标保存在 [GOAL](GOAL.md)。
+
+第 7–10 月按[研究专题与复现验收](references/研究专题与复现验收.md)只选一个深入问题。后训练仍是主线；申请基模算法时，可用优化与稳定性、数据与 Scaling 或结构与效率之一替换深入专题，并升级项目 A。先完成预实验、固定预算和评测精度，再做机制复现与消融，保留负结果和独立审阅记录。
 
 ## 什么时候开始读论文
 
@@ -127,7 +143,7 @@ python scripts/run_lesson.py lm --python 'D:/anaconda/envs/pytorch_env/python.ex
 
 ## 资料和维护入口
 
-目前有 32 个系统教学章节、上述新手中文精讲、20 篇论文省流及 PDF、2 本公开参考书稿。出处与版本见 [资料清单](references/readings.json)，校验记录见 [下载记录](references/downloads.json)，实跑情况见 [版本与验证记录](references/版本与验证记录.md)。
+目前有 33 个系统教学章节、上述新手中文精讲、20 篇论文省流及 PDF、2 本公开参考书稿。Embedding 新章另附 Word2Vec、GloVe、SBERT、SimCSE 与 DPR 的原始资料链接，未加入已下载 PDF 的计数。出处与版本见 [资料清单](references/readings.json)，校验记录见 [下载记录](references/downloads.json)，实跑情况见 [版本与验证记录](references/版本与验证记录.md)。
 
 只有需要检查或补齐原始文件时，才运行下面的资料命令；它不是学习第一步：
 

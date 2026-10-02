@@ -15,6 +15,10 @@ LESSONS = {
     "first": ("第一课：手算一次学习", "scripts/first_steps.py", False, True),
     "linear": ("框架：梯度、线性训练与恢复", "pytorch&mindspore/experiments/linear_train_lab.py", True, True),
     "lm": ("语言模型：数字语法与学习率对照", "transformer/experiments/tiny_causal_lm.py", True, True),
+    "lm-resume": ("语言模型：完整续训与遗漏状态对照", "transformer/experiments/lm_resume_lab.py", True, True),
+    "data-asset": ("数据资产：审计、题族切分与可重建记录", "scripts/data_asset_lab.py", False, True),
+    "embedding": ("表示学习：查表梯度、SGNS 与对比学习", "transformer/experiments/embedding_math_lab.py", False, False),
+    "attention": ("注意力：VJP、RoPE、缓存与 MLA 等价", "transformer/experiments/attention_math_lab.py", True, False),
     "rl": ("强化学习：表格决策与 Q-learning", "RL/experiments/tabular_mdp.py", False, True),
     "posttrain": ("后训练：概率、DPO 与组优势核算", "post_train/experiments/posttraining_math_lab.py", False, False),
     "agent": ("Agent：工具调用与错误恢复", "agent_design/experiments/tool_state_machine.py", False, False),
@@ -24,11 +28,16 @@ READ_NEXT = {
     "first": "入门/第一课_从预测到学习.md",
     "linear": "pytorch&mindspore/从零上手.md",
     "lm": "transformer/从零上手.md",
+    "lm-resume": "transformer/experiments/模型续训实验.md",
+    "data-asset": "post_train/experiments/数据资产实验.md",
+    "embedding": "transformer/chapters/01_Embedding与表示学习.md",
+    "attention": "transformer/chapters/03_位置编码_KVCache与注意力效率.md",
     "rl": "RL/从零上手.md",
     "posttrain": "post_train/从零上手.md",
     "agent": "入门/工具交互第一课.md",
     "trajectory": "入门/工具交互第一课.md",
 }
+ISOLATED_ARTIFACTS = {"lm-resume", "data-asset"}
 
 
 def probe(executable: str, need_torch: bool) -> tuple[bool, str]:
@@ -49,9 +58,10 @@ def probe(executable: str, need_torch: bool) -> tuple[bool, str]:
 def choose_python(explicit: str | None, need_torch: bool) -> tuple[str | None, list[str]]:
     candidates = [explicit] if explicit else [sys.executable]
     # 仅尝试本项目已验证的已有环境；不扫描磁盘、不安装或修改环境。
-    known = Path("D:/anaconda/envs/pytorch_env/python.exe")
-    if not explicit and need_torch and known.is_file():
-        candidates.append(str(known))
+    if not explicit:
+        for known in (Path("C:/Python313/python.exe"), Path("D:/anaconda/envs/pytorch_env/python.exe")):
+            if known.is_file():
+                candidates.append(str(known))
     reports, seen = [], set()
     for candidate in candidates:
         executable = shutil.which(candidate) or candidate
@@ -68,10 +78,36 @@ def choose_python(explicit: str | None, need_torch: bool) -> tuple[str | None, l
 
 def chinese_summary(lesson: str, output: Path) -> str:
     """把原脚本机器可读字段解释为中文；原始日志仍完整保留。"""
-    filename = "summary.json" if lesson in {"linear", "lm", "rl"} else "console.txt"
+    filename = "summary.json" if lesson in {"linear", "lm", "rl", "lm-resume", "data-asset"} else "console.txt"
     if lesson == "first":
         return "已完成预测、梯度更新、概率与折扣回报的第一次数值练习。"
-    data = json.loads((output / filename).read_text(encoding="utf-8"))
+    if lesson == "embedding":
+        return ("已核对重复 ID 的查表梯度累加、SGNS 手算与有限差分、同步参数更新、"
+                "PMI 条件、masked pooling、InfoNCE 温度梯度和检索排序。\n"
+                "这是小规模数学核算；完整中间结果见 console.txt，尚未训练句向量模型。")
+    data_output = output / "artifacts" if lesson in ISOLATED_ARTIFACTS else output
+    data = json.loads((data_output / filename).read_text(encoding="utf-8"))
+    if lesson == "lm-resume":
+        complete = data["comparisons"]["complete_resume"]
+        return (f"完整续训首批数据一致={complete['first_batch_equal']}；"
+                f"下一步参数误差={complete['next_step_parameter_max_abs_difference']:.3g}；"
+                f"最终参数误差={complete['final_parameter_max_abs_difference']:.3g}。\n"
+                f"漏优化器状态已检出={data['checks']['missing_optimizer_detected']}；"
+                f"漏批次生成器状态已检出={data['checks']['missing_batch_generator_detected']}。\n"
+                "验证范围：固定 CPU float64 的数字语法模型完整恢复；检查点和逐步对照 CSV 已保留。")
+    if lesson == "data-asset":
+        return (f"输入 {data['input_records']} 条，保留 {data['kept_records']} 条，"
+                f"过滤 {data['filtered_records']} 条；划分数量={data['splits']}。\n"
+                f"同输入重建一致={data['checks']['rebuild_identical']}；"
+                f"题族与精确重复组不跨划分={data['checks']['group_disjoint']}。\n"
+                "过滤原因与来源保留率见审计账本和 manifest；字符数不是 token 数，语义近重复需另行检查。")
+    if lesson == "attention":
+        return (f"注意力解析 VJP 最大误差={data['attention_vjp_max_error']:.3g}；"
+                f"RoPE 增量缓存与完整因果计算误差={data['rope_cached_attention_max_error']:.3g}。\n"
+                f"错误矩形 mask 的输出偏差={data['wrong_rectangular_mask_error']:.6f}；"
+                f"在线 softmax 误差={data['online_softmax_max_error']:.3g}；"
+                f"MLA 投影吸收误差={data['mla_projection_absorption_max_error']:.3g}。\n"
+                "验证范围：CPU float64 核心函数；GPU 内核和完整模型训练是后续项目。")
     if lesson == "linear":
         return (f"训练均方误差：{data['training']['initial_train_mse']:.6f} → {data['training']['final_train_mse']:.3g}；"
                 f"学到的权重与偏置：{data['training']['learned_weight_and_bias']}。\n"
@@ -135,11 +171,13 @@ def main() -> int:
         print("请换一个 --output-dir，或省略该参数自动创建新目录。")
         return 2
     output.mkdir(parents=True, exist_ok=True)
+    # New guarded experiments own an empty artifact directory; runner logs stay outside it.
+    child_output = output / "artifacts" if args.lesson in ISOLATED_ARTIFACTS else output
     command = [executable, "-X", "utf8", str(ROOT / relative_script)]
     if args.lesson == "rl":
         command.extend(["--seed", "7", "--episodes", "20000", "--require-q-error", "0.000001"])
     if supports_output:
-        command.extend(["--output-dir", str(output)])
+        command.extend(["--output-dir", str(child_output)])
     env = os.environ.copy()
     env.update({"PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"})
     started = datetime.now().astimezone().isoformat()
@@ -169,6 +207,8 @@ def main() -> int:
     record = {"lesson": args.lesson, "title": title, "command": command, "cwd": str(ROOT),
               "started_at": started, "finished_at": datetime.now().astimezone().isoformat(),
               "exit_code": code, "success": code == 0, "console_log": str(log_path)}
+    if supports_output:
+        record["artifact_dir"] = str(child_output)
     (output / "run.json").write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     if code:
         print(f"\n本次未通过（退出码 {code}）。错误日志：{log_path}")

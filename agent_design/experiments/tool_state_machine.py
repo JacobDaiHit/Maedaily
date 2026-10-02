@@ -98,6 +98,7 @@ def run(
     state = "ready"
     trace: list[dict[str, Any]] = [{"event": 0, "state": state}]
     values: list[float] = []
+    attempts: dict[str, int] = {}
 
     def transition(next_state: str, **fields: Any) -> None:
         nonlocal state
@@ -124,7 +125,9 @@ def run(
         if executor.calls >= max_calls:
             transition("budget_exhausted", calls=executor.calls)
             break
-        transition("calling", request_id=request.request_id, attempt=executor.calls + 1)
+        attempts[request.request_id] = attempts.get(request.request_id, 0) + 1
+        transition("calling", request_id=request.request_id,
+                   attempt=attempts[request.request_id], call_index=executor.calls + 1)
         observation = executor.execute(request)
         transition("observing", request_id=request.request_id, observation=asdict(observation))
         if observation.ok:
@@ -170,6 +173,8 @@ def main() -> None:
     check(recovered["calls"] == 3, "retry consumes call budget")
     retried_ids = [item["request_id"] for item in recovered["trace"] if item["state"] == "calling"]
     check(retried_ids == ["step-0", "step-0", "step-1"], "retry preserves logical request identity")
+    retried_attempts = [item["attempt"] for item in recovered["trace"] if item["state"] == "calling"]
+    check(retried_attempts == [1, 2, 1], "attempt counts belong to logical requests, not global calls")
     check(exhausted["status"] == "budget_exhausted" and exhausted["calls"] == 1, "budget stop")
     check(exhausted["final_value"] is None, "partial sum cannot be reported as final answer")
     check(repeated_failure["status"] == "budget_exhausted" and repeated_failure["calls"] == 3, "bounded retry")

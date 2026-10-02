@@ -19,12 +19,13 @@ def preference_lab() -> None:
 
 
 def dpo_lab() -> None:
-    chosen_new, rejected_new = -0.2, -1.2
+    # These two candidates leave probability mass for other possible answers.
+    chosen_new, rejected_new = -0.5, -1.5
     chosen_ref, rejected_ref = -0.5, -1.0
     beta = 0.2
     margin = beta * ((chosen_new - rejected_new) - (chosen_ref - rejected_ref))
     loss = math.log1p(math.exp(-margin))
-    print(f"DPO：新旧相对概率差={margin:.3f}，损失={loss:.6f}")
+    print(f"DPO：缩放后的偏好差={margin:.3f}，损失={loss:.6f}")
     assert abs(margin - 0.1) < 1e-12
 
 
