@@ -38,7 +38,7 @@ python -X utf8 scripts/check_repository.py --smoke all --torch-python "已有环
 
 冒烟运行把结果放入临时目录，逐课检查退出码、`run.json` 和中文结果说明，并比较运行前后所有公共源文件的 SHA-256。不会覆盖仓库中的固定教学参考结果。完整报告可用 `--json study_runs/repository_check.json` 保存。
 
-GitHub Actions 将标准库验证与 PyTorch CPU 验证分开运行，标准库检查覆盖 Linux/Python 3.10 和 Windows/Python 3.13，CPU 任务固定使用本地已验证的 PyTorch 2.7.1 并运行所有已登记课程。工作流只有仓库读取权限，报告保存为运行产物。云端状态需以 GitHub Actions 实际运行结果为准；本地通过不能代替云端验证。
+GitHub Actions 将标准库验证与 PyTorch CPU 验证分开运行，标准库检查覆盖 Linux/Python 3.10 和 Windows/Python 3.13，CPU 任务固定使用本地已验证的 PyTorch 2.7.1 与 NumPy 2.4.4，并运行所有已登记课程。模型状态哈希与资源观测使用 Tensor.numpy()，因此完整测试环境还需要 NumPy；CPU PyTorch wheel 的依赖不会自动安装它。CI 分别从 PyPI 安装 NumPy、从 PyTorch 官方 CPU 索引安装 PyTorch，并在测试前检查 Tensor.numpy() 是否可用。工作流只有仓库读取权限，报告保存为运行产物。云端状态需以 GitHub Actions 实际运行结果为准；本地通过不能代替云端验证。
 
 ## A/B/C 参考实训的验证范围
 
@@ -54,3 +54,10 @@ python -X utf8 scripts/verify_reference_run.py --verify-package references/evide
 这两条检查原始文件哈希、数据身份及统计复算；参数梯度和完整训练过程需要按实训说明重新生成检查点。B/C 保留三个真实种子、九个支路、全部三面板预测与采样成本，并用独立答案求解器交叉核验。匿名 AI 辅助审阅与人工复核分别记录，空白人工表继续为 `not_reviewed`。详细范围见 [A/B/C 参考实训](../post_train/experiments/A_B_C参考实训.md)。
 
 Python 源码和公开证据的 Git 换行策略分别固定；已绑定的 CRLF 源文件与证据包保持原始字节，避免不同平台检出使 SHA-256 改变。B/C 的派生成本、时间与 ratio 浮点统计使用明确的绝对和相对 1e-12 容差，其他字段、原始文件和源码哈希仍严格比较。新增 CI 会在标准库任务中执行上述两条公开包核验；远端运行状态仍需以实际 Actions 记录为准。
+
+
+## 2026-10-03 首次远端 CI 的修正
+
+[首次运行](https://github.com/JacobDaiHit/Maedaily/actions/runs/37089129235) 的 Linux 标准库任务通过；Windows 标准库任务有 4 个路径断言失败，CPU 任务有 14 个缺 NumPy 错误，另有注意力课程的结果交付因依赖警告混入日志而失败。Windows runner 的临时目录使用 `RUNNER~1` 短路径，输出管理会将其解析为对应长路径；测试应比较解析后的同一目录，而不是路径字符串的不同拼写。对测试中期望的目录调用 Path.resolve() 后比较，保留覆盖拒绝、目录竞争和运行收据检查。
+
+这次修正只涉及 CI 的依赖和测试的路径比较，不改动已冻结训练源码或公开证据。远端是否通过仍以修正提交的实际 Actions 结果为准。

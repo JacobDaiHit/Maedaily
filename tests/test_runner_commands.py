@@ -33,7 +33,7 @@ class RunnerCommands(unittest.TestCase):
         self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
         record = json.loads((output / "run.json").read_text(encoding="utf-8"))
         artifact_dir = output / "artifacts"
-        self.assertEqual(Path(record["artifact_dir"]), artifact_dir)
+        self.assertEqual(Path(record["artifact_dir"]), artifact_dir.resolve())
         result = json.loads((artifact_dir / "first_steps.json").read_text(encoding="utf-8"))
         self.assertEqual(result["learning_rate"], 0.05)
         self.assertAlmostEqual(result["after"]["loss"], 2.53125)
@@ -197,7 +197,7 @@ class RunnerCommands(unittest.TestCase):
         self.assertTrue(record["success"])
         self.assertEqual(record["process_timeout_seconds"], 600)
         self.assertEqual(record["experiment_args"], ["--steps", "4", "--split-step", "2"])
-        self.assertEqual(Path(record["artifact_dir"]), output / "artifacts")
+        self.assertEqual(Path(record["artifact_dir"]), (output / "artifacts").resolve())
         self.assertEqual(record["command"][-4:], ["--steps", "4", "--split-step", "2"])
         self.assertNotIn("--mode", record["command"])
 

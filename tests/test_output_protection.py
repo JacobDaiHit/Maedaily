@@ -26,7 +26,7 @@ class OutputProtection(unittest.TestCase):
         first = runtime.reserve_output_dir(None, "first", root=self.root)
         second = runtime.reserve_output_dir(None, "first", root=self.root)
         self.assertNotEqual(first, second)
-        self.assertEqual(first.parent, self.root / "study_runs")
+        self.assertEqual(first.parent, (self.root / "study_runs").resolve())
         receipt = json.loads((first / runtime.CLAIM_FILE).read_text(encoding="utf-8"))
         self.assertEqual(receipt["lesson"], "first")
         self.assertIn("reserved_at_utc", receipt)
@@ -48,7 +48,7 @@ class OutputProtection(unittest.TestCase):
     def test_empty_directory_can_only_be_claimed_once(self):
         output = self.root / "empty"
         output.mkdir()
-        self.assertEqual(runtime.reserve_output_dir(output, "first"), output)
+        self.assertEqual(runtime.reserve_output_dir(output, "first"), output.resolve())
         with self.assertRaises((ValueError, OSError)):
             runtime.reserve_output_dir(output, "first")
 
