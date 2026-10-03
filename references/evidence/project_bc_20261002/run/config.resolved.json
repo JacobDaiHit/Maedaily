@@ -1,0 +1,30 @@
+{
+  "schema": "maedaily-pretrained-bc-reference-v1",
+  "seeds": [
+    17,
+    23,
+    41
+  ],
+  "sft_steps": 20,
+  "sft_learning_rate": 0.0003,
+  "batch_size": 8,
+  "dpo_steps": 6,
+  "dpo_learning_rate": 0.0001,
+  "beta": 0.2,
+  "beta_ablation": 0.1,
+  "rl_rounds": 3,
+  "rl_learning_rate": 5e-05,
+  "groups": 4,
+  "group_size": 4,
+  "group_size_ablation": 8,
+  "temperature": 2.0,
+  "clip": 0.2,
+  "format_reward": 0.1,
+  "kl_coefficient": 0.01,
+  "max_new_tokens": 8,
+  "sampling_baseline_size": 4,
+  "adapter_rank": 4,
+  "adapter_alpha": 8,
+  "bootstrap_replicates": 2000,
+  "threads": 1
+}

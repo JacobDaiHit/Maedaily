@@ -1,0 +1,66 @@
+{
+  "optimizer_steps": 3,
+  "effective_update_tokens": 63,
+  "elapsed_seconds": 0.49231490000966005,
+  "initial_weight_hash": "79955595d21d829fb1e6059ed8216e700be23c5bfa9eac464935e03676938de3",
+  "final_weight_hash": "d2a2ab386f28a7ee3b2f2a85157300f47992b5839aad04bf35f0fac9a2ac1a01",
+  "logs": [
+    {
+      "step": 1,
+      "sample_ids": [
+        "train:copy:5:two-leading-zeros",
+        "train:copy:78:one-leading-zero",
+        "train:arith:7+3=",
+        "train:arith:1+4=",
+        "train:arith:0-4=",
+        "train:arith:2-0=",
+        "train:copy:28:canonical",
+        "train:copy:71:two-leading-zeros"
+      ],
+      "effective_tokens": 21,
+      "loss": 0.0004871058335993439,
+      "gradient_norm": 0.0241116750985384,
+      "parameter_delta_norm": 0.1529924637929899,
+      "weight_before": "79955595d21d829fb1e6059ed8216e700be23c5bfa9eac464935e03676938de3",
+      "weight_after": "9639fd4d869a426a936e46b1b65f6d783497114a4afbdb2948e0495f36171df5"
+    },
+    {
+      "step": 2,
+      "sample_ids": [
+        "train:copy:65:one-leading-zero",
+        "train:copy:93:two-leading-zeros",
+        "train:copy:27:two-leading-zeros",
+        "train:arith:0+4=",
+        "train:copy:6:one-leading-zero",
+        "train:arith:8+5=",
+        "train:arith:3-6=",
+        "train:arith:4+0="
+      ],
+      "effective_tokens": 21,
+      "loss": 0.0003331479674670845,
+      "gradient_norm": 0.019208896905183792,
+      "parameter_delta_norm": 0.12169097018848664,
+      "weight_before": "9639fd4d869a426a936e46b1b65f6d783497114a4afbdb2948e0495f36171df5",
+      "weight_after": "2b82f42fe0cd5941feb2b52a5dc7f8ceec07fd2752c0464a891c10a9d7472049"
+    },
+    {
+      "step": 3,
+      "sample_ids": [
+        "train:arith:3+2=",
+        "train:arith:9+7=",
+        "train:copy:64:two-leading-zeros",
+        "train:copy:86:canonical",
+        "train:arith:5-3=",
+        "train:arith:0-1=",
+        "train:copy:3:one-leading-zero",
+        "train:copy:27:two-leading-zeros"
+      ],
+      "effective_tokens": 21,
+      "loss": 3.710106830112636e-05,
+      "gradient_norm": 0.0008943210123106837,
+      "parameter_delta_norm": 0.0950701224859321,
+      "weight_before": "2b82f42fe0cd5941feb2b52a5dc7f8ceec07fd2752c0464a891c10a9d7472049",
+      "weight_after": "d2a2ab386f28a7ee3b2f2a85157300f47992b5839aad04bf35f0fac9a2ac1a01"
+    }
+  ]
+}

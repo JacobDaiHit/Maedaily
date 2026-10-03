@@ -1,0 +1,13 @@
+{
+  "adapter_checks.py": "c230fb9ad9b0ecd278190442f36df71beb217f9bb1fecdd7b3425ff1459036cf",
+  "mini_walkthrough.py": "93f506172cc44df2520afd27aa57adebd644d77733403c675807a04d9f9abf70",
+  "model_quality_data.py": "b5ad5ca5084f33fdf092f60f41d89fefe42057d1096f371c7c9d06c2f6c522ae",
+  "model_quality_lab.py": "717eed4e237eefce4421080544f07c37bbd2280e1d49c7ade8e9111bcee2ae76",
+  "model_training_lab.py": "3bbcd32a911cecd81269f0046f4eea1d3776168680694b192e974292d8b46f1a",
+  "posttraining_math_lab.py": "5df42bd5d7037b9a450489795495dc436aadb2a555445f1517252b188bb18390",
+  "pretrained_adapter.py": "479abae0bc8bc17938fdad43b0387c330491484d224b8ae1c618ae0bfdbb4626",
+  "project_bc_reference.py": "e17dd1253b0f8eff65817239de2bf03d9d6b42657cec2783cda08a5c415277f0",
+  "reference_reporting.py": "d169c6cc3f857df6dc8178a82117e3535e69bad2337bbcbff59d63d819718b1d",
+  "scripts/lesson_runtime.py": "1dcaecc9654f043ccf484acb4d426b38e4a3cbce4b2531c0991209808087d91f",
+  "scripts/reference_instrumentation.py": "cf4abc62d41bfb9a7e904b2c8f0ba92f49f52a367b567f04f695a46696f74aa3"
+}

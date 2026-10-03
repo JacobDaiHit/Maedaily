@@ -1,0 +1,36 @@
+{
+  "normalization": "whole-batch target-token mean, answer plus EOS",
+  "negative_log_likelihood_numerator": 0.10003310441970825,
+  "effective_token_denominator": 4,
+  "loss": 0.025008276104927063,
+  "per_sample": [
+    {
+      "sample_id": "train:arith:0+0=",
+      "effective_tokens": 2,
+      "target_positions": [
+        36,
+        37
+      ],
+      "token_logprobs": [
+        -0.011295773088932037,
+        -0.031142424792051315
+      ],
+      "negative_log_likelihood": 0.04243819788098335,
+      "sequence_logprob": -0.04243819788098335
+    },
+    {
+      "sample_id": "train:arith:0-0=",
+      "effective_tokens": 2,
+      "target_positions": [
+        36,
+        37
+      ],
+      "token_logprobs": [
+        -0.05469101667404175,
+        -0.0029038903303444386
+      ],
+      "negative_log_likelihood": 0.05759490700438619,
+      "sequence_logprob": -0.0575949065387249
+    }
+  ]
+}

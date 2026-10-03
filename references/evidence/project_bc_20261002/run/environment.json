@@ -1,0 +1,48 @@
+{
+  "schema_version": "maedaily-reference-environment-v1",
+  "python_executable": "D:\\anaconda\\envs\\pytorch_env\\python.exe",
+  "python": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "versions": {
+    "torch": "2.7.1+cu118",
+    "transformers": "5.15.0",
+    "huggingface_hub": "1.27.0",
+    "safetensors": "0.8.0"
+  },
+  "version_sources": {
+    "torch": "loaded module __version__",
+    "transformers": "loaded module __version__",
+    "huggingface_hub": "loaded module __version__",
+    "safetensors": "loaded module __version__"
+  },
+  "device": "cuda",
+  "parameter_dtypes": [
+    "torch.float32"
+  ],
+  "intraop_threads": 1,
+  "interop_threads": 14,
+  "deterministic_algorithms": false,
+  "load_seconds": 11.096400299982633,
+  "load_cpu_memory": {
+    "status": "measured",
+    "peak_resident_bytes": 3602182144,
+    "method": "Windows PeakWorkingSetSize",
+    "scope": "whole process lifetime including previously loaded native tensors; cannot reset CPU peak"
+  },
+  "gpu": {
+    "applicable": true,
+    "index": 0,
+    "name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "total_memory_bytes": 8585216000,
+    "compute_capability": [
+      8,
+      9
+    ],
+    "cuda_runtime": "11.8",
+    "driver_probe": {
+      "status": "measured",
+      "output": "0, NVIDIA GeForce RTX 4060 Laptop GPU, 581.29",
+      "error": ""
+    }
+  }
+}

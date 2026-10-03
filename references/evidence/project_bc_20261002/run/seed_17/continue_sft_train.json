@@ -1,0 +1,66 @@
+{
+  "optimizer_steps": 3,
+  "effective_update_tokens": 63,
+  "elapsed_seconds": 0.5199456999835093,
+  "initial_weight_hash": "2b6087b68722b71d2a6ba427aa4dfcfbc4d5eb109547d1d26f91ad9f9429ddeb",
+  "final_weight_hash": "65180856437e6912cae89209bd79a980beb0a52bfd6c0678b46d60bbb146cf2e",
+  "logs": [
+    {
+      "step": 1,
+      "sample_ids": [
+        "train:arith:7+9=",
+        "train:copy:71:one-leading-zero",
+        "train:arith:1-0=",
+        "train:copy:20:canonical",
+        "train:arith:5+8=",
+        "train:copy:27:canonical",
+        "train:arith:1+0=",
+        "train:copy:55:canonical"
+      ],
+      "effective_tokens": 22,
+      "loss": 0.001162801287136972,
+      "gradient_norm": 0.08113846182823181,
+      "parameter_delta_norm": 0.15471834862303543,
+      "weight_before": "2b6087b68722b71d2a6ba427aa4dfcfbc4d5eb109547d1d26f91ad9f9429ddeb",
+      "weight_after": "bf80d1c6788fc1f66c3336990089ad4216ea71145188378e72fccb3b536b5c6a"
+    },
+    {
+      "step": 2,
+      "sample_ids": [
+        "train:arith:0+8=",
+        "train:copy:86:two-leading-zeros",
+        "train:copy:53:canonical",
+        "train:copy:5:one-leading-zero",
+        "train:arith:8+9=",
+        "train:arith:6-4=",
+        "train:arith:9-5=",
+        "train:copy:64:two-leading-zeros"
+      ],
+      "effective_tokens": 20,
+      "loss": 0.0002623130567371845,
+      "gradient_norm": 0.014156682416796684,
+      "parameter_delta_norm": 0.10781146159496137,
+      "weight_before": "bf80d1c6788fc1f66c3336990089ad4216ea71145188378e72fccb3b536b5c6a",
+      "weight_after": "5ef9d3e37e4789ecfe734c22ea41220a926cd293399b165addd3a56ab14efa94"
+    },
+    {
+      "step": 3,
+      "sample_ids": [
+        "train:copy:13:two-leading-zeros",
+        "train:copy:3:canonical",
+        "train:arith:3-7=",
+        "train:arith:0+0=",
+        "train:arith:7-8=",
+        "train:arith:5+0=",
+        "train:copy:84:two-leading-zeros",
+        "train:copy:76:two-leading-zeros"
+      ],
+      "effective_tokens": 21,
+      "loss": 0.0002127170009771362,
+      "gradient_norm": 0.008741662837564945,
+      "parameter_delta_norm": 0.0892185829103715,
+      "weight_before": "5ef9d3e37e4789ecfe734c22ea41220a926cd293399b165addd3a56ab14efa94",
+      "weight_after": "65180856437e6912cae89209bd79a980beb0a52bfd6c0678b46d60bbb146cf2e"
+    }
+  ]
+}

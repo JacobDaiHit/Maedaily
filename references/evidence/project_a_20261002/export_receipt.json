@@ -1,0 +1,7 @@
+{
+  "schema_version": "maedaily-project-a-reference-v1",
+  "source_summary_sha256": "0d2a2abe8d6cbf1a2505ee23b31d0c8e969fe795d35764e54a9402dc81b6d33d",
+  "source_run": "D:\\github_book\\Maedaily\\study_runs\\project_a_reference_final_20261002",
+  "verified_artifacts": 37,
+  "scope": "compact JSON/CSV; original worker checkpoints are retained in the source run"
+}

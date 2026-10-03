@@ -1,0 +1,66 @@
+{
+  "optimizer_steps": 3,
+  "effective_update_tokens": 61,
+  "elapsed_seconds": 0.5205860999994911,
+  "initial_weight_hash": "2edc307b1d4cba89711ede519f65326fddc2d1276f48b639e2e52c935cee29ec",
+  "final_weight_hash": "83d9de63641861e36aa637ffd05eb740798db62614afa0c1489e484037033364",
+  "logs": [
+    {
+      "step": 1,
+      "sample_ids": [
+        "train:copy:70:one-leading-zero",
+        "train:arith:7+0=",
+        "train:copy:38:two-leading-zeros",
+        "train:arith:0+9=",
+        "train:arith:3+9=",
+        "train:copy:54:two-leading-zeros",
+        "train:arith:3-0=",
+        "train:copy:81:two-leading-zeros"
+      ],
+      "effective_tokens": 21,
+      "loss": 0.00028691889019683003,
+      "gradient_norm": 0.02567680925130844,
+      "parameter_delta_norm": 0.15226637061195036,
+      "weight_before": "2edc307b1d4cba89711ede519f65326fddc2d1276f48b639e2e52c935cee29ec",
+      "weight_after": "ab7c742b199a466e61607bd9641b48dbe977a5f00f8f518c48bd97e33e171b08"
+    },
+    {
+      "step": 2,
+      "sample_ids": [
+        "train:copy:30:one-leading-zero",
+        "train:copy:95:one-leading-zero",
+        "train:arith:4+0=",
+        "train:arith:6+7=",
+        "train:arith:9+4=",
+        "train:copy:9:two-leading-zeros",
+        "train:arith:3-3=",
+        "train:copy:12:two-leading-zeros"
+      ],
+      "effective_tokens": 21,
+      "loss": 0.001453371369279921,
+      "gradient_norm": 0.20160561800003052,
+      "parameter_delta_norm": 0.11382547467345504,
+      "weight_before": "ab7c742b199a466e61607bd9641b48dbe977a5f00f8f518c48bd97e33e171b08",
+      "weight_after": "6d471a34ea6a59479f938b2d60e3333c249681538c33e388d648499291f3a352"
+    },
+    {
+      "step": 3,
+      "sample_ids": [
+        "train:arith:9-1=",
+        "train:copy:7:canonical",
+        "train:copy:76:one-leading-zero",
+        "train:arith:0+7=",
+        "train:copy:93:one-leading-zero",
+        "train:arith:1+4=",
+        "train:arith:5-3=",
+        "train:copy:91:two-leading-zeros"
+      ],
+      "effective_tokens": 19,
+      "loss": 3.7411722587421536e-05,
+      "gradient_norm": 0.0008749549742788076,
+      "parameter_delta_norm": 0.08830585237618727,
+      "weight_before": "6d471a34ea6a59479f938b2d60e3333c249681538c33e388d648499291f3a352",
+      "weight_after": "83d9de63641861e36aa637ffd05eb740798db62614afa0c1489e484037033364"
+    }
+  ]
+}

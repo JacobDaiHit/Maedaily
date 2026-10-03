@@ -1,2 +1,9 @@
 *.pdf binary
 *.pt binary
+
+# Executable source hashes must survive Windows and Linux checkouts.
+*.py text eol=lf
+# This frozen source receipt records the existing CRLF bytes.
+post_train/experiments/adapter_checks.py -text
+# Published evidence manifests bind exact bytes, including CSV line endings.
+references/evidence/** -text

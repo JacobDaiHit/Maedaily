@@ -1,0 +1,148 @@
+{
+  "contract_hash": "028299999d2e4fad8ceb1a4f4ba5fac0141884d4ceab504dd70bb1fd6a1a3c14",
+  "development": [
+    {
+      "seed": 17,
+      "gate": {
+        "protocol_version": "maedaily-character-quality-v2",
+        "qualified": true,
+        "scope": "development qualification only; final evaluation remains sealed",
+        "conditions": {
+          "dev_sample_count": true,
+          "dev_accuracy": true,
+          "dev_format": true,
+          "dev_copy_sample_count": true,
+          "dev_copy_accuracy": true,
+          "dev_copy_format": true
+        },
+        "panels": {
+          "dev": {
+            "correct": 36,
+            "total": 36,
+            "accuracy": 1.0,
+            "format_valid": 36,
+            "accuracy_threshold": 0.8
+          },
+          "dev_copy": {
+            "correct": 45,
+            "total": 45,
+            "accuracy": 1.0,
+            "format_valid": 45,
+            "accuracy_threshold": 0.9
+          }
+        },
+        "transfer_required": false,
+        "failed_conditions": []
+      },
+      "panels": {
+        "dev": {
+          "correct": 36,
+          "format_valid": 36,
+          "total": 36
+        },
+        "dev_copy": {
+          "correct": 45,
+          "format_valid": 45,
+          "total": 45
+        }
+      }
+    },
+    {
+      "seed": 23,
+      "gate": {
+        "protocol_version": "maedaily-character-quality-v2",
+        "qualified": true,
+        "scope": "development qualification only; final evaluation remains sealed",
+        "conditions": {
+          "dev_sample_count": true,
+          "dev_accuracy": true,
+          "dev_format": true,
+          "dev_copy_sample_count": true,
+          "dev_copy_accuracy": true,
+          "dev_copy_format": true
+        },
+        "panels": {
+          "dev": {
+            "correct": 36,
+            "total": 36,
+            "accuracy": 1.0,
+            "format_valid": 36,
+            "accuracy_threshold": 0.8
+          },
+          "dev_copy": {
+            "correct": 45,
+            "total": 45,
+            "accuracy": 1.0,
+            "format_valid": 45,
+            "accuracy_threshold": 0.9
+          }
+        },
+        "transfer_required": false,
+        "failed_conditions": []
+      },
+      "panels": {
+        "dev": {
+          "correct": 36,
+          "format_valid": 36,
+          "total": 36
+        },
+        "dev_copy": {
+          "correct": 45,
+          "format_valid": 45,
+          "total": 45
+        }
+      }
+    },
+    {
+      "seed": 41,
+      "gate": {
+        "protocol_version": "maedaily-character-quality-v2",
+        "qualified": true,
+        "scope": "development qualification only; final evaluation remains sealed",
+        "conditions": {
+          "dev_sample_count": true,
+          "dev_accuracy": true,
+          "dev_format": true,
+          "dev_copy_sample_count": true,
+          "dev_copy_accuracy": true,
+          "dev_copy_format": true
+        },
+        "panels": {
+          "dev": {
+            "correct": 36,
+            "total": 36,
+            "accuracy": 1.0,
+            "format_valid": 36,
+            "accuracy_threshold": 0.8
+          },
+          "dev_copy": {
+            "correct": 45,
+            "total": 45,
+            "accuracy": 1.0,
+            "format_valid": 45,
+            "accuracy_threshold": 0.9
+          }
+        },
+        "transfer_required": false,
+        "failed_conditions": []
+      },
+      "panels": {
+        "dev": {
+          "correct": 36,
+          "format_valid": 36,
+          "total": 36
+        },
+        "dev_copy": {
+          "correct": 45,
+          "format_valid": 45,
+          "total": 45
+        }
+      }
+    }
+  ],
+  "weights": {
+    "17": "2b6087b68722b71d2a6ba427aa4dfcfbc4d5eb109547d1d26f91ad9f9429ddeb",
+    "23": "2edc307b1d4cba89711ede519f65326fddc2d1276f48b639e2e52c935cee29ec",
+    "41": "79955595d21d829fb1e6059ed8216e700be23c5bfa9eac464935e03676938de3"
+  }
+}

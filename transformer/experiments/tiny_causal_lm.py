@@ -19,6 +19,9 @@ import tempfile
 import time
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
+from lesson_runtime import reserve_output_dir
+
 import torch
 from torch import nn
 from torch.nn import functional as F
@@ -285,15 +288,19 @@ def train_one(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(allow_abbrev=False, description=__doc__)
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--steps", type=int, default=200)
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--learning-rates", type=float, nargs="+", default=[0.001, 0.003])
-    parser.add_argument("--output-dir", type=Path, default=Path(__file__).resolve().parent / "results")
+    parser.add_argument("--output-dir", type=Path, help="新目录或空目录；默认 study_runs 下独立保存")
     args = parser.parse_args()
     if args.steps < 1 or args.batch_size < 1 or any(not math.isfinite(rate) or rate <= 0 for rate in args.learning_rates):
         parser.error("steps/batch-size must be positive; learning rates must be finite and positive")
+    try:
+        args.output_dir = reserve_output_dir(args.output_dir, "lm")
+    except (ValueError, OSError) as error:
+        parser.error(str(error))
     torch.set_num_threads(1)
     torch.set_num_interop_threads(1)
     torch.use_deterministic_algorithms(True)
@@ -315,7 +322,6 @@ def main() -> None:
         "runs": runs,
         "scope": "real CPU LM training; synthetic grammar only; no GPU memory/performance measurement; not complete project A acceptance",
     }
-    args.output_dir.mkdir(parents=True, exist_ok=True)
     (args.output_dir / "summary.json").write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     with (args.output_dir / "learning_curve.csv").open("w", encoding="utf-8", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=list(records[0]))

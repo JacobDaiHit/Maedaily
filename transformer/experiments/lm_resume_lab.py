@@ -18,6 +18,9 @@ import random
 import sys
 import time
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
+from lesson_runtime import reserve_output_dir as reserve_lesson_output
+
 try:
     import torch
 except ModuleNotFoundError as error:
@@ -227,20 +230,14 @@ def compare_branch(
 
 
 def reserve_output_dir(parser: argparse.ArgumentParser, requested: Path | None) -> Path:
-    if requested is None:
-        root = Path(__file__).resolve().parents[2] / "study_runs"
-        requested = root / ("lm_resume_" + datetime.now().strftime("%Y%m%d_%H%M%S_%f"))
-    output_dir = requested.resolve()
-    if output_dir.exists():
-        if not output_dir.is_dir() or any(output_dir.iterdir()):
-            parser.error(f"--output-dir 必须是新目录或空目录，拒绝覆盖: {output_dir}")
-    else:
-        output_dir.mkdir(parents=True, exist_ok=False)
-    return output_dir
+    try:
+        return reserve_lesson_output(requested, "lm-resume")
+    except (ValueError, OSError) as error:
+        parser.error(str(error))
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(allow_abbrev=False, description=__doc__)
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--steps", type=int, default=40)
     parser.add_argument("--split-step", type=int, default=20)

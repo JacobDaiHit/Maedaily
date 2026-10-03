@@ -14,6 +14,8 @@ from pathlib import Path
 import sys
 import unicodedata
 
+from lesson_runtime import reserve_output_dir
+
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = ("id", "family_id", "source", "license", "prompt", "completion")
 
@@ -164,7 +166,7 @@ def build(rows: list[dict], *, seed: int, max_chars: int) -> tuple[dict[str, byt
 
 def main() -> int:
     if hasattr(sys.stdout, "reconfigure"): sys.stdout.reconfigure(encoding="utf-8")
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(allow_abbrev=False, description=__doc__)
     parser.add_argument("--input", type=Path, help="JSONL 输入；省略时使用含故意错误的 50 条原创教学记录")
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--max-chars", type=int, default=512)
@@ -194,7 +196,7 @@ def main() -> int:
         if not args.input and args.max_chars == 512:
             expected = {"empty_text":1, "too_long":1, "gold_mismatch":1, "conflicting_gold":2, "exact_duplicate":1}
             if summary["filter_reasons"] != expected: raise AssertionError("植入的错误未按预期被识别")
-        output.mkdir(parents=True, exist_ok=True)
+        output = reserve_output_dir(output, "data-asset")
         for name, content in files.items(): (output/name).write_bytes(content)
         (output/"summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2, allow_nan=False)+"\n", encoding="utf-8")
     except (ValueError, OSError) as error:

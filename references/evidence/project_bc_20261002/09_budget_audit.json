@@ -1,0 +1,953 @@
+{
+  "scope": "historical exploration/voided runs reported separately; never used as final selection evidence",
+  "experiments": {
+    "development_sft": {
+      "classification": "development_exploration",
+      "members": {
+        "lr0.0001_train.json": {
+          "member": "budget_sources/development_sft/lr0.0001_train.json.gz",
+          "uncompressed_sha256": "81fe99d6a94b809dff09551b3f2fdbc5c04a5be100f2f987d451dcacb334aa17"
+        },
+        "lr0.0003_train.json": {
+          "member": "budget_sources/development_sft/lr0.0003_train.json.gz",
+          "uncompressed_sha256": "ad21e51e10f0bc148a196c7dd79b8c54c41101c02319a542693a3e1eff83bef3"
+        },
+        "summary.json": {
+          "member": "budget_sources/development_sft/summary.json.gz",
+          "uncompressed_sha256": "0aef1adb925e4d9bae1388cb453d638d35a014330947ea7c8a65a5c1c1153692"
+        },
+        "preregistration.json": {
+          "member": "budget_sources/development_sft/preregistration.json.gz",
+          "uncompressed_sha256": "016c4a94fe37f22e370fa8579e49cd9073216d4f3c481ad785e40ae0d1c5e110"
+        }
+      },
+      "summary": {
+        "classification": "development_exploration",
+        "scope": "actual persisted training logs; interrupted/unlogged work is not counted as zero",
+        "recorded_training_files": [
+          {
+            "artifact": "lr0.0001_train.json",
+            "optimizer_steps": 120,
+            "sample_exposures": 960,
+            "effective_update_tokens": null,
+            "elapsed_seconds": null,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "lr0.0003_train.json",
+            "optimizer_steps": 120,
+            "sample_exposures": 960,
+            "effective_update_tokens": null,
+            "elapsed_seconds": null,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          }
+        ],
+        "optimizer_steps_logged": 240,
+        "sample_exposures_logged": 1920,
+        "effective_update_tokens_logged": null,
+        "training_elapsed_seconds_logged": null,
+        "rollout_samples_logged": 0,
+        "rollout_tokens_logged": 0,
+        "temporary_exact_resume_updates": null,
+        "temporary_resource_probe_updates": null,
+        "engineering_probe_updates": null,
+        "temperature_exploration": null,
+        "complete_total_runtime_measured": false,
+        "unlogged_failed_work": "unknown; registration/absence of logs is not proof of zero work"
+      }
+    },
+    "temperature_train": {
+      "classification": "train_only_exploration",
+      "members": {
+        "summary.json": {
+          "member": "budget_sources/temperature_train/summary.json.gz",
+          "uncompressed_sha256": "bcefeef91cbdb0723e561722c07ce4f044785d2efa1d1dd881ed0911185e23bc"
+        },
+        "preregistration.json": {
+          "member": "budget_sources/temperature_train/preregistration.json.gz",
+          "uncompressed_sha256": "23d017c59a52dfd0bdb6dbf88675faddc58cea8cc3dd5eb7b974358b803314b7"
+        }
+      },
+      "summary": {
+        "classification": "train_only_exploration",
+        "scope": "actual persisted training logs; interrupted/unlogged work is not counted as zero",
+        "recorded_training_files": [],
+        "optimizer_steps_logged": 0,
+        "sample_exposures_logged": 0,
+        "effective_update_tokens_logged": null,
+        "training_elapsed_seconds_logged": null,
+        "rollout_samples_logged": 0,
+        "rollout_tokens_logged": 0,
+        "temporary_exact_resume_updates": null,
+        "temporary_resource_probe_updates": null,
+        "engineering_probe_updates": null,
+        "temperature_exploration": {
+          "temperatures": [
+            1.4,
+            2.0,
+            2.5,
+            3.0
+          ],
+          "generated_samples": 128,
+          "generated_tokens": 763,
+          "elapsed_seconds": 45.17586480017053,
+          "final_opened": false
+        },
+        "complete_total_runtime_measured": false,
+        "unlogged_failed_work": "unknown; registration/absence of logs is not proof of zero work"
+      }
+    },
+    "formal_v1": {
+      "classification": "failed_pg_gate_final_sealed",
+      "members": {
+        "seed_17/continue_sft_train.json": {
+          "member": "budget_sources/formal_v1/seed_17/continue_sft_train.json.gz",
+          "uncompressed_sha256": "c46a6c6680afc92718f0becc0d1556479955e80af4d67a752e44e1d760d78151"
+        },
+        "seed_17/dpo_beta_train.json": {
+          "member": "budget_sources/formal_v1/seed_17/dpo_beta_train.json.gz",
+          "uncompressed_sha256": "be04784d43b21bb34c5d09a8b9ea0db69de4fabb63d6d9258c4f5d99f5c2e77b"
+        },
+        "seed_17/dpo_train.json": {
+          "member": "budget_sources/formal_v1/seed_17/dpo_train.json.gz",
+          "uncompressed_sha256": "40f19a002a58a4524dd3424d2b61ea14b867cf60b9106e0420ca1dc76976c526"
+        },
+        "seed_17/rlvr_group_size_train.json": {
+          "member": "budget_sources/formal_v1/seed_17/rlvr_group_size_train.json.gz",
+          "uncompressed_sha256": "7c5b9935525b40ec810b67eaa8dc545041e1cbb3545a9062db60dc973ed51568"
+        },
+        "seed_17/rlvr_no_format_train.json": {
+          "member": "budget_sources/formal_v1/seed_17/rlvr_no_format_train.json.gz",
+          "uncompressed_sha256": "281394d8e52ff829cf0ee0b741c06aae544a2376a6b29a085b6bca87c95b04c8"
+        },
+        "seed_17/rlvr_train.json": {
+          "member": "budget_sources/formal_v1/seed_17/rlvr_train.json.gz",
+          "uncompressed_sha256": "8a9b439c0998531d5cf2d63954081cc938330df1ce233a125b9467c5b47fa617"
+        },
+        "seed_17/sft_train.json": {
+          "member": "budget_sources/formal_v1/seed_17/sft_train.json.gz",
+          "uncompressed_sha256": "85b3e7c134e1bc06ed30d568ddb229fe46996b3c83d8b5cd3ca2f60c9a4ae7dd"
+        },
+        "seed_23/sft_train.json": {
+          "member": "budget_sources/formal_v1/seed_23/sft_train.json.gz",
+          "uncompressed_sha256": "c1164ec6a070618923ec14aeb15085a796ac7cd9f968856c382064320679cdf1"
+        },
+        "seed_41/sft_train.json": {
+          "member": "budget_sources/formal_v1/seed_41/sft_train.json.gz",
+          "uncompressed_sha256": "f9b664c953290638a24af12cafc1ed77f60d5d451f69ebfd1aac7f4a73da903f"
+        },
+        "failure.json": {
+          "member": "budget_sources/formal_v1/failure.json.gz",
+          "uncompressed_sha256": "243f012c8333cd9982aac7c98e38d46acc4cf7bd37c4cb7e3e9016168c63b5fb"
+        },
+        "resume_check.json": {
+          "member": "budget_sources/formal_v1/resume_check.json.gz",
+          "uncompressed_sha256": "e0aa439227e0a854dafbefe01ed2073b81091f4f6ea0c8de5bdf56f49a706744"
+        },
+        "preregistration.json": {
+          "member": "budget_sources/formal_v1/preregistration.json.gz",
+          "uncompressed_sha256": "12857fab04f4e4cd564fdf8d6697de7421c2946b4bf8a799e96a835a0557dbd1"
+        }
+      },
+      "summary": {
+        "classification": "failed_pg_gate_final_sealed",
+        "scope": "actual persisted training logs; interrupted/unlogged work is not counted as zero",
+        "recorded_training_files": [
+          {
+            "artifact": "seed_17/continue_sft_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 24,
+            "effective_update_tokens": 63,
+            "elapsed_seconds": 0.5104686999984551,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_17/dpo_beta_train.json",
+            "optimizer_steps": 6,
+            "sample_exposures": 48,
+            "effective_update_tokens": 243,
+            "elapsed_seconds": 2.4874512999958824,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_17/dpo_train.json",
+            "optimizer_steps": 6,
+            "sample_exposures": 48,
+            "effective_update_tokens": 243,
+            "elapsed_seconds": 2.242454600025667,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_17/rlvr_group_size_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 260,
+            "elapsed_seconds": 20.748244700022042,
+            "generated_samples": 96,
+            "generated_tokens": 260
+          },
+          {
+            "artifact": "seed_17/rlvr_no_format_train.json",
+            "optimizer_steps": 0,
+            "sample_exposures": 0,
+            "effective_update_tokens": 0,
+            "elapsed_seconds": 9.042982099985238,
+            "generated_samples": 48,
+            "generated_tokens": 116
+          },
+          {
+            "artifact": "seed_17/rlvr_train.json",
+            "optimizer_steps": 0,
+            "sample_exposures": 0,
+            "effective_update_tokens": 0,
+            "elapsed_seconds": 7.725055999995675,
+            "generated_samples": 48,
+            "generated_tokens": 116
+          },
+          {
+            "artifact": "seed_17/sft_train.json",
+            "optimizer_steps": 20,
+            "sample_exposures": 160,
+            "effective_update_tokens": 419,
+            "elapsed_seconds": 3.4868608999822754,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_23/sft_train.json",
+            "optimizer_steps": 20,
+            "sample_exposures": 160,
+            "effective_update_tokens": 433,
+            "elapsed_seconds": 4.011168400000315,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_41/sft_train.json",
+            "optimizer_steps": 20,
+            "sample_exposures": 160,
+            "effective_update_tokens": 426,
+            "elapsed_seconds": 3.1791881999815814,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          }
+        ],
+        "optimizer_steps_logged": 78,
+        "sample_exposures_logged": 600,
+        "effective_update_tokens_logged": 2087,
+        "training_elapsed_seconds_logged": 53.43387489998713,
+        "rollout_samples_logged": 192,
+        "rollout_tokens_logged": 492,
+        "temporary_exact_resume_updates": 3,
+        "temporary_resource_probe_updates": null,
+        "engineering_probe_updates": null,
+        "temperature_exploration": null,
+        "complete_total_runtime_measured": false,
+        "unlogged_failed_work": "unknown; registration/absence of logs is not proof of zero work"
+      }
+    },
+    "formal_v2": {
+      "classification": "voided_acceptance_hidden_token_scoring_bug_and_changed_source",
+      "members": {
+        "seed_17/continue_sft_train.json": {
+          "member": "budget_sources/formal_v2/seed_17/continue_sft_train.json.gz",
+          "uncompressed_sha256": "f5dd683afc29f886c3e2784f25e8404d90f6daac4b28d7539d97df7694b06f2d"
+        },
+        "seed_17/dpo_beta_train.json": {
+          "member": "budget_sources/formal_v2/seed_17/dpo_beta_train.json.gz",
+          "uncompressed_sha256": "9c274698262812f6b6a498ff4e37c9fea3c7fdf8ba32759c31ae4900bcfcc4ce"
+        },
+        "seed_17/dpo_train.json": {
+          "member": "budget_sources/formal_v2/seed_17/dpo_train.json.gz",
+          "uncompressed_sha256": "77c59d6ec0c4973b084d4504c5a87b4bef267cd14d124fb4ff88577bd2630c3b"
+        },
+        "seed_17/rlvr_group_size_train.json": {
+          "member": "budget_sources/formal_v2/seed_17/rlvr_group_size_train.json.gz",
+          "uncompressed_sha256": "94bceed0bb0f5ed7e9a1c77bdc58e006538cb6465b5df9734c3bc899334855d8"
+        },
+        "seed_17/rlvr_no_format_train.json": {
+          "member": "budget_sources/formal_v2/seed_17/rlvr_no_format_train.json.gz",
+          "uncompressed_sha256": "91bb8b026170d3465b00bf41f03c56f0ce805aa6acbdd0d29d59f6d70880150a"
+        },
+        "seed_17/rlvr_train.json": {
+          "member": "budget_sources/formal_v2/seed_17/rlvr_train.json.gz",
+          "uncompressed_sha256": "67504c605d4c1aa323d169a333abcecaf5b1d95c1fcdf7f15e4b374c73c08405"
+        },
+        "seed_17/sft_train.json": {
+          "member": "budget_sources/formal_v2/seed_17/sft_train.json.gz",
+          "uncompressed_sha256": "3fd8fd0a630850d47d04118791cfcfedec4a28b51c6f301167cffc8b481a9f61"
+        },
+        "seed_23/continue_sft_train.json": {
+          "member": "budget_sources/formal_v2/seed_23/continue_sft_train.json.gz",
+          "uncompressed_sha256": "289fd5d22e3a288402ffa79e5f32da1f382150f3a245671df89b2002af604d17"
+        },
+        "seed_23/dpo_beta_train.json": {
+          "member": "budget_sources/formal_v2/seed_23/dpo_beta_train.json.gz",
+          "uncompressed_sha256": "fbf6fa0cb905feab1af7ffff2b88405003222218f0424b75e6a972267926cf33"
+        },
+        "seed_23/dpo_train.json": {
+          "member": "budget_sources/formal_v2/seed_23/dpo_train.json.gz",
+          "uncompressed_sha256": "8f3a4cc6a98b7ac3eb9f7c70eff09d68ff8911b74ad5768711c4ef4bccfb900d"
+        },
+        "seed_23/rlvr_group_size_train.json": {
+          "member": "budget_sources/formal_v2/seed_23/rlvr_group_size_train.json.gz",
+          "uncompressed_sha256": "caf8554cf4b29b62d9f20d1df9aead1cec608d3d2a332216432fc522c6c6d5fd"
+        },
+        "seed_23/rlvr_no_format_train.json": {
+          "member": "budget_sources/formal_v2/seed_23/rlvr_no_format_train.json.gz",
+          "uncompressed_sha256": "bf3a2d47dd522c581b7a8c6e6fef6195623632eb4a74ad12f0235e00137d358c"
+        },
+        "seed_23/rlvr_train.json": {
+          "member": "budget_sources/formal_v2/seed_23/rlvr_train.json.gz",
+          "uncompressed_sha256": "d0c15cefd04ed74fa52455f9d6b65963f0a49f2b5c0aa3c619d74b6c9b97eff9"
+        },
+        "seed_23/sft_train.json": {
+          "member": "budget_sources/formal_v2/seed_23/sft_train.json.gz",
+          "uncompressed_sha256": "399c6aca919c3a144a2c2cf27531c7fa4b5978d52995f278ad308835466ce7af"
+        },
+        "seed_41/continue_sft_train.json": {
+          "member": "budget_sources/formal_v2/seed_41/continue_sft_train.json.gz",
+          "uncompressed_sha256": "bc615c8357a27b94e1d23ba9befd21dd36b95bed65d25013521d26b2d7728cc4"
+        },
+        "seed_41/dpo_beta_train.json": {
+          "member": "budget_sources/formal_v2/seed_41/dpo_beta_train.json.gz",
+          "uncompressed_sha256": "62e6f50c316fc4054b8cec999e12ae12b35decc0963355d812183d6b6b5970bb"
+        },
+        "seed_41/dpo_train.json": {
+          "member": "budget_sources/formal_v2/seed_41/dpo_train.json.gz",
+          "uncompressed_sha256": "c481f6b00d9f9d8082d227b8197c324a8f35e8291ff534c4f6c214dc3e289b55"
+        },
+        "seed_41/rlvr_group_size_train.json": {
+          "member": "budget_sources/formal_v2/seed_41/rlvr_group_size_train.json.gz",
+          "uncompressed_sha256": "355b35ab8a8e0ed49ecf609d1d66587934125801d7250df2caa411a0981e911c"
+        },
+        "seed_41/rlvr_no_format_train.json": {
+          "member": "budget_sources/formal_v2/seed_41/rlvr_no_format_train.json.gz",
+          "uncompressed_sha256": "869dcf33f38a426a22a5cbe89279a145c64280e7fd329d06a726adb6bad9e497"
+        },
+        "seed_41/rlvr_train.json": {
+          "member": "budget_sources/formal_v2/seed_41/rlvr_train.json.gz",
+          "uncompressed_sha256": "16cb0280f8aa481c3720d70f50b75ea9bc3c9ef9fb5cb3726132be6055945110"
+        },
+        "seed_41/sft_train.json": {
+          "member": "budget_sources/formal_v2/seed_41/sft_train.json.gz",
+          "uncompressed_sha256": "9d820530cf3816010273ebd4d49fe7595130f734562286a3695047171af80ab6"
+        },
+        "summary.json": {
+          "member": "budget_sources/formal_v2/summary.json.gz",
+          "uncompressed_sha256": "09d7f25ed21f233294bf9093737f15b56717fc0e96f46045f3f54afa18154b0a"
+        },
+        "resume_check.json": {
+          "member": "budget_sources/formal_v2/resume_check.json.gz",
+          "uncompressed_sha256": "488a4afb156068b1ee869ef2aa6c41ea4050fee1d44624cfc22fc28961a44744"
+        },
+        "preregistration.json": {
+          "member": "budget_sources/formal_v2/preregistration.json.gz",
+          "uncompressed_sha256": "a3576f86f8c402cfcdebc213900b17e060f881fb5ff58b7d1c808f7be375c5a6"
+        }
+      },
+      "summary": {
+        "classification": "voided_acceptance_hidden_token_scoring_bug_and_changed_source",
+        "scope": "actual persisted training logs; interrupted/unlogged work is not counted as zero",
+        "recorded_training_files": [
+          {
+            "artifact": "seed_17/continue_sft_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 24,
+            "effective_update_tokens": 63,
+            "elapsed_seconds": 1.7624563999997918,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_17/dpo_beta_train.json",
+            "optimizer_steps": 6,
+            "sample_exposures": 48,
+            "effective_update_tokens": 243,
+            "elapsed_seconds": 8.681120099994587,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_17/dpo_train.json",
+            "optimizer_steps": 6,
+            "sample_exposures": 48,
+            "effective_update_tokens": 243,
+            "elapsed_seconds": 10.56922149998718,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_17/rlvr_group_size_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 588,
+            "elapsed_seconds": 204.28641919998336,
+            "generated_samples": 96,
+            "generated_tokens": 588
+          },
+          {
+            "artifact": "seed_17/rlvr_no_format_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 298,
+            "elapsed_seconds": 28.276252800016664,
+            "generated_samples": 48,
+            "generated_tokens": 298
+          },
+          {
+            "artifact": "seed_17/rlvr_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 298,
+            "elapsed_seconds": 125.07160680001834,
+            "generated_samples": 48,
+            "generated_tokens": 298
+          },
+          {
+            "artifact": "seed_17/sft_train.json",
+            "optimizer_steps": 20,
+            "sample_exposures": 160,
+            "effective_update_tokens": 419,
+            "elapsed_seconds": 16.47851410001749,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_23/continue_sft_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 24,
+            "effective_update_tokens": 61,
+            "elapsed_seconds": 0.56313379999483,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_23/dpo_beta_train.json",
+            "optimizer_steps": 6,
+            "sample_exposures": 48,
+            "effective_update_tokens": 241,
+            "elapsed_seconds": 3.0359608000144362,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_23/dpo_train.json",
+            "optimizer_steps": 6,
+            "sample_exposures": 48,
+            "effective_update_tokens": 241,
+            "elapsed_seconds": 2.559000699984608,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_23/rlvr_group_size_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 528,
+            "elapsed_seconds": 33.78307129998575,
+            "generated_samples": 96,
+            "generated_tokens": 528
+          },
+          {
+            "artifact": "seed_23/rlvr_no_format_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 255,
+            "elapsed_seconds": 17.34057970001595,
+            "generated_samples": 48,
+            "generated_tokens": 255
+          },
+          {
+            "artifact": "seed_23/rlvr_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 255,
+            "elapsed_seconds": 19.048498099989956,
+            "generated_samples": 48,
+            "generated_tokens": 255
+          },
+          {
+            "artifact": "seed_23/sft_train.json",
+            "optimizer_steps": 20,
+            "sample_exposures": 160,
+            "effective_update_tokens": 433,
+            "elapsed_seconds": 14.991462999983924,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_41/continue_sft_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 24,
+            "effective_update_tokens": 63,
+            "elapsed_seconds": 0.5433569000160787,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_41/dpo_beta_train.json",
+            "optimizer_steps": 6,
+            "sample_exposures": 48,
+            "effective_update_tokens": 241,
+            "elapsed_seconds": 2.194622500013793,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_41/dpo_train.json",
+            "optimizer_steps": 6,
+            "sample_exposures": 48,
+            "effective_update_tokens": 241,
+            "elapsed_seconds": 2.418772799981525,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_41/rlvr_group_size_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 570,
+            "elapsed_seconds": 36.426384299993515,
+            "generated_samples": 96,
+            "generated_tokens": 570
+          },
+          {
+            "artifact": "seed_41/rlvr_no_format_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 313,
+            "elapsed_seconds": 19.706329000007827,
+            "generated_samples": 48,
+            "generated_tokens": 313
+          },
+          {
+            "artifact": "seed_41/rlvr_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 313,
+            "elapsed_seconds": 19.442662299989024,
+            "generated_samples": 48,
+            "generated_tokens": 313
+          },
+          {
+            "artifact": "seed_41/sft_train.json",
+            "optimizer_steps": 20,
+            "sample_exposures": 160,
+            "effective_update_tokens": 426,
+            "elapsed_seconds": 17.10648930000025,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          }
+        ],
+        "optimizer_steps_logged": 132,
+        "sample_exposures_logged": 840,
+        "effective_update_tokens_logged": 6333,
+        "training_elapsed_seconds_logged": 584.2859153999889,
+        "rollout_samples_logged": 576,
+        "rollout_tokens_logged": 3418,
+        "temporary_exact_resume_updates": 3,
+        "temporary_resource_probe_updates": null,
+        "engineering_probe_updates": null,
+        "temperature_exploration": null,
+        "complete_total_runtime_measured": false,
+        "unlogged_failed_work": "unknown; registration/absence of logs is not proof of zero work"
+      }
+    },
+    "formal_v3": {
+      "classification": "final_registered_reference",
+      "members": {
+        "seed_17/continue_sft_train.json": {
+          "member": "budget_sources/formal_v3/seed_17/continue_sft_train.json.gz",
+          "uncompressed_sha256": "c76fc3fc07f165711c42bfa96fc27735263b6f6364d09746f288a71ba2956570"
+        },
+        "seed_17/dpo_beta_train.json": {
+          "member": "budget_sources/formal_v3/seed_17/dpo_beta_train.json.gz",
+          "uncompressed_sha256": "286a0f5bec6aaf6a58dc2b6a7c17d835058771844ce44c4991a5193fa9a468bf"
+        },
+        "seed_17/dpo_train.json": {
+          "member": "budget_sources/formal_v3/seed_17/dpo_train.json.gz",
+          "uncompressed_sha256": "366cba29b90af10a470f74b1ce1f9d6be3845cdf595b8c1f6983c1cdf166eadf"
+        },
+        "seed_17/rlvr_group_size_train.json": {
+          "member": "budget_sources/formal_v3/seed_17/rlvr_group_size_train.json.gz",
+          "uncompressed_sha256": "8c0b9a0d78e2c77ed0f7200aaae91466c2eedad7995d47aed3a0c797495fcc5e"
+        },
+        "seed_17/rlvr_no_format_train.json": {
+          "member": "budget_sources/formal_v3/seed_17/rlvr_no_format_train.json.gz",
+          "uncompressed_sha256": "309585180a469f07303ae6f7108157363cba954493a126d65e3a1955f8bc81e1"
+        },
+        "seed_17/rlvr_train.json": {
+          "member": "budget_sources/formal_v3/seed_17/rlvr_train.json.gz",
+          "uncompressed_sha256": "b784ba6dbf8b0af949f54c90380321c41975aac54b3e8a28fdfa8448267798f7"
+        },
+        "seed_17/sft_train.json": {
+          "member": "budget_sources/formal_v3/seed_17/sft_train.json.gz",
+          "uncompressed_sha256": "5132c548dbf1fb3638d1d17cb6affac990c29156c8524872d15b5d03fa4b8138"
+        },
+        "seed_23/continue_sft_train.json": {
+          "member": "budget_sources/formal_v3/seed_23/continue_sft_train.json.gz",
+          "uncompressed_sha256": "2bf3123e2e1df0016794fd972a58a4e6a4bedc244ff544583638c5d6065cf61b"
+        },
+        "seed_23/dpo_beta_train.json": {
+          "member": "budget_sources/formal_v3/seed_23/dpo_beta_train.json.gz",
+          "uncompressed_sha256": "52113349591fcfe14e5044fb726b278effafc1a5d1cd055cfb18e82a48199678"
+        },
+        "seed_23/dpo_train.json": {
+          "member": "budget_sources/formal_v3/seed_23/dpo_train.json.gz",
+          "uncompressed_sha256": "e461aab232f064d9b2f0754ba83db3b4a5350c293172eaec41a7bedf4b3349f4"
+        },
+        "seed_23/rlvr_group_size_train.json": {
+          "member": "budget_sources/formal_v3/seed_23/rlvr_group_size_train.json.gz",
+          "uncompressed_sha256": "e428091887f5e89e72ad284572ef1bd8f931507f72291ff06c0257acee2ef059"
+        },
+        "seed_23/rlvr_no_format_train.json": {
+          "member": "budget_sources/formal_v3/seed_23/rlvr_no_format_train.json.gz",
+          "uncompressed_sha256": "1c0e24a3f506cf6cbe555fced6b5e9f1c820b1c93e6851052cef97ee767311f9"
+        },
+        "seed_23/rlvr_train.json": {
+          "member": "budget_sources/formal_v3/seed_23/rlvr_train.json.gz",
+          "uncompressed_sha256": "4a95d6f36bf9d781499680c33be0e680d231448556098d6d06beb71ff605e6d7"
+        },
+        "seed_23/sft_train.json": {
+          "member": "budget_sources/formal_v3/seed_23/sft_train.json.gz",
+          "uncompressed_sha256": "9347c1be424e4eb7e1d0d729f45a5add3fcd1a7634b21399529ca1b75277bdb9"
+        },
+        "seed_41/continue_sft_train.json": {
+          "member": "budget_sources/formal_v3/seed_41/continue_sft_train.json.gz",
+          "uncompressed_sha256": "d5a3f914eb9d2b40e5d6ea9bdc70ebba50ef8f9c419aabd5d886d1b155d2466f"
+        },
+        "seed_41/dpo_beta_train.json": {
+          "member": "budget_sources/formal_v3/seed_41/dpo_beta_train.json.gz",
+          "uncompressed_sha256": "2aeb5cc031551372f9bd750de0dde38eae7acaab89d8a1c72a2a5aa895d16906"
+        },
+        "seed_41/dpo_train.json": {
+          "member": "budget_sources/formal_v3/seed_41/dpo_train.json.gz",
+          "uncompressed_sha256": "10f42b65a68f7c3f4126343d982c261b566c26924edca6188a16b72e63d634de"
+        },
+        "seed_41/rlvr_group_size_train.json": {
+          "member": "budget_sources/formal_v3/seed_41/rlvr_group_size_train.json.gz",
+          "uncompressed_sha256": "5515c4b8a22fac2f219735f43cc7d3089f2d3ddce91c8809ed27f4460ec045d5"
+        },
+        "seed_41/rlvr_no_format_train.json": {
+          "member": "budget_sources/formal_v3/seed_41/rlvr_no_format_train.json.gz",
+          "uncompressed_sha256": "e29214fea177fc0d9f3b03fb8fddc1a414baa94227d69a5a1d22cc5fad1d9605"
+        },
+        "seed_41/rlvr_train.json": {
+          "member": "budget_sources/formal_v3/seed_41/rlvr_train.json.gz",
+          "uncompressed_sha256": "34ae03755286e74c8a364aa5aad47826f925be1c4764365fdc01b5e60428ee67"
+        },
+        "seed_41/sft_train.json": {
+          "member": "budget_sources/formal_v3/seed_41/sft_train.json.gz",
+          "uncompressed_sha256": "f74371140fe4084229c2aa1bca108d3fbaf3718ee0ed86fc41df3da9995aeb13"
+        },
+        "summary.json": {
+          "member": "budget_sources/formal_v3/summary.json.gz",
+          "uncompressed_sha256": "4c07350546d1d4e0cd257e67fe4a3f50a16d04c3f0e378c2a5bb0d2263dd2f86"
+        },
+        "resume_check.json": {
+          "member": "budget_sources/formal_v3/resume_check.json.gz",
+          "uncompressed_sha256": "fda080e32b57ac1569286cebd7c1daec517ed95e4faa1b7923c76eaeaad3471a"
+        },
+        "resource_probe.json": {
+          "member": "budget_sources/formal_v3/resource_probe.json.gz",
+          "uncompressed_sha256": "4df199648f52bf971d064f3739548fb154ab2312ce125484379c1618a0c2e80f"
+        },
+        "preregistration.json": {
+          "member": "budget_sources/formal_v3/preregistration.json.gz",
+          "uncompressed_sha256": "0efb44b485c3f338e951cbeafdb4c872a8f24959caf3759525e79c3e135030a3"
+        }
+      },
+      "summary": {
+        "classification": "final_registered_reference",
+        "scope": "actual persisted training logs; interrupted/unlogged work is not counted as zero",
+        "recorded_training_files": [
+          {
+            "artifact": "seed_17/continue_sft_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 24,
+            "effective_update_tokens": 63,
+            "elapsed_seconds": 0.5199456999835093,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_17/dpo_beta_train.json",
+            "optimizer_steps": 6,
+            "sample_exposures": 48,
+            "effective_update_tokens": 243,
+            "elapsed_seconds": 2.476858300011372,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_17/dpo_train.json",
+            "optimizer_steps": 6,
+            "sample_exposures": 48,
+            "effective_update_tokens": 243,
+            "elapsed_seconds": 2.5215195999771822,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_17/rlvr_group_size_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 588,
+            "elapsed_seconds": 39.27910410001641,
+            "generated_samples": 96,
+            "generated_tokens": 588
+          },
+          {
+            "artifact": "seed_17/rlvr_no_format_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 298,
+            "elapsed_seconds": 22.611296300019603,
+            "generated_samples": 48,
+            "generated_tokens": 298
+          },
+          {
+            "artifact": "seed_17/rlvr_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 298,
+            "elapsed_seconds": 21.378569499996956,
+            "generated_samples": 48,
+            "generated_tokens": 298
+          },
+          {
+            "artifact": "seed_17/sft_train.json",
+            "optimizer_steps": 20,
+            "sample_exposures": 160,
+            "effective_update_tokens": 419,
+            "elapsed_seconds": 3.0882465000031516,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_23/continue_sft_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 24,
+            "effective_update_tokens": 61,
+            "elapsed_seconds": 0.5205860999994911,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_23/dpo_beta_train.json",
+            "optimizer_steps": 6,
+            "sample_exposures": 48,
+            "effective_update_tokens": 241,
+            "elapsed_seconds": 2.4854671000211965,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_23/dpo_train.json",
+            "optimizer_steps": 6,
+            "sample_exposures": 48,
+            "effective_update_tokens": 241,
+            "elapsed_seconds": 2.444069200020749,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_23/rlvr_group_size_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 528,
+            "elapsed_seconds": 34.67889980002656,
+            "generated_samples": 96,
+            "generated_tokens": 528
+          },
+          {
+            "artifact": "seed_23/rlvr_no_format_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 255,
+            "elapsed_seconds": 18.105148000002373,
+            "generated_samples": 48,
+            "generated_tokens": 255
+          },
+          {
+            "artifact": "seed_23/rlvr_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 255,
+            "elapsed_seconds": 17.767934100003913,
+            "generated_samples": 48,
+            "generated_tokens": 255
+          },
+          {
+            "artifact": "seed_23/sft_train.json",
+            "optimizer_steps": 20,
+            "sample_exposures": 160,
+            "effective_update_tokens": 433,
+            "elapsed_seconds": 3.066958799987333,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_41/continue_sft_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 24,
+            "effective_update_tokens": 63,
+            "elapsed_seconds": 0.49231490000966005,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_41/dpo_beta_train.json",
+            "optimizer_steps": 6,
+            "sample_exposures": 48,
+            "effective_update_tokens": 241,
+            "elapsed_seconds": 2.3074530999874696,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_41/dpo_train.json",
+            "optimizer_steps": 6,
+            "sample_exposures": 48,
+            "effective_update_tokens": 241,
+            "elapsed_seconds": 2.4203680000209715,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          },
+          {
+            "artifact": "seed_41/rlvr_group_size_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 570,
+            "elapsed_seconds": 40.909687599982135,
+            "generated_samples": 96,
+            "generated_tokens": 570
+          },
+          {
+            "artifact": "seed_41/rlvr_no_format_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 313,
+            "elapsed_seconds": 22.992139700014377,
+            "generated_samples": 48,
+            "generated_tokens": 313
+          },
+          {
+            "artifact": "seed_41/rlvr_train.json",
+            "optimizer_steps": 3,
+            "sample_exposures": 0,
+            "effective_update_tokens": 313,
+            "elapsed_seconds": 21.676542600005632,
+            "generated_samples": 48,
+            "generated_tokens": 313
+          },
+          {
+            "artifact": "seed_41/sft_train.json",
+            "optimizer_steps": 20,
+            "sample_exposures": 160,
+            "effective_update_tokens": 426,
+            "elapsed_seconds": 3.0932628999871667,
+            "generated_samples": 0,
+            "generated_tokens": 0
+          }
+        ],
+        "optimizer_steps_logged": 132,
+        "sample_exposures_logged": 840,
+        "effective_update_tokens_logged": 6333,
+        "training_elapsed_seconds_logged": 264.8363719000772,
+        "rollout_samples_logged": 576,
+        "rollout_tokens_logged": 3418,
+        "temporary_exact_resume_updates": 3,
+        "temporary_resource_probe_updates": 1,
+        "engineering_probe_updates": null,
+        "temperature_exploration": null,
+        "complete_total_runtime_measured": false,
+        "unlogged_failed_work": "unknown; registration/absence of logs is not proof of zero work"
+      }
+    },
+    "early_engineering_probe": {
+      "classification": "engineering_probe_not_final_selection",
+      "members": {
+        "summary.json": {
+          "member": "budget_sources/early_engineering_probe/summary.json.gz",
+          "uncompressed_sha256": "c9c261a7bc22fa4757b6821a891915673af0ad3ca364afc81c0528bb5d82ca6e"
+        }
+      },
+      "summary": {
+        "classification": "engineering_probe_not_final_selection",
+        "scope": "actual persisted training logs; interrupted/unlogged work is not counted as zero",
+        "recorded_training_files": [],
+        "optimizer_steps_logged": 0,
+        "sample_exposures_logged": 0,
+        "effective_update_tokens_logged": null,
+        "training_elapsed_seconds_logged": null,
+        "rollout_samples_logged": 0,
+        "rollout_tokens_logged": 0,
+        "temporary_exact_resume_updates": null,
+        "temporary_resource_probe_updates": null,
+        "engineering_probe_updates": 1,
+        "temperature_exploration": null,
+        "complete_total_runtime_measured": false,
+        "unlogged_failed_work": "unknown; registration/absence of logs is not proof of zero work"
+      }
+    },
+    "pretrained_sft_development_20261002": {
+      "classification": "failed_launch_cost_not_fully_recorded",
+      "members": {
+        "preregistration.json": {
+          "member": "budget_sources/pretrained_sft_development_20261002/preregistration.json.gz",
+          "uncompressed_sha256": "f8752f624123c045fd5b7f38442ca53d71aae9f5375f12965259e5558c26e68a"
+        }
+      },
+      "summary": {
+        "classification": "failed_launch_cost_not_fully_recorded",
+        "scope": "actual persisted training logs; interrupted/unlogged work is not counted as zero",
+        "recorded_training_files": [],
+        "optimizer_steps_logged": 0,
+        "sample_exposures_logged": 0,
+        "effective_update_tokens_logged": null,
+        "training_elapsed_seconds_logged": null,
+        "rollout_samples_logged": 0,
+        "rollout_tokens_logged": 0,
+        "temporary_exact_resume_updates": null,
+        "temporary_resource_probe_updates": null,
+        "engineering_probe_updates": null,
+        "temperature_exploration": null,
+        "complete_total_runtime_measured": false,
+        "unlogged_failed_work": "unknown; registration/absence of logs is not proof of zero work"
+      }
+    },
+    "pretrained_sft_development_20261002_compact": {
+      "classification": "failed_launch_cost_not_fully_recorded",
+      "members": {
+        "preregistration.json": {
+          "member": "budget_sources/pretrained_sft_development_20261002_compact/preregistration.json.gz",
+          "uncompressed_sha256": "016c4a94fe37f22e370fa8579e49cd9073216d4f3c481ad785e40ae0d1c5e110"
+        }
+      },
+      "summary": {
+        "classification": "failed_launch_cost_not_fully_recorded",
+        "scope": "actual persisted training logs; interrupted/unlogged work is not counted as zero",
+        "recorded_training_files": [],
+        "optimizer_steps_logged": 0,
+        "sample_exposures_logged": 0,
+        "effective_update_tokens_logged": null,
+        "training_elapsed_seconds_logged": null,
+        "rollout_samples_logged": 0,
+        "rollout_tokens_logged": 0,
+        "temporary_exact_resume_updates": null,
+        "temporary_resource_probe_updates": null,
+        "engineering_probe_updates": null,
+        "temperature_exploration": null,
+        "complete_total_runtime_measured": false,
+        "unlogged_failed_work": "unknown; registration/absence of logs is not proof of zero work"
+      }
+    }
+  }
+}

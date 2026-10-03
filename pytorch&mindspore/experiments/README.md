@@ -13,10 +13,10 @@
 从仓库根目录的 PowerShell 执行：
 
 ```powershell
-& 'D:/anaconda/envs/pytorch_env/python.exe' 'pytorch&mindspore/experiments/linear_train_lab.py' --output-dir 'pytorch&mindspore/experiments/results'
+python scripts/run_lesson.py linear
 ```
 
-当前默认 `python` 对应没有 torch 的另一解释器，因此命令显式使用已经核验可用的环境。换电脑时，把解释器路径改为你已经配置的 PyTorch 环境；不要为复现这个小实验盲目覆盖现有环境。
+统一入口探测可用 PyTorch 解释器，并打印本次输出目录。需要指定已有环境时，在 `--` 之前使用 `--python`；环境与参数示例见[运行说明](../../入门/环境准备与常见问题.md#统一入口变参实验和结果目录)。
 
 ## 数学参照与检查顺序
 
@@ -36,9 +36,9 @@
 |---|---|
 | [summary.json](results/summary.json) | 解释器、框架版本、所有误差、实际参数与恢复结果 |
 | [learning_curve.csv](results/learning_curve.csv) | step 对训练/验证 MSE；梯度列记录该步更新前的梯度范数 |
-| [checkpoint_step40.pt](results/checkpoint_step40.pt) | 本次实验创建的第 40 步训练状态，供脚本读取验证 |
+| [checkpoint_step40.pt](results/checkpoint_step40.pt) | 固定教学参照中的第 40 步状态；本次状态在运行目录中用于恢复验证 |
 
-相同输出目录会覆盖这些同名实验文件。代码的训练数据固定，没有随机采样和 DataLoader，所以恢复用例没有假装验证它尚未涉及的数据加载状态。日志中的 `validation_mse` 是四个固定新输入点误差；没有再拿它们调模型结构或学习率。
+表中链接是仓库固定的教学参照；本次对应文件写入独立运行目录的 `artifacts/`，支持输出的底层脚本也拒绝向已有非空目录写入。代码的训练数据固定，没有随机采样和 DataLoader，所以恢复用例没有假装验证它尚未涉及的数据加载状态。日志中的 `validation_mse` 是四个固定新输入点误差；没有再拿它们调模型结构或学习率。
 
 ## 本次实跑记录
 
@@ -56,18 +56,38 @@
 
 **题目：**取两样本 $(x_1,y_1)=(0,1),(x_2,y_2)=(2,5)$，模型 $\hat y=wx+b$，w=0.3、b=-0.2，损失 $L=\frac12\sum_{i=1}^2(\hat y_i-y_i)^2$；这里的 1/2 是样本平均系数，不额外再乘半平方。求两误差、L、w/b 梯度，写出用中心差分核对的参数扰动规则。
 
+<details>
+<summary>展开参考答案（先独立作答）</summary>
+
 **参考答案：**误差为 -1.2、-4.6，loss=(1.44+21.16)/2=11.3；w 梯度为 2×平均(error×x)=-9.2，b 梯度为 -5.8。每次只扰动一个参数，其他数据/参数固定，用 h=1e-6 计算 [L(theta+h)-L(theta-h)]/(2h)，float64 下比较容差。
+
+</details>
 
 **面试追问：**为什么题干要说明 1/2 的来源？
 
+<details>
+<summary>展开追问回答</summary>
+
 **追问回答：**均值和半平方都可能出现 1/2，但导数与缩放不同；必须把完整损失式写出，不能只说“用 MSE”。
+
+</details>
 
 ### 题 2：恢复优化器状态怎样设计有区分力的验收？
 
 **题目：**优化器是普通 momentum SGD，定义 v_new=0.9v_old+g、theta_new=theta_old-0.1v_new，无 dampening、无 Nesterov、无衰减。存档时 theta=1、v_old=2；恢复后的下一批梯度固定为 g=1。比较完整恢复和只恢复 theta、把 v_old 设0的下一步参数。
 
+<details>
+<summary>展开参考答案（先独立作答）</summary>
+
 **参考答案：**完整恢复 v_new=2.8、theta_new=0.72；只恢复参数 v_new=1、theta_new=0.9。应在恢复后的紧接一步比较，而非只比较最终收敛点。真实训练还需数据位置、随机数、调度器与混合精度状态。
+
+</details>
 
 **面试追问：**能只比较重载前后的预测吗？
 
+<details>
+<summary>展开追问回答</summary>
+
 **追问回答：**预测一致只检验模型权重，不能确认下一步训练状态；需要连续训练分支作为对照。
+
+</details>

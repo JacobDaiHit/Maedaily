@@ -1,0 +1,251 @@
+{
+  "sft": {
+    "passed": true,
+    "loss": 0.025008276104927063,
+    "cross_entropy": 0.025007739663124084,
+    "handwritten_loss": 0.02500777210591032,
+    "scalar_max_error": 5.364418029785156e-07,
+    "manual_error": 5.039990167432506e-07,
+    "adapter_gradient_max_error": 6.3925981521606445e-06,
+    "ignored_logits_gradient_max": 0.0,
+    "batch": {
+      "passed": true,
+      "response_tokens": 4,
+      "per_sample_tokens": [
+        2,
+        2
+      ],
+      "prompt_and_padding_supervised": false,
+      "shift_count": 1
+    }
+  },
+  "dpo": {
+    "passed": true,
+    "initial_loss": 0.6931471824645996,
+    "initial_u_max": 0.0,
+    "analytic_derivative_max_error": 0.0,
+    "adapter_gradient_max_error": 0.0,
+    "four_logprobs": {
+      "policy_chosen": [
+        -0.04243819788098335,
+        -0.0575949065387249
+      ],
+      "policy_rejected": [
+        -4.607364177703857,
+        -3.093571424484253
+      ],
+      "reference_chosen": [
+        -0.04243819788098335,
+        -0.0575949065387249
+      ],
+      "reference_rejected": [
+        -4.607364177703857,
+        -3.093571424484253
+      ]
+    },
+    "reference_sha256": "c1b899d27cf6cd154160b21b54b6fac86e469bb43b5d0b5cb9470a3017b03370",
+    "reference_requires_grad": false
+  },
+  "frozen": {
+    "passed": true,
+    "adapter_parameter_tensors": 96,
+    "adapter_parameters": 270336,
+    "frozen_parameters": 494032768,
+    "base_sha256": "ee92448d170f1099f866f774296b569eddfd435fe7ebe97bc4116a8299e49458"
+  },
+  "verifier": {
+    "passed": true,
+    "cases": [
+      {
+        "text": "5",
+        "termination": "eos",
+        "version": "strict-canonical-integer-with-eos-v2",
+        "status": "correct",
+        "correct": true,
+        "format_valid": true,
+        "components": {
+          "exact_answer": 1.0,
+          "format": 0.1
+        },
+        "total": 1.1,
+        "expected_answer": "5"
+      },
+      {
+        "text": "4",
+        "termination": "eos",
+        "version": "strict-canonical-integer-with-eos-v2",
+        "status": "wrong",
+        "correct": false,
+        "format_valid": true,
+        "components": {
+          "exact_answer": 0.0,
+          "format": 0.1
+        },
+        "total": 0.1,
+        "expected_answer": "5"
+      },
+      {
+        "text": "",
+        "termination": "eos",
+        "version": "strict-canonical-integer-with-eos-v2",
+        "status": "empty",
+        "correct": false,
+        "format_valid": false,
+        "components": {
+          "exact_answer": 0.0,
+          "format": 0.0
+        },
+        "total": 0.0,
+        "expected_answer": "5"
+      },
+      {
+        "text": "05",
+        "termination": "eos",
+        "version": "strict-canonical-integer-with-eos-v2",
+        "status": "malformed",
+        "correct": false,
+        "format_valid": false,
+        "components": {
+          "exact_answer": 0.0,
+          "format": 0.0
+        },
+        "total": 0.0,
+        "expected_answer": "5"
+      },
+      {
+        "text": "5 ",
+        "termination": "eos",
+        "version": "strict-canonical-integer-with-eos-v2",
+        "status": "malformed",
+        "correct": false,
+        "format_valid": false,
+        "components": {
+          "exact_answer": 0.0,
+          "format": 0.0
+        },
+        "total": 0.0,
+        "expected_answer": "5"
+      },
+      {
+        "text": "5\n",
+        "termination": "eos",
+        "version": "strict-canonical-integer-with-eos-v2",
+        "status": "malformed",
+        "correct": false,
+        "format_valid": false,
+        "components": {
+          "exact_answer": 0.0,
+          "format": 0.0
+        },
+        "total": 0.0,
+        "expected_answer": "5"
+      },
+      {
+        "text": "+5",
+        "termination": "eos",
+        "version": "strict-canonical-integer-with-eos-v2",
+        "status": "malformed",
+        "correct": false,
+        "format_valid": false,
+        "components": {
+          "exact_answer": 0.0,
+          "format": 0.0
+        },
+        "total": 0.0,
+        "expected_answer": "5"
+      },
+      {
+        "text": "-0",
+        "termination": "eos",
+        "version": "strict-canonical-integer-with-eos-v2",
+        "status": "malformed",
+        "correct": false,
+        "format_valid": false,
+        "components": {
+          "exact_answer": 0.0,
+          "format": 0.0
+        },
+        "total": 0.0,
+        "expected_answer": "0"
+      },
+      {
+        "text": "NaN",
+        "termination": "eos",
+        "version": "strict-canonical-integer-with-eos-v2",
+        "status": "malformed",
+        "correct": false,
+        "format_valid": false,
+        "components": {
+          "exact_answer": 0.0,
+          "format": 0.0
+        },
+        "total": 0.0,
+        "expected_answer": "5"
+      },
+      {
+        "text": "inf",
+        "termination": "eos",
+        "version": "strict-canonical-integer-with-eos-v2",
+        "status": "malformed",
+        "correct": false,
+        "format_valid": false,
+        "components": {
+          "exact_answer": 0.0,
+          "format": 0.0
+        },
+        "total": 0.0,
+        "expected_answer": "5"
+      },
+      {
+        "text": "99999",
+        "termination": "eos",
+        "version": "strict-canonical-integer-with-eos-v2",
+        "status": "too_long",
+        "correct": false,
+        "format_valid": false,
+        "components": {
+          "exact_answer": 0.0,
+          "format": 0.0
+        },
+        "total": 0.0,
+        "expected_answer": "5"
+      },
+      {
+        "text": "5",
+        "termination": "new_token_budget",
+        "version": "strict-canonical-integer-with-eos-v2",
+        "status": "truncated",
+        "correct": false,
+        "format_valid": false,
+        "components": {
+          "exact_answer": 0.0,
+          "format": 0.0
+        },
+        "total": 0.0,
+        "expected_answer": "5"
+      },
+      {
+        "text": "-3",
+        "termination": "eos",
+        "version": "strict-canonical-integer-with-eos-v2",
+        "status": "correct",
+        "correct": true,
+        "format_valid": true,
+        "components": {
+          "exact_answer": 1.0,
+          "format": 0.1
+        },
+        "total": 1.1,
+        "expected_answer": "-3"
+      }
+    ],
+    "maximum_reward": 1.1
+  },
+  "alignment_source_ids": [
+    "train:arith:0+0=",
+    "train:arith:0-1=",
+    "train:copy:99:two-leading-zeros"
+  ],
+  "token_alignment_sha256": "90ba580d96e8e218ba4ad550d40367fcef4cc7c11718cb01309a22dcdee06b90",
+  "sft_loss_receipt_sha256": "e0fd31c3d1b0f889ca0b2a44f3815f5564d33f6fe14c44deb997960554766d0e"
+}

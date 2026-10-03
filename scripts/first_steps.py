@@ -6,6 +6,8 @@ import json
 import math
 from pathlib import Path
 
+from lesson_runtime import reserve_output_dir
+
 
 def calculate(learning_rate: float) -> dict:
     if not math.isfinite(learning_rate) or learning_rate <= 0:
@@ -58,13 +60,17 @@ def calculate(learning_rate: float) -> dict:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(allow_abbrev=False, description=__doc__)
     parser.add_argument("--learning-rate", type=float, default=0.1, help="梯度更新步长，默认 0.1")
     parser.add_argument("--output-dir", type=Path, help="可选：保存 first_steps.json 的目录")
     args = parser.parse_args()
     try:
         result = calculate(args.learning_rate)
     except ValueError as error:
+        parser.error(str(error))
+    try:
+        args.output_dir = reserve_output_dir(args.output_dir, "first")
+    except (ValueError, OSError) as error:
         parser.error(str(error))
     before, after = result["before"], result["after"]
     print("第一课：模型先预测，再根据误差调整参数。")
@@ -77,7 +83,6 @@ def main() -> None:
     print("7. 立即结束得 1；先付出 0.2 再得 2，折扣 0.9 后的回报=1.6")
     print(f"数值参照检查通过：{result['checks_passed']} 项。请解释这些数字，运行成功只是第一步。")
     if args.output_dir:
-        args.output_dir.mkdir(parents=True, exist_ok=True)
         destination = args.output_dir / "first_steps.json"
         destination.write_text(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
         print(f"详细结果：{destination.resolve()}")

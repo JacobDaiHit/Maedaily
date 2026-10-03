@@ -1,0 +1,503 @@
+{
+  "schema_version": "maedaily-project-a-reference-v1",
+  "config": {
+    "seed": 7,
+    "steps": 40,
+    "split_step": 20,
+    "model": {
+      "d_model": 32,
+      "heads": 2,
+      "max_context": 16
+    },
+    "vocab_size": 13,
+    "layers": 1,
+    "normalization": "pre-LN",
+    "activation": "GELU",
+    "dropout": 0.0,
+    "dtype": "float64",
+    "device": "cpu",
+    "batch_size": 16,
+    "optimizer": "AdamW",
+    "optimizer_parameters": {
+      "lr": 0.003,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "eps": 1e-08,
+      "weight_decay": 0.01,
+      "amsgrad": false,
+      "foreach": false,
+      "fused": false,
+      "maximize": false,
+      "capturable": false,
+      "differentiable": false
+    },
+    "clip_gradient_norm": 1.0,
+    "loss": "sum NLL / valid target tokens",
+    "sampler": "torch.randint with replacement from independent CPU Generator",
+    "batch_generator_initial_seed": 8,
+    "eval_every": 10
+  },
+  "preregistration": {
+    "schema_version": "maedaily-project-a-reference-v1",
+    "learning_rates": [
+      0.001,
+      0.003
+    ],
+    "changed_variable": "optimizer.lr",
+    "seed": 7,
+    "steps": 40,
+    "split_step": 20,
+    "quality_selection": "none; both fixed learning rates reported",
+    "data_identity": {
+      "sha256": "4f6c380ee4e4ad0cc3c738364f7ced5876a128e14a52f9156fa564ae3fa17c33",
+      "hash_encoding": "UTF-8 canonical JSON with ordered sequences",
+      "token_schema": {
+        "pad": 0,
+        "bos": 1,
+        "eos": 2,
+        "digits_start": 3,
+        "vocab_size": 13
+      },
+      "train_digit_lengths": [
+        6,
+        8,
+        10
+      ],
+      "validation_digit_lengths": [
+        7,
+        9
+      ],
+      "train_sequences": 60,
+      "validation_sequences": 40
+    },
+    "config_sha256": "5ccb2cd8eba67c4e53252d74eb3eefadf587d054ac21bb4d4e20f9638d2b99cd",
+    "source_hashes": {
+      "transformer/experiments/project_a_reference.py": "a9b49b289203b96fcf9d5f8b75bfff1845f9f04683b675d207d0c5a8d52f5de4",
+      "transformer/experiments/lm_resume_lab.py": "a1e05c2fccffe3082de9fce5a91d109c48aa2c4ecb274c2d7f332d64b60edeea",
+      "transformer/experiments/tiny_causal_lm.py": "ed847f4f51f5ed7b57bdb1d62af90b0b4d08287cba11343f5759e78192b660af",
+      "scripts/lesson_runtime.py": "1dcaecc9654f043ccf484acb4d426b38e4a3cbce4b2531c0991209808087d91f"
+    }
+  },
+  "environment": {
+    "python": "3.11.15",
+    "pytorch": "2.7.1+cu118",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "device": "cpu",
+    "dtype": "float64",
+    "python_executable": "D:\\anaconda\\envs\\pytorch_env\\python.exe",
+    "deterministic_algorithms": true,
+    "threads": 1
+  },
+  "mechanism_acceptance": {
+    "status": "passed",
+    "fresh_process_count": 6,
+    "prefix_replay_exact": true,
+    "every_resumed_step_exact": true,
+    "final_state_exact": {
+      "model_state": true,
+      "optimizer_state": true,
+      "rng_state": true,
+      "processed_tokens": true,
+      "global_step": true
+    },
+    "missing_optimizer_detected": true,
+    "missing_sampler_detected": true,
+    "learning_rate_only_configuration_change": true,
+    "same_initialization_batches_and_tokens": true,
+    "source_unchanged": true,
+    "input_checkpoint_unchanged": true,
+    "numerical": {
+      "shift_exactly_once": true,
+      "double_shift_negative_detected": true,
+      "analytic_ce_error": 2.8796409701215e-16,
+      "ignored_gradient_max": 0.0,
+      "causal_prefix_max_difference": 0.0,
+      "unmasked_attention_negative_detected": true,
+      "padding_nll_difference": 0.0,
+      "partition_nll_difference": 1.3322676295501878e-15
+    }
+  },
+  "quality": {
+    "base_lr": {
+      "learning_rate": 0.003,
+      "initial_train": {
+        "loss": 2.563573054946089,
+        "tokens": 540,
+        "token_accuracy": 0.0962962962962963
+      },
+      "final_train": {
+        "loss": 0.8371077040123999,
+        "tokens": 540,
+        "token_accuracy": 0.7648148148148148
+      },
+      "initial_validation": {
+        "loss": 2.5700132579900647,
+        "tokens": 360,
+        "token_accuracy": 0.09444444444444444
+      },
+      "final_validation": {
+        "loss": 1.183015416514777,
+        "tokens": 360,
+        "token_accuracy": 0.7027777777777777
+      },
+      "generations": [
+        {
+          "prefix_digits": [
+            7,
+            8
+          ],
+          "continuation": [
+            "9",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        },
+        {
+          "prefix_digits": [
+            2,
+            1
+          ],
+          "continuation": [
+            "0",
+            "9",
+            "8",
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        },
+        {
+          "prefix_digits": [
+            9,
+            0
+          ],
+          "continuation": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        },
+        {
+          "prefix_digits": [
+            0,
+            9
+          ],
+          "continuation": [
+            "8",
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        }
+      ]
+    },
+    "alternate_lr": {
+      "learning_rate": 0.001,
+      "initial_train": {
+        "loss": 2.563573054946089,
+        "tokens": 540,
+        "token_accuracy": 0.0962962962962963
+      },
+      "final_train": {
+        "loss": 1.6411620752485176,
+        "tokens": 540,
+        "token_accuracy": 0.7129629629629629
+      },
+      "initial_validation": {
+        "loss": 2.5700132579900647,
+        "tokens": 360,
+        "token_accuracy": 0.09444444444444444
+      },
+      "final_validation": {
+        "loss": 1.7951212718724627,
+        "tokens": 360,
+        "token_accuracy": 0.6138888888888889
+      },
+      "generations": [
+        {
+          "prefix_digits": [
+            7,
+            8
+          ],
+          "continuation": [
+            "9",
+            "0",
+            "1",
+            "2",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        },
+        {
+          "prefix_digits": [
+            2,
+            1
+          ],
+          "continuation": [
+            "0",
+            "9",
+            "8",
+            "7",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        },
+        {
+          "prefix_digits": [
+            9,
+            0
+          ],
+          "continuation": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        },
+        {
+          "prefix_digits": [
+            0,
+            9
+          ],
+          "continuation": [
+            "8",
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "<EOS>"
+          ],
+          "stop_reason": "eos"
+        }
+      ]
+    },
+    "status": "measured_without_general_language_acceptance",
+    "selection": "both preregistered learning rates retained, no best-result filtering"
+  },
+  "comparisons": {
+    "prefix": {
+      "steps_compared": 20,
+      "all_batch_ids_equal": true,
+      "all_losses_exact": true,
+      "max_loss_abs_difference": 0.0,
+      "all_parameter_states_exact": true,
+      "all_optimizer_states_exact": true,
+      "all_rng_states_exact": true,
+      "all_rng_witnesses_exact": true,
+      "first_batch_equal": true,
+      "first_loss_exact": true,
+      "first_parameter_state_exact": true
+    },
+    "resumed": {
+      "steps_compared": 20,
+      "all_batch_ids_equal": true,
+      "all_losses_exact": true,
+      "max_loss_abs_difference": 0.0,
+      "all_parameter_states_exact": true,
+      "all_optimizer_states_exact": true,
+      "all_rng_states_exact": true,
+      "all_rng_witnesses_exact": true,
+      "first_batch_equal": true,
+      "first_loss_exact": true,
+      "first_parameter_state_exact": true
+    },
+    "missing_optimizer": {
+      "steps_compared": 20,
+      "all_batch_ids_equal": true,
+      "all_losses_exact": false,
+      "max_loss_abs_difference": 0.10020003785656839,
+      "all_parameter_states_exact": false,
+      "all_optimizer_states_exact": false,
+      "all_rng_states_exact": true,
+      "all_rng_witnesses_exact": true,
+      "first_batch_equal": true,
+      "first_loss_exact": true,
+      "first_parameter_state_exact": false
+    },
+    "missing_batch_generator": {
+      "steps_compared": 20,
+      "all_batch_ids_equal": false,
+      "all_losses_exact": false,
+      "max_loss_abs_difference": 0.11749324892209145,
+      "all_parameter_states_exact": false,
+      "all_optimizer_states_exact": false,
+      "all_rng_states_exact": false,
+      "all_rng_witnesses_exact": true,
+      "first_batch_equal": false,
+      "first_loss_exact": false,
+      "first_parameter_state_exact": false
+    }
+  },
+  "budgets": {
+    "continuous": {
+      "wall_seconds": 7.459742499995627,
+      "cpu_seconds": 6.65625,
+      "updated_tokens": 5762,
+      "updates": 40,
+      "update_tokens_per_worker_second": 772.4127206808248,
+      "peak_memory": {
+        "status": "measured",
+        "peak_resident_bytes": 444203008,
+        "method": "Windows GetProcessMemoryInfo.PeakWorkingSetSize",
+        "scope": "whole worker lifetime; CPU resident memory, not GPU VRAM"
+      },
+      "parameter_count": 14112,
+      "parameter_bytes": 112896,
+      "generated_tokens": 34
+    },
+    "prefix": {
+      "wall_seconds": 7.860287699993933,
+      "cpu_seconds": 7.203125,
+      "updated_tokens": 2868,
+      "updates": 20,
+      "update_tokens_per_worker_second": 364.87214074902295,
+      "peak_memory": {
+        "status": "measured",
+        "peak_resident_bytes": 446029824,
+        "method": "Windows GetProcessMemoryInfo.PeakWorkingSetSize",
+        "scope": "whole worker lifetime; CPU resident memory, not GPU VRAM"
+      },
+      "parameter_count": 14112,
+      "parameter_bytes": 112896,
+      "generated_tokens": 26
+    },
+    "resumed": {
+      "wall_seconds": 7.667127900000196,
+      "cpu_seconds": 6.875,
+      "updated_tokens": 2894,
+      "updates": 20,
+      "update_tokens_per_worker_second": 377.455552815276,
+      "peak_memory": {
+        "status": "measured",
+        "peak_resident_bytes": 443699200,
+        "method": "Windows GetProcessMemoryInfo.PeakWorkingSetSize",
+        "scope": "whole worker lifetime; CPU resident memory, not GPU VRAM"
+      },
+      "parameter_count": 14112,
+      "parameter_bytes": 112896,
+      "generated_tokens": 34
+    },
+    "missing_optimizer": {
+      "wall_seconds": 9.694692699995358,
+      "cpu_seconds": 8.40625,
+      "updated_tokens": 2894,
+      "updates": 20,
+      "update_tokens_per_worker_second": 298.51384562208824,
+      "peak_memory": {
+        "status": "measured",
+        "peak_resident_bytes": 444346368,
+        "method": "Windows GetProcessMemoryInfo.PeakWorkingSetSize",
+        "scope": "whole worker lifetime; CPU resident memory, not GPU VRAM"
+      },
+      "parameter_count": 14112,
+      "parameter_bytes": 112896,
+      "generated_tokens": 30
+    },
+    "missing_batch_generator": {
+      "wall_seconds": 5.871212900005048,
+      "cpu_seconds": 5.265625,
+      "updated_tokens": 2868,
+      "updates": 20,
+      "update_tokens_per_worker_second": 488.48509649471816,
+      "peak_memory": {
+        "status": "measured",
+        "peak_resident_bytes": 445079552,
+        "method": "Windows GetProcessMemoryInfo.PeakWorkingSetSize",
+        "scope": "whole worker lifetime; CPU resident memory, not GPU VRAM"
+      },
+      "parameter_count": 14112,
+      "parameter_bytes": 112896,
+      "generated_tokens": 36
+    },
+    "alternate_lr": {
+      "wall_seconds": 7.318522999994457,
+      "cpu_seconds": 5.953125,
+      "updated_tokens": 5762,
+      "updates": 40,
+      "update_tokens_per_worker_second": 787.3173316534449,
+      "peak_memory": {
+        "status": "measured",
+        "peak_resident_bytes": 445390848,
+        "method": "Windows GetProcessMemoryInfo.PeakWorkingSetSize",
+        "scope": "whole worker lifetime; CPU resident memory, not GPU VRAM"
+      },
+      "parameter_count": 14112,
+      "parameter_bytes": 112896,
+      "generated_tokens": 22
+    }
+  },
+  "processes": {
+    "continuous": {
+      "pid": 46288,
+      "parent_pid": 44608
+    },
+    "prefix": {
+      "pid": 48236,
+      "parent_pid": 44608
+    },
+    "resumed": {
+      "pid": 45608,
+      "parent_pid": 44608
+    },
+    "missing_optimizer": {
+      "pid": 32440,
+      "parent_pid": 44608
+    },
+    "missing_batch_generator": {
+      "pid": 24724,
+      "parent_pid": 44608
+    },
+    "alternate_lr": {
+      "pid": 49004,
+      "parent_pid": 44608
+    }
+  },
+  "reproduction": {
+    "script": "transformer/experiments/project_a_reference.py",
+    "arguments": [
+      "--seed",
+      "7",
+      "--steps",
+      "40",
+      "--split-step",
+      "20",
+      "--eval-every",
+      "10"
+    ]
+  },
+  "limitations": [
+    "Synthetic modulo-10 grammar; validation holds out lengths with shared grammar/prefixes.",
+    "One seed and CPU float64 software scope; no cross-device bitwise guarantee or GPU measurement.",
+    "No dropout, scheduler, AMP or accumulation; saves only at optimizer-step boundaries.",
+    "Global RNG is restored and checked; actual minibatches depend on the independent batch Generator.",
+    "Natural-text/tokenizer/pretrained-model work is an extension, not completed by this reference.",
+    "Learner independent rewrite, explanation, error diagnosis and review remain separate evidence."
+  ]
+}

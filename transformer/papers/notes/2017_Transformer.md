@@ -26,7 +26,6 @@ WMT 2014 英德、英法翻译是主实验，并增加英语成分句法分析�
 
 先沿 Figure 1 标出三类 attention，再把公式写成 `[B,h,T,d_head]` 的张量操作。完成 [教学章](<../../Attention Is All You Need.md>) 的因果检查后，能解释“为什么 mask 必须在 softmax 前”才算过关。适合第 1 月项目 A。
 
-
 ## 方法核对与论文答辩作业
 
 以下题目是本项目原创阅读练习。提交公式或数据流、原文定位、一个小例与实验协议；实际复现成绩另行记录。
@@ -35,8 +34,18 @@ WMT 2014 英德、英法翻译是主实验，并增加英语成分句法分析�
 
 **题目：**沿Figure1标出encoder self-attention、decoder masked self-attention与cross-attention各自Q/K/V来源和mask。用单头d=1、q=1、k=[0,ln3]、v=[2,6]求输出，并说明实验BLEU比较还有哪些配置。
 
+<details>
+<summary>展开参考答案（先独立作答）</summary>
+
 **参考答案：**三种注意力分别在源序列内、目标前缀内和从目标读源序列；cross-attention的Q来自decoder，K/V来自encoder。小例权重[.25,.75]、输出5。提交形状与可见性图，原实验同时有模型大小、训练和翻译协议，不能将BLEU差异当成仅一个attention操作的消融。
+
+</details>
 
 **面试追问：**mask在softmax后乘零会怎样？
 
+<details>
+<summary>展开追问回答</summary>
+
 **追问回答：**留下的权重通常不再和为1，输出改变；应在分数阶段屏蔽，或明确重新归一化并处理全屏蔽行。
+
+</details>

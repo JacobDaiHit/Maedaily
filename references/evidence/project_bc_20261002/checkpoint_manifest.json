@@ -1,0 +1,692 @@
+{
+  "schema_version": "maedaily-reference-checkpoint-manifest-v1",
+  "weights_published": false,
+  "scope": "SHA/bytes measured from actual checkpoint files; boundary metadata derived from frozen save sites and actual training logs; no stdlib deserialization of weights",
+  "base_model_file_hashes": {
+    "config.json": "18e18afcaccafade98daf13a54092927904649e1dd4eba8299ab717d5d94ff45",
+    "generation_config.json": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6",
+    "LICENSE": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+    "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+    "model.safetensors": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe",
+    "README.md": "b19c806a904db6dc878a0462e70b551f6b7ac78dfbb88c2eb966ca2b9109ae15",
+    "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+    "tokenizer_config.json": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  "contract_hash": "028299999d2e4fad8ceb1a4f4ba5fac0141884d4ceab504dd70bb1fd6a1a3c14",
+  "data_sha256": "db75ec1c32e89dbd887996433778c62a9626ee95a70a5ab229a45736a70f083d",
+  "checkpoints": {
+    "resume_checks/step_000001.pt": {
+      "sha256": "f7d407f51dd62e483e431f58e512f2b72907a0409f11f9fc0474be50263fc062",
+      "bytes": 3368825,
+      "boundary_source": "isolated exact-resume checkpoint; see run/resume_check.json",
+      "training_arm": false
+    },
+    "seed_17/base.pt": {
+      "sha256": "e41e9bac48dc82a67e3ae92abc1d15539144a3da37ee45ce7272c19a414c4c74",
+      "bytes": 1120829,
+      "training_seed": 17,
+      "arm": "base",
+      "inference_consumers": [
+        "base"
+      ],
+      "logical_checkpoint_step": 0,
+      "actual_optimizer_updates_before_checkpoint": 0,
+      "optimizer_state_expected": false,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/continue_sft.pt": {
+      "sha256": "3c479ec8b6f1f9932c754655f137a8a4d1ca68c64358101a31ce556d9f7f402e",
+      "bytes": 3368507,
+      "training_seed": 17,
+      "arm": "continue_sft",
+      "inference_consumers": [
+        "continue_sft"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/dpo.pt": {
+      "sha256": "bdfa0335b08d088e8b9dba822dda45550511c4c53a589460380bfefcf94ca96e",
+      "bytes": 3368507,
+      "training_seed": 17,
+      "arm": "dpo",
+      "inference_consumers": [
+        "dpo"
+      ],
+      "logical_checkpoint_step": 6,
+      "actual_optimizer_updates_before_checkpoint": 6,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/dpo_beta.pt": {
+      "sha256": "59cbb5484558cf3703fa3cd18fd6f1a6d72cf82faa15a3d4ef12920b87829c42",
+      "bytes": 3368507,
+      "training_seed": 17,
+      "arm": "dpo_beta",
+      "inference_consumers": [
+        "dpo_beta"
+      ],
+      "logical_checkpoint_step": 6,
+      "actual_optimizer_updates_before_checkpoint": 6,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/rlvr.pt": {
+      "sha256": "6124ffda7c943a9fbe25088d5c93645f527836c52b6b5395956b36a28747b944",
+      "bytes": 3368825,
+      "training_seed": 17,
+      "arm": "rlvr",
+      "inference_consumers": [
+        "rlvr"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/rlvr_group_size.pt": {
+      "sha256": "a4c39ad1a3c267691ce6d22a9cad7124c4ea375d3e8b43a9bf17bd31a39b30d3",
+      "bytes": 3368825,
+      "training_seed": 17,
+      "arm": "rlvr_group_size",
+      "inference_consumers": [
+        "rlvr_group_size"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/rlvr_group_size_round1.pt": {
+      "sha256": "de058f0b277895b087128567ad2f99d3cc98d0a806a062acfaac7d71a8499017",
+      "bytes": 3368825,
+      "training_seed": 17,
+      "arm": "rlvr_group_size",
+      "inference_consumers": [
+        "rlvr_group_size"
+      ],
+      "logical_checkpoint_step": 1,
+      "actual_optimizer_updates_before_checkpoint": 1,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/rlvr_group_size_round2.pt": {
+      "sha256": "65d2711b9225bcb0e4d00aefa84eb6db71e01ae1ef53e4f06b56ba972876e506",
+      "bytes": 3368825,
+      "training_seed": 17,
+      "arm": "rlvr_group_size",
+      "inference_consumers": [
+        "rlvr_group_size"
+      ],
+      "logical_checkpoint_step": 2,
+      "actual_optimizer_updates_before_checkpoint": 2,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/rlvr_group_size_round3.pt": {
+      "sha256": "a4c39ad1a3c267691ce6d22a9cad7124c4ea375d3e8b43a9bf17bd31a39b30d3",
+      "bytes": 3368825,
+      "training_seed": 17,
+      "arm": "rlvr_group_size",
+      "inference_consumers": [
+        "rlvr_group_size"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/rlvr_no_format.pt": {
+      "sha256": "6124ffda7c943a9fbe25088d5c93645f527836c52b6b5395956b36a28747b944",
+      "bytes": 3368825,
+      "training_seed": 17,
+      "arm": "rlvr_no_format",
+      "inference_consumers": [
+        "rlvr_no_format"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/rlvr_no_format_round1.pt": {
+      "sha256": "bba7b3d670290d115823e6a3b36a43175c29415075244a7ffc1622e1f80db6f3",
+      "bytes": 3368825,
+      "training_seed": 17,
+      "arm": "rlvr_no_format",
+      "inference_consumers": [
+        "rlvr_no_format"
+      ],
+      "logical_checkpoint_step": 1,
+      "actual_optimizer_updates_before_checkpoint": 1,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/rlvr_no_format_round2.pt": {
+      "sha256": "93ccfeebb5a1f4c4c512c26fe693f79603ce5bc5db56870eea06c5530781e3cb",
+      "bytes": 3368825,
+      "training_seed": 17,
+      "arm": "rlvr_no_format",
+      "inference_consumers": [
+        "rlvr_no_format"
+      ],
+      "logical_checkpoint_step": 2,
+      "actual_optimizer_updates_before_checkpoint": 2,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/rlvr_no_format_round3.pt": {
+      "sha256": "6124ffda7c943a9fbe25088d5c93645f527836c52b6b5395956b36a28747b944",
+      "bytes": 3368825,
+      "training_seed": 17,
+      "arm": "rlvr_no_format",
+      "inference_consumers": [
+        "rlvr_no_format"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/rlvr_round1.pt": {
+      "sha256": "bba7b3d670290d115823e6a3b36a43175c29415075244a7ffc1622e1f80db6f3",
+      "bytes": 3368825,
+      "training_seed": 17,
+      "arm": "rlvr",
+      "inference_consumers": [
+        "rlvr"
+      ],
+      "logical_checkpoint_step": 1,
+      "actual_optimizer_updates_before_checkpoint": 1,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/rlvr_round2.pt": {
+      "sha256": "93ccfeebb5a1f4c4c512c26fe693f79603ce5bc5db56870eea06c5530781e3cb",
+      "bytes": 3368825,
+      "training_seed": 17,
+      "arm": "rlvr",
+      "inference_consumers": [
+        "rlvr"
+      ],
+      "logical_checkpoint_step": 2,
+      "actual_optimizer_updates_before_checkpoint": 2,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/rlvr_round3.pt": {
+      "sha256": "6124ffda7c943a9fbe25088d5c93645f527836c52b6b5395956b36a28747b944",
+      "bytes": 3368825,
+      "training_seed": 17,
+      "arm": "rlvr",
+      "inference_consumers": [
+        "rlvr"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_17/sft.pt": {
+      "sha256": "d3f9991802bd37967d792c3647bf0c6cfece18d26a641ad676a180a462253e6c",
+      "bytes": 3368571,
+      "training_seed": 17,
+      "arm": "no_update",
+      "inference_consumers": [
+        "no_update",
+        "sampling_only"
+      ],
+      "logical_checkpoint_step": 20,
+      "actual_optimizer_updates_before_checkpoint": 20,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/base.pt": {
+      "sha256": "29e96d6c1e92ab4fb8c00feac3f9f8ced6e157518cc601fb3ba7078c8d4108ef",
+      "bytes": 1120829,
+      "training_seed": 23,
+      "arm": "base",
+      "inference_consumers": [
+        "base"
+      ],
+      "logical_checkpoint_step": 0,
+      "actual_optimizer_updates_before_checkpoint": 0,
+      "optimizer_state_expected": false,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/continue_sft.pt": {
+      "sha256": "492c659152cf9bae8539a835b25120b5cd733795c042c07b120349f3eb45b7f6",
+      "bytes": 3368571,
+      "training_seed": 23,
+      "arm": "continue_sft",
+      "inference_consumers": [
+        "continue_sft"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/dpo.pt": {
+      "sha256": "5d4332fd0fa4b388b693d813738f9888845000cb6540cddd7cec310e181a880f",
+      "bytes": 3368571,
+      "training_seed": 23,
+      "arm": "dpo",
+      "inference_consumers": [
+        "dpo"
+      ],
+      "logical_checkpoint_step": 6,
+      "actual_optimizer_updates_before_checkpoint": 6,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/dpo_beta.pt": {
+      "sha256": "1eb1f53c48d21e61f295702e4186120025f30898dba7d34a8739814b417c7530",
+      "bytes": 3368571,
+      "training_seed": 23,
+      "arm": "dpo_beta",
+      "inference_consumers": [
+        "dpo_beta"
+      ],
+      "logical_checkpoint_step": 6,
+      "actual_optimizer_updates_before_checkpoint": 6,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/rlvr.pt": {
+      "sha256": "dd4652763db6a513b264e1797607d72b8fc3d5dcef83502fb087757814e7056f",
+      "bytes": 3368825,
+      "training_seed": 23,
+      "arm": "rlvr",
+      "inference_consumers": [
+        "rlvr"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/rlvr_group_size.pt": {
+      "sha256": "5e6f17ce9e8ac208bef3633f21b36f71aa354774f86d589e1a45ca83e714a1a5",
+      "bytes": 3368825,
+      "training_seed": 23,
+      "arm": "rlvr_group_size",
+      "inference_consumers": [
+        "rlvr_group_size"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/rlvr_group_size_round1.pt": {
+      "sha256": "bd1723887dce064a1c264973b896fcbf36852db7bd50d39587c1c508aa861722",
+      "bytes": 3368825,
+      "training_seed": 23,
+      "arm": "rlvr_group_size",
+      "inference_consumers": [
+        "rlvr_group_size"
+      ],
+      "logical_checkpoint_step": 1,
+      "actual_optimizer_updates_before_checkpoint": 1,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/rlvr_group_size_round2.pt": {
+      "sha256": "2ce20aee95fb5dcc9d58c1bc93986c2ea4d968dbe1f86cdfefa28ec311200158",
+      "bytes": 3368825,
+      "training_seed": 23,
+      "arm": "rlvr_group_size",
+      "inference_consumers": [
+        "rlvr_group_size"
+      ],
+      "logical_checkpoint_step": 2,
+      "actual_optimizer_updates_before_checkpoint": 2,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/rlvr_group_size_round3.pt": {
+      "sha256": "5e6f17ce9e8ac208bef3633f21b36f71aa354774f86d589e1a45ca83e714a1a5",
+      "bytes": 3368825,
+      "training_seed": 23,
+      "arm": "rlvr_group_size",
+      "inference_consumers": [
+        "rlvr_group_size"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/rlvr_no_format.pt": {
+      "sha256": "dd4652763db6a513b264e1797607d72b8fc3d5dcef83502fb087757814e7056f",
+      "bytes": 3368825,
+      "training_seed": 23,
+      "arm": "rlvr_no_format",
+      "inference_consumers": [
+        "rlvr_no_format"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/rlvr_no_format_round1.pt": {
+      "sha256": "443c003c07a79688468c0e8f76ba6320ccf80e9b601e724f0dddd9d170982bef",
+      "bytes": 3368825,
+      "training_seed": 23,
+      "arm": "rlvr_no_format",
+      "inference_consumers": [
+        "rlvr_no_format"
+      ],
+      "logical_checkpoint_step": 1,
+      "actual_optimizer_updates_before_checkpoint": 1,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/rlvr_no_format_round2.pt": {
+      "sha256": "18562fcf8f5b4cb75723babfa214619063dae86cf22f3870d6a03bfbd02b5c99",
+      "bytes": 3368825,
+      "training_seed": 23,
+      "arm": "rlvr_no_format",
+      "inference_consumers": [
+        "rlvr_no_format"
+      ],
+      "logical_checkpoint_step": 2,
+      "actual_optimizer_updates_before_checkpoint": 2,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/rlvr_no_format_round3.pt": {
+      "sha256": "dd4652763db6a513b264e1797607d72b8fc3d5dcef83502fb087757814e7056f",
+      "bytes": 3368825,
+      "training_seed": 23,
+      "arm": "rlvr_no_format",
+      "inference_consumers": [
+        "rlvr_no_format"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/rlvr_round1.pt": {
+      "sha256": "443c003c07a79688468c0e8f76ba6320ccf80e9b601e724f0dddd9d170982bef",
+      "bytes": 3368825,
+      "training_seed": 23,
+      "arm": "rlvr",
+      "inference_consumers": [
+        "rlvr"
+      ],
+      "logical_checkpoint_step": 1,
+      "actual_optimizer_updates_before_checkpoint": 1,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/rlvr_round2.pt": {
+      "sha256": "18562fcf8f5b4cb75723babfa214619063dae86cf22f3870d6a03bfbd02b5c99",
+      "bytes": 3368825,
+      "training_seed": 23,
+      "arm": "rlvr",
+      "inference_consumers": [
+        "rlvr"
+      ],
+      "logical_checkpoint_step": 2,
+      "actual_optimizer_updates_before_checkpoint": 2,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/rlvr_round3.pt": {
+      "sha256": "dd4652763db6a513b264e1797607d72b8fc3d5dcef83502fb087757814e7056f",
+      "bytes": 3368825,
+      "training_seed": 23,
+      "arm": "rlvr",
+      "inference_consumers": [
+        "rlvr"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_23/sft.pt": {
+      "sha256": "f5479b1de338f69b086f331d2f91939cb6e50f628711ad46eadf3fdd0ba53db7",
+      "bytes": 3368571,
+      "training_seed": 23,
+      "arm": "no_update",
+      "inference_consumers": [
+        "no_update",
+        "sampling_only"
+      ],
+      "logical_checkpoint_step": 20,
+      "actual_optimizer_updates_before_checkpoint": 20,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/base.pt": {
+      "sha256": "732937b1f4ae14c35435601b4cffdefb6726d1ce249697b22d29e0b0ca67c0c5",
+      "bytes": 1120829,
+      "training_seed": 41,
+      "arm": "base",
+      "inference_consumers": [
+        "base"
+      ],
+      "logical_checkpoint_step": 0,
+      "actual_optimizer_updates_before_checkpoint": 0,
+      "optimizer_state_expected": false,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/continue_sft.pt": {
+      "sha256": "dc54ae6d2494af6aa43ae198f6d5e86fcd49823c43e1c4658107b122b0b0aaf2",
+      "bytes": 3368507,
+      "training_seed": 41,
+      "arm": "continue_sft",
+      "inference_consumers": [
+        "continue_sft"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/dpo.pt": {
+      "sha256": "e7ef09471db6043f0b8072bc0cfe1b22cd5da2f3845150581955bbe6a714eed3",
+      "bytes": 3368507,
+      "training_seed": 41,
+      "arm": "dpo",
+      "inference_consumers": [
+        "dpo"
+      ],
+      "logical_checkpoint_step": 6,
+      "actual_optimizer_updates_before_checkpoint": 6,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/dpo_beta.pt": {
+      "sha256": "b4cdc5a662656ac6d32cef0bd1f2c16c4135812b1e76109ec04539255b60c6e9",
+      "bytes": 3368507,
+      "training_seed": 41,
+      "arm": "dpo_beta",
+      "inference_consumers": [
+        "dpo_beta"
+      ],
+      "logical_checkpoint_step": 6,
+      "actual_optimizer_updates_before_checkpoint": 6,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/rlvr.pt": {
+      "sha256": "d899cbd0b71bc5046529c05569a30d978a29ffba98865c99bdd12297bd583321",
+      "bytes": 3368825,
+      "training_seed": 41,
+      "arm": "rlvr",
+      "inference_consumers": [
+        "rlvr"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/rlvr_group_size.pt": {
+      "sha256": "397b26fbb51dfe29ebc84bfa53dc33af64891c7e29f4038d2909ac70185a612f",
+      "bytes": 3368825,
+      "training_seed": 41,
+      "arm": "rlvr_group_size",
+      "inference_consumers": [
+        "rlvr_group_size"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/rlvr_group_size_round1.pt": {
+      "sha256": "64629d829c431b51ee2f0cee0961f36ddc3b305a32a17878f3b0e00a1d90f564",
+      "bytes": 3368825,
+      "training_seed": 41,
+      "arm": "rlvr_group_size",
+      "inference_consumers": [
+        "rlvr_group_size"
+      ],
+      "logical_checkpoint_step": 1,
+      "actual_optimizer_updates_before_checkpoint": 1,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/rlvr_group_size_round2.pt": {
+      "sha256": "32d237d6f52c2a3f84f6987b139b1aad7dda0ffe3db27f9bcee5f9d774e362a4",
+      "bytes": 3368825,
+      "training_seed": 41,
+      "arm": "rlvr_group_size",
+      "inference_consumers": [
+        "rlvr_group_size"
+      ],
+      "logical_checkpoint_step": 2,
+      "actual_optimizer_updates_before_checkpoint": 2,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/rlvr_group_size_round3.pt": {
+      "sha256": "397b26fbb51dfe29ebc84bfa53dc33af64891c7e29f4038d2909ac70185a612f",
+      "bytes": 3368825,
+      "training_seed": 41,
+      "arm": "rlvr_group_size",
+      "inference_consumers": [
+        "rlvr_group_size"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/rlvr_no_format.pt": {
+      "sha256": "d899cbd0b71bc5046529c05569a30d978a29ffba98865c99bdd12297bd583321",
+      "bytes": 3368825,
+      "training_seed": 41,
+      "arm": "rlvr_no_format",
+      "inference_consumers": [
+        "rlvr_no_format"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/rlvr_no_format_round1.pt": {
+      "sha256": "cbeb82cf178e0e98cad52fef5d66cb6eb64c74195736e214a34b95b44de274cd",
+      "bytes": 3368825,
+      "training_seed": 41,
+      "arm": "rlvr_no_format",
+      "inference_consumers": [
+        "rlvr_no_format"
+      ],
+      "logical_checkpoint_step": 1,
+      "actual_optimizer_updates_before_checkpoint": 1,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/rlvr_no_format_round2.pt": {
+      "sha256": "8ca6835c71e9c4f189c219c1fc4c507efb5a71411400ec392af807b6f6f553bf",
+      "bytes": 3368825,
+      "training_seed": 41,
+      "arm": "rlvr_no_format",
+      "inference_consumers": [
+        "rlvr_no_format"
+      ],
+      "logical_checkpoint_step": 2,
+      "actual_optimizer_updates_before_checkpoint": 2,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/rlvr_no_format_round3.pt": {
+      "sha256": "d899cbd0b71bc5046529c05569a30d978a29ffba98865c99bdd12297bd583321",
+      "bytes": 3368825,
+      "training_seed": 41,
+      "arm": "rlvr_no_format",
+      "inference_consumers": [
+        "rlvr_no_format"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/rlvr_round1.pt": {
+      "sha256": "cbeb82cf178e0e98cad52fef5d66cb6eb64c74195736e214a34b95b44de274cd",
+      "bytes": 3368825,
+      "training_seed": 41,
+      "arm": "rlvr",
+      "inference_consumers": [
+        "rlvr"
+      ],
+      "logical_checkpoint_step": 1,
+      "actual_optimizer_updates_before_checkpoint": 1,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/rlvr_round2.pt": {
+      "sha256": "8ca6835c71e9c4f189c219c1fc4c507efb5a71411400ec392af807b6f6f553bf",
+      "bytes": 3368825,
+      "training_seed": 41,
+      "arm": "rlvr",
+      "inference_consumers": [
+        "rlvr"
+      ],
+      "logical_checkpoint_step": 2,
+      "actual_optimizer_updates_before_checkpoint": 2,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/rlvr_round3.pt": {
+      "sha256": "d899cbd0b71bc5046529c05569a30d978a29ffba98865c99bdd12297bd583321",
+      "bytes": 3368825,
+      "training_seed": 41,
+      "arm": "rlvr",
+      "inference_consumers": [
+        "rlvr"
+      ],
+      "logical_checkpoint_step": 3,
+      "actual_optimizer_updates_before_checkpoint": 3,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    },
+    "seed_41/sft.pt": {
+      "sha256": "b05bc84c0669c4650ab9fd8c26a638ea984d1d4a26033eb788635efc22e668d8",
+      "bytes": 3368507,
+      "training_seed": 41,
+      "arm": "no_update",
+      "inference_consumers": [
+        "no_update",
+        "sampling_only"
+      ],
+      "logical_checkpoint_step": 20,
+      "actual_optimizer_updates_before_checkpoint": 20,
+      "optimizer_state_expected": true,
+      "boundary_source": "frozen save-call semantics and persisted per-round logs"
+    }
+  }
+}

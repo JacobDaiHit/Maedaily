@@ -1,0 +1,34 @@
+{
+  "status": "actual_ai_assisted_subset_review_crosschecked",
+  "human_status": "not_reviewed",
+  "reviewed": 27,
+  "correct": 26,
+  "format_valid": 27,
+  "covered_arms": [
+    "base",
+    "continue_sft",
+    "dpo",
+    "dpo_beta",
+    "no_update",
+    "rlvr",
+    "rlvr_group_size",
+    "rlvr_no_format",
+    "sampling_only"
+  ],
+  "covered_panels": [
+    "eval_main",
+    "eval_regression",
+    "eval_transfer"
+  ],
+  "covered_training_seeds": [
+    17,
+    23,
+    41
+  ],
+  "disagreements": [],
+  "identity_mapping_withheld_during_review": true,
+  "third_party_human_review_performed": false,
+  "review_sha256": "9b4cc17772bbe34c6699c431c6770f18a31734336ba7868d5c61580d60aa390d",
+  "subset_sha256": "e73f7e8f59d34a4095550ee81f3fb9fcf555f29c0f85d546aba0b31d385944cd",
+  "limitation": "AI-assisted judgments cover only this 27-row subset; blank full-population human worksheet remains not_reviewed."
+}

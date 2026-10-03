@@ -14,6 +14,9 @@ from pathlib import Path
 import platform
 import sys
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
+from lesson_runtime import reserve_output_dir
+
 try:
     import torch
 except ModuleNotFoundError as error:
@@ -156,10 +159,13 @@ def parameter_vector(model: torch.nn.Module) -> torch.Tensor:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output-dir", type=Path, default=Path(__file__).parent / "results")
+    parser = argparse.ArgumentParser(allow_abbrev=False, description=__doc__)
+    parser.add_argument("--output-dir", type=Path, help="新目录或空目录；默认 study_runs 下独立保存")
     args = parser.parse_args()
-    args.output_dir.mkdir(parents=True, exist_ok=True)
+    try:
+        args.output_dir = reserve_output_dir(args.output_dir, "linear")
+    except (ValueError, OSError) as error:
+        parser.error(str(error))
     torch.set_num_threads(1)
     torch.use_deterministic_algorithms(True)
     data = make_data()

@@ -9,13 +9,13 @@
 在仓库根目录执行：
 
 ```powershell
-python .\post_train\experiments\posttraining_math_lab.py
+python scripts/run_lesson.py posttrain
 ```
 
-若 `python` 不在当前 PATH，本机已核验的解释器可这样调用：
+需要选择已有解释器时，可在入口上指定 `--python`（用实际路径替换占位符）：
 
 ```powershell
-& 'C:\Python313\python.exe' .\post_train\experiments\posttraining_math_lab.py
+python scripts/run_lesson.py posttrain --python <已有Python解释器路径>
 ```
 
 运行失败会抛出明确错误；成功时输出 JSON。无需随机种子，因为输入全部固定。Python 3.13.5 于 2026-09-26 实际运行验证；脚本使用的类型语法要求 Python 3.10 或更新版本。
@@ -53,33 +53,56 @@ python .\post_train\experiments\posttraining_math_lab.py
 
 **题目：**同提示的 chosen/rejected 当前策略 log-prob 为 -4/-6，参考策略为 -5/-5.5，beta=0.2，均为完整回答自然对数概率。定义 $u=\beta[(\ell_+-\ell_-)-(\ell^q_+-\ell^q_-)]$、$L=\ln(1+e^{-u})$。求 u、损失以及交换 chosen/rejected 后的损失，供脚本核对。
 
+<details>
+<summary>展开参考答案（先独立作答）</summary>
+
 **参考答案：**当前差 2、参考差 0.5，u=0.3，loss≈0.554355；交换两回答时 u=-0.3，loss≈0.854355。注意四数顺序和 beta 所在位置；本脚本计算这些标量但不训练模型。
+
+</details>
 
 **面试追问：**有限差分核对标量公式导数，就验证了模型反向吗？
 
+<details>
+<summary>展开追问回答</summary>
+
 **追问回答：**没有。还需真实模型计算图、回答 mask、参考分支不更新及优化器步骤的核对。
+
+</details>
 
 ### 题 2：改变提示位置为什么不应改变回答 loss？
 
 **题目：**外部标签已正确移位。四个目标计分位置的角色为提示、提示、回答、padding，mask=[0,0,1,0]；有效回答位置对真实 token 的概率为 0.5。只修改前两个“预测提示目标”的 logits，后续回答 logits 和 mask 均保持原值。求损失，说明这一检查与真实改变输入提示的区别。
 
+<details>
+<summary>展开参考答案（先独立作答）</summary>
+
 **参考答案：**损失始终为 -ln0.5≈0.693147，分母 1；提示和 padding 目标被屏蔽。这里改变的是已算出的不计分 logits，真实修改输入提示可能改变后续回答 logits，从而改变损失，两者不能混同。
+
+</details>
 
 **面试追问：**mask 漏掉一个回答 token 如何发现？
 
+<details>
+<summary>展开追问回答</summary>
+
 **追问回答：**逐个列出角色、移位标签和期望有效数，比较手算与代码；仅看平均 loss 合理可能发现不了漏计。
+
+</details>
 
 ## 从数值核算进入数据资产和真实模型
 
-下面三条路径按依赖顺序推进。已有的 45 项核算结果只用于公式和边界检查；新增文档给出待实现、待运行的规格，本轮没有新增真实模型 SFT、DPO 或 RLVR 成绩。
+下面的路径按依赖顺序推进。45 项核算结果只用于公式和边界检查；[模型后训练实验](模型后训练实验.md)提供字符语言模型的真实 SFT/DPO/RLVR 训练入口与可检查的更新证据，后续预训练模型和自己数据的完整项目仍按工坊规格验收。
+
+运行模型更新之后，用[模型质量基线](模型质量基线.md)建立可用于对照的起点：开发集选择、冻结最终面板和质量失败的交付各有明确职责。
 
 | 路径 | 先完成什么 | 交付与边界 |
 | --- | --- | --- |
 | [数据资产实验](数据资产实验.md) | 用教学 JSONL 建立来源/许可、过滤、精确重复与显式题族分组、切分和重建记录 | 标准库教学起点；没有自动语义近重复和真实 tokenizer，字符计数不能当模型 token |
 | [数据资产与评测交付规范](../../references/数据资产与评测交付规范.md) | 冻结来源、样本 ID、题族/split、真实监督统计与独立评测 | 保存主任务、迁移和已有能力的任务外回归小面板；复核自动判分与盲评分歧 |
-| [真实模型训练与验收](真实模型训练与验收.md) | 实现配置接口，核对真实 batch 的 SFT/DPO loss 与梯度，再验收采样和更新 | 按阶段保存 old/current/reference、mask、奖励、优势、版本与概率回放；完成基线、消融及固定评测 |
+| [模型后训练实验](模型后训练实验.md) | 运行 `sft-model`、`dpo-model`、`rlvr-model`，逐阶段检查字符模型的真实 batch、梯度和采样更新 | 教学任务、参数更新和冻结参考模型可核对；结果以本次 summary 和 guide 的验证范围为准 |
+| [真实模型训练与验收](真实模型训练与验收.md) | 在教学接口基础上接自己的 tokenizer、预训练模型和数据，再验收完整项目 | 按阶段保存 old/current/reference、mask、奖励、优势、版本与概率回放；完成基线、消融及固定评测 |
 
-真实训练从短序列、小 batch 和已有本地资源开始。reference 冻结不等于 policy 停止梯度；RL 更新前 ratio 接近 1 的核对需要同一快照、同一生成分布和同一目标位置，温度或 top-p 不匹配时不能套用原始 softmax 比率。标准库脚本没有模型反向传播、优化器或 rollout，通过数值检查不算完成 [项目 B/C](../../GOAL.md)。
+真实训练从短序列、小 batch 和已有本地资源开始。reference 冻结不等于 policy 停止梯度；RL 更新前 ratio 接近 1 的核对需要同一快照、同一生成分布和同一目标位置，温度或 top-p 不匹配时不能套用原始 softmax 比率。标准库脚本没有模型反向传播、优化器或 rollout，通过数值检查不算完成 [项目 B/C](../../references/年度学习任务与验收.md#project-b)。
 
 数据资产教学入口已接入统一课程脚本，在仓库根目录执行：
 

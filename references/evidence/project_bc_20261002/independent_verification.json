@@ -1,0 +1,90 @@
+{
+  "prediction_count": 5373,
+  "training_seeds": [
+    17,
+    23,
+    41
+  ],
+  "arms": [
+    "base",
+    "no_update",
+    "dpo",
+    "dpo_beta",
+    "continue_sft",
+    "rlvr",
+    "rlvr_group_size",
+    "rlvr_no_format",
+    "sampling_only"
+  ],
+  "final_eval_protocol_hash": "8b0f5cca88100130b6c96c07f59a33a2dc4cb2ca387c5d80229328efaa05e127",
+  "sft_probability_receipt": {
+    "samples": 2,
+    "effective_token_denominator": 4,
+    "negative_log_likelihood_numerator": 0.10003310488536954,
+    "float_tolerance": 3e-05
+  },
+  "full_config_ablations": {
+    "beta_single_factor": {
+      "passed": true,
+      "changed_factor": {
+        "path": "beta",
+        "before": 0.2,
+        "after": 0.1,
+        "before_present": true,
+        "after_present": true
+      },
+      "base_config_sha256": "46238a10f7ae78d8bb0ddd6166970e875931df5624f7fcbd8ff992ceb12d3c9c",
+      "variant_config_sha256": "5289f950e2aef02f54e91187233c4d2f92632f02588281d4c8393ec79b3f36ca"
+    },
+    "group_size_single_factor": {
+      "passed": true,
+      "changed_factor": {
+        "path": "group_size",
+        "before": 4,
+        "after": 8,
+        "before_present": true,
+        "after_present": true
+      },
+      "base_config_sha256": "46238a10f7ae78d8bb0ddd6166970e875931df5624f7fcbd8ff992ceb12d3c9c",
+      "variant_config_sha256": "fec56cd857f67ea2faa050fb3a0f715b56f8433312e18ed04f1d3a1cd3798b07"
+    },
+    "reward_single_factor": {
+      "passed": true,
+      "changed_factor": {
+        "path": "format_reward",
+        "before": 0.1,
+        "after": 0.0,
+        "before_present": true,
+        "after_present": true
+      },
+      "base_config_sha256": "46238a10f7ae78d8bb0ddd6166970e875931df5624f7fcbd8ff992ceb12d3c9c",
+      "variant_config_sha256": "77151739dd93001f5fc5a5e56878669c01511fe1576b41f93e15b732eeb63b6f"
+    }
+  },
+  "status": "verified",
+  "independent_oracle": "operator-add-sub-copy-int-canonical-eos-v1",
+  "report_recomputed": true,
+  "source_hashes_verified": 11,
+  "derived_float_comparison": {
+    "absolute_tolerance": 1e-12,
+    "relative_tolerance": 1e-12,
+    "named_fields": [
+      "elapsed_seconds",
+      "output_tokens_per_summed_second",
+      "pre_update_ratio_max",
+      "pre_update_ratio_min",
+      "summed_generation_seconds",
+      "training_elapsed_seconds_logged"
+    ],
+    "all_other_values_and_artifact_SHA": "exact"
+  },
+  "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "stages": {
+    "stage_count": 15,
+    "artifact_hashes_verified": true,
+    "omitted_weight_files": 0,
+    "weight_bytes_independently_verified": true
+  },
+  "review_status": "not_reviewed",
+  "training_repeated": false
+}

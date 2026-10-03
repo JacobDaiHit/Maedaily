@@ -28,7 +28,7 @@
 
 ## 学习与实践顺序
 
-先跑 [CPU 数值实验](experiments/README.md)，检查偏好概率、DPO、组内优势和 mask 等机制。接着参考 [本地实验路径](../references/阅读方法与证据标准.md) 选择一个小规模任务，再做真正的 SFT / DPO / RLVR。数值例子不会下载模型，也不是 LLM 训练复现。
+先跑 [CPU 数值实验](experiments/README.md)，检查偏好概率、DPO、组内优势和 mask 等机制。接着运行[模型后训练实验](experiments/模型后训练实验.md)的 `sft-model`、`dpo-model`、`rlvr-model`，把真实 batch、反向传播、reference 冻结、采样概率回放和参数更新连起来。之后按[真实训练工坊](experiments/真实模型训练与验收.md)与[本地实验路径](../references/阅读方法与证据标准.md)选择自己的小规模任务、数据和预训练模型。数值例子不会下载模型，也不是 LLM 训练复现。
 
 本机 8 GB 显存下先做短程测量，确定模型、序列长度和批量；模型参数少也不保证多轨迹 RL 训练能装下。完整大模型训练结果是论文报告，不能当成本地已完成结果。
 

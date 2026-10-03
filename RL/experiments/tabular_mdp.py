@@ -1,7 +1,7 @@
 """A reproducible, standard-library-only MDP laboratory for RL chapters 1-3.
 
 Run from the repository root:
-    python RL/experiments/tabular_mdp.py --seed 7 --output-dir RL/experiments/results
+    python scripts/run_lesson.py rl -- --seed 7
 
 The environment is deterministic; the behavior policy is stochastic.  This is
 a correctness/learning exercise, not a benchmark of deep RL performance.
@@ -16,6 +16,10 @@ import math
 from pathlib import Path
 import random
 from typing import Mapping
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
+from lesson_runtime import reserve_output_dir
 
 
 STATES = ("start", "work", "terminal")
@@ -167,7 +171,7 @@ def positive_int(raw: str) -> int:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser = argparse.ArgumentParser(allow_abbrev=False, description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--episodes", type=positive_int, default=20_000)
     parser.add_argument("--gamma", type=float, default=0.9)
@@ -188,6 +192,10 @@ def main() -> None:
     if args.require_q_error is not None and (not math.isfinite(args.require_q_error) or args.require_q_error < 0):
         parser.error("--require-q-error must be finite and nonnegative")
 
+    try:
+        args.output_dir = reserve_output_dir(args.output_dir, "rl")
+    except (ValueError, OSError) as error:
+        parser.error(str(error))
     checks = boundary_checks()
     reference_values, reference_q = analytic_solution(args.gamma)
     vi_values, vi_q, iterations, residual = value_iteration(args.gamma)
@@ -220,7 +228,6 @@ def main() -> None:
         },
     }
     if args.output_dir:
-        args.output_dir.mkdir(parents=True, exist_ok=True)
         (args.output_dir / "summary.json").write_text(
             json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         with (args.output_dir / "learning_curve.csv").open("w", newline="", encoding="utf-8") as stream:

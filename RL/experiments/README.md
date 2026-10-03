@@ -22,7 +22,7 @@
 在仓库根目录的 PowerShell 中运行：
 
 ```powershell
-python RL/experiments/tabular_mdp.py --seed 7 --episodes 20000 --require-q-error 0.000001 --output-dir RL/experiments/results
+python scripts/run_lesson.py rl -- --seed 7 --episodes 20000 --require-q-error 0.000001
 ```
 
 `--seed` 固定行为策略的随机种子；`--episodes` 是训练回合数；`--require-q-error` 将最终最大行动价值误差作为可失败的验收条件；`--output-dir` 指定 CSV 与 JSON 的保存目录。省略输出目录时仅打印结果。脚本不会安装依赖或访问网络；同一目录中的同名结果会被本次运行覆盖，保留不同实验请指定不同目录。
@@ -47,9 +47,9 @@ python RL/experiments/tabular_mdp.py --seed 7 --episodes 20000 --require-q-error
 ## 三个对照实验
 
 ```powershell
-python RL/experiments/tabular_mdp.py --seed 11 --gamma 0.5 --output-dir RL/experiments/results_gamma05
-python RL/experiments/tabular_mdp.py --seed 19 --epsilon 0.05 --episodes 1000 --output-dir RL/experiments/results_low_exploration
-python RL/experiments/tabular_mdp.py --seed 23 --max-steps 2 --output-dir RL/experiments/results_short_rollout
+python scripts/run_lesson.py rl -- --seed 11 --gamma 0.5
+python scripts/run_lesson.py rl -- --seed 19 --epsilon 0.05 --episodes 1000
+python scripts/run_lesson.py rl -- --seed 23 --max-steps 2
 ```
 
 第一个实验中进入工作的行动价值变为 $-0.2+0.5\times2=0.8$，所以最优起点行动应改为退出。第二个实验观察低探索与短预算是否造成部分行动访问不足，不预先保证必然失败。第三个实验增加截断机会，但只要自举正确、覆盖充分，任务的解析最优价值不应变化。
@@ -68,18 +68,38 @@ python RL/experiments/tabular_mdp.py --seed 23 --max-steps 2 --output-dir RL/exp
 
 **题目：**在本页两非终止状态的确定性 MDP 中，start 有 quit(奖励1、终止)/invest(奖励-0.2、到work)，work 有 finish(奖励2、终止)/wait(奖励-0.1、回work)。gamma=0.9。比较 seed19、epsilon0.05、1000回合与 seed19、epsilon0.2、1000回合，其他不变。请给出四个解析 Q 值、必须记录的量及结果解释，不预先保证低探索一定失败。
 
+<details>
+<summary>展开参考答案（先独立作答）</summary>
+
 **参考答案：**解析值为 quit1、invest1.6、finish2、wait1.7。记录每动作访问数、交互步数、最大 Q 误差、贪心真实价值和截断数；各输出用独立目录。某动作未覆盖支持探索不足，覆盖充分仍异常时再核对目标与终止、步长。改变探索也会改变访问分布，单种子不能证明普遍规律。
+
+</details>
 
 **面试追问：**训练时 epsilon>0，最终策略也必须随机吗？
 
+<details>
+<summary>展开追问回答</summary>
+
 **追问回答：**不必。训练探索用于覆盖，评测可用预先约定的贪心策略；需要明确二者策略口径。
+
+</details>
 
 ### 题 2：怎样单独验证截断不清零？
 
 **题目：**一次 work/wait 转移奖励 -0.1、gamma=0.9，下一 work 估值为 2，环境非终止，但本次达到采集上限。旧 Q=0，alpha=0.5。分别求正确目标/更新和误把截断当终止的目标/更新，并说明这不是改变原 MDP。
 
+<details>
+<summary>展开参考答案（先独立作答）</summary>
+
 **参考答案：**正确目标 1.7，更新 0.85；错误目标 -0.1，更新 -0.05。采集器边界没有改变任务定义；错误清零会低估等待的未来。独立用例保留终止与截断字段，可以定位该误差而不依赖完整学习是否最终收敛。
+
+</details>
 
 **面试追问：**为展示错误应该覆盖主结果吗？
 
+<details>
+<summary>展开追问回答</summary>
+
 **追问回答：**应使用独立副本和输出目录，记录唯一改动；否则正确基线和错误消融无法复核。
+
+</details>

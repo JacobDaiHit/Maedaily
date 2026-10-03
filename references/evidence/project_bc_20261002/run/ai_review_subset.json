@@ -1,0 +1,227 @@
+{
+  "protocol": {
+    "reviewer_type": "ai-assisted",
+    "human_status": "not_reviewed",
+    "selection": "27 anonymous examples stratified across arms/panels/seeds; identity mapping withheld from reviewer",
+    "selection_seed": 73,
+    "status": "pending_actual_review"
+  },
+  "records": [
+    {
+      "review_id": "review-003912",
+      "panel": "eval_main",
+      "bucket": "small-add",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 1+3.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "4",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-002854",
+      "panel": "eval_transfer",
+      "bucket": "small-subtract",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 9-11.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "-2",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-002231",
+      "panel": "eval_transfer",
+      "bucket": "small-add",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 1+12.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "13",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-000273",
+      "panel": "eval_regression",
+      "bucket": "copy",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nNormalize this decimal integer by removing leading zeros: 035<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "35",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-000609",
+      "panel": "eval_transfer",
+      "bucket": "small-add",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 11+2.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "13",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-003960",
+      "panel": "eval_regression",
+      "bucket": "copy",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nNormalize this decimal integer by removing leading zeros: 052<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "52",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-002818",
+      "panel": "eval_transfer",
+      "bucket": "small-add",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 2+11.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "13",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-003811",
+      "panel": "eval_main",
+      "bucket": "small-add",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 6+8.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "14",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-005274",
+      "panel": "eval_main",
+      "bucket": "small-subtract",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 3-4.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "-1",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-004380",
+      "panel": "eval_regression",
+      "bucket": "copy",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nNormalize this decimal integer by removing leading zeros: 0036<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "36",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-000144",
+      "panel": "eval_regression",
+      "bucket": "copy",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nNormalize this decimal integer by removing leading zeros: 39<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "39",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-004112",
+      "panel": "eval_main",
+      "bucket": "small-add",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 5+2.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "7",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-001918",
+      "panel": "eval_transfer",
+      "bucket": "small-subtract",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 11-1.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "10",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-002716",
+      "panel": "eval_main",
+      "bucket": "small-subtract",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 7-7.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "0",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-004980",
+      "panel": "eval_main",
+      "bucket": "small-add",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 4+8.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "12",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-003055",
+      "panel": "eval_transfer",
+      "bucket": "small-add",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 5+11.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "16",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-001133",
+      "panel": "eval_main",
+      "bucket": "small-subtract",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 5-2.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "3",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-003320",
+      "panel": "eval_regression",
+      "bucket": "copy",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nNormalize this decimal integer by removing leading zeros: 033<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "33",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-001404",
+      "panel": "eval_regression",
+      "bucket": "copy",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nNormalize this decimal integer by removing leading zeros: 0035<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "35",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-003970",
+      "panel": "eval_regression",
+      "bucket": "copy",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nNormalize this decimal integer by removing leading zeros: 0094<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "3",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-005017",
+      "panel": "eval_main",
+      "bucket": "small-subtract",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 4-3.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "1",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-002384",
+      "panel": "eval_transfer",
+      "bucket": "small-subtract",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 9-12.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "-3",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-003037",
+      "panel": "eval_main",
+      "bucket": "small-subtract",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 8-4.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "4",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-004154",
+      "panel": "eval_regression",
+      "bucket": "copy",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nNormalize this decimal integer by removing leading zeros: 0016<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "16",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-000715",
+      "panel": "eval_transfer",
+      "bucket": "small-subtract",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 11-8.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "3",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-002294",
+      "panel": "eval_regression",
+      "bucket": "copy",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nNormalize this decimal integer by removing leading zeros: 36<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "36",
+      "termination_reason": "eos"
+    },
+    {
+      "review_id": "review-003520",
+      "panel": "eval_transfer",
+      "bucket": "small-add",
+      "prompt_text": "<|im_start|>system\nAnswer with only one canonical decimal integer. No explanation, spaces, or leading zeros.<|im_end|>\n<|im_start|>user\nCompute 12+6.<|im_end|>\n<|im_start|>assistant\n",
+      "output_text": "18",
+      "termination_reason": "eos"
+    }
+  ]
+}

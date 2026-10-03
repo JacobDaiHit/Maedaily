@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "comparisons": {
+    "step": true,
+    "sample_indices": true,
+    "torch_draw": true,
+    "sampled_actions": true,
+    "weights": true,
+    "optimizer": true,
+    "python_sampler_rng": true,
+    "independent_generator_rng": true,
+    "global_torch_rng": true,
+    "cuda_rng": true
+  },
+  "first_step": {
+    "sample_indices": [
+      334,
+      23
+    ],
+    "torch_draw": [
+      0.43424123525619507,
+      0.5351095795631409,
+      0.8302087187767029
+    ],
+    "sampled_actions": [
+      16,
+      151645
+    ],
+    "update": {
+      "loss": 2.215759515762329,
+      "gradient_norm": 62.464900970458984,
+      "parameter_delta_norm": 0.09378408313888233,
+      "weight_before": "c1b899d27cf6cd154160b21b54b6fac86e469bb43b5d0b5cb9470a3017b03370",
+      "weight_after": "2a376fb127a8287e8b73cb39002c762d4cff93e2d44461c306f20714099a2e33"
+    }
+  },
+  "continuous_second_step": {
+    "sample_indices": [
+      210,
+      256
+    ],
+    "torch_draw": [
+      0.1238635778427124,
+      0.02932107448577881,
+      0.5493960976600647
+    ],
+    "sampled_actions": [
+      18,
+      23
+    ],
+    "update": {
+      "loss": 1.0433138608932495,
+      "gradient_norm": 19.665279388427734,
+      "parameter_delta_norm": 0.119094367739582,
+      "weight_before": "2a376fb127a8287e8b73cb39002c762d4cff93e2d44461c306f20714099a2e33",
+      "weight_after": "d58eb274f6597d556d0600db64253ee9624de06d0b4c9ad00f52f1c9ba2206c5"
+    }
+  },
+  "resumed_second_step": {
+    "sample_indices": [
+      210,
+      256
+    ],
+    "torch_draw": [
+      0.1238635778427124,
+      0.02932107448577881,
+      0.5493960976600647
+    ],
+    "sampled_actions": [
+      18,
+      23
+    ],
+    "update": {
+      "loss": 1.0433138608932495,
+      "gradient_norm": 19.665279388427734,
+      "parameter_delta_norm": 0.119094367739582,
+      "weight_before": "2a376fb127a8287e8b73cb39002c762d4cff93e2d44461c306f20714099a2e33",
+      "weight_after": "d58eb274f6597d556d0600db64253ee9624de06d0b4c9ad00f52f1c9ba2206c5"
+    }
+  },
+  "checkpoint": "D:\\github_book\\Maedaily\\study_runs\\project_bc_reference_formal_20261002_v3\\resume_checks\\step_000001.pt",
+  "checkpoint_sha256": "f7d407f51dd62e483e431f58e512f2b72907a0409f11f9fc0474be50263fc062",
+  "caller_policy_restored": true
+}

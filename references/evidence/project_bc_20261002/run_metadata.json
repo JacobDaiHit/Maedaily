@@ -1,0 +1,35 @@
+{
+  "schema_version": "maedaily-reference-run-metadata-v1",
+  "recorded_at_utc": "2026-10-03T01:52:10.080849+00:00",
+  "command_argv": [
+    "D:\\anaconda\\envs\\pytorch_env\\python.exe",
+    "post_train/experiments/project_bc_reference.py",
+    "--model-dir",
+    "study_runs/models/Qwen2.5-0.5B-Instruct",
+    "--config",
+    "post_train/experiments/reference_config.json",
+    "--device",
+    "cuda",
+    "--output-dir",
+    "study_runs/project_bc_reference_formal_20261002_v3"
+  ],
+  "command_source": "coordinator-provided actual formal runner arguments; executable from actual environment receipt when available",
+  "cwd": "D:\\github_book\\Maedaily",
+  "runner_exit_code": 0,
+  "exit_code_source": "coordinator-observed process result",
+  "started_at": "2026-10-02T16:02:45.903842+00:00",
+  "finished_at": "2026-10-02T16:15:02.691274+00:00",
+  "git_commit_at_export": "3cae6a864d535bf9185df2d524289f36f2cb0502",
+  "tracked_diff_sha256_against_HEAD_at_export": "ae6c0af46d4d4df764d361e0a3d043cb432fb6ea867e4bca0273873eb33a753e",
+  "git_scope": "commit/tracked diff observed at export; untracked registered sources are covered by source_versions hashes",
+  "contract_hash": "028299999d2e4fad8ceb1a4f4ba5fac0141884d4ceab504dd70bb1fd6a1a3c14",
+  "optimizer_scheduler": "not used",
+  "AMP": "not used",
+  "gradient_accumulation": "not used",
+  "per_optimizer_step_elapsed_seconds": null,
+  "gradient_norm_after_clip": null,
+  "gradient_clipping": {
+    "registered_frozen_source_rule": "clip_grad_norm_ max_norm=1.0",
+    "reported_gradient_norm_scope": "before clipping; post-clipping norm not measured"
+  }
+}

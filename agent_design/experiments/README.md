@@ -7,7 +7,7 @@
 在仓库根目录执行：
 
 ```powershell
-python agent_design/experiments/tool_state_machine.py
+python scripts/run_lesson.py agent
 ```
 
 本机验证命令为：
@@ -52,28 +52,58 @@ python agent_design/experiments/tool_state_machine.py
 
 **题目：**本实验固定先 add(7,5) 再 divide(12,3)，两个工具均成功，本地参数校验不算调用。设 max_calls=1，其余用默认值。请预测完整状态路径、调用数、最终值与停止原因，然后用脚本已有用例核对。
 
+<details>
+<summary>展开参考答案（先独立作答）</summary>
+
 **参考答案：**路径为 ready→deciding→validating→calling→observing→deciding→validating→budget_exhausted。加法执行一次得到 12，除法参数合法但预算检查禁止执行；calls=1，final_value=null。中间值不等于最终完成。终态应没有后续状态转移。
+
+</details>
 
 **面试追问：**如果 max_calls=0，会先调用一次再发现不够吗？
 
+<details>
+<summary>展开追问回答</summary>
+
 **追问回答：**不会。预算在实际调用前检查，终态预算耗尽、calls=0；这样才能保证严格上限。
+
+</details>
 
 ### 题 2：暂时故障的重试如何核对？
 
 **题目：**任务仍为 (7+5)/3，max_calls=3、temporary_failures=1、denominator=3，执行器只让第一次实际调用暂时失败，之后正常。失败计调用，重试保留同一逻辑请求标识。请预测执行顺序、标识、调用数与结果。
 
+<details>
+<summary>展开参考答案（先独立作答）</summary>
+
 **参考答案：**先 step-0 的加法失败，再重试 step-0 加法成功得到 12，最后 step-1 除法成功得到 4。calls=3、status=done、final_value=4；日志保留失败和成功的各次观察，首次失败不能推进到除法。
+
+</details>
 
 **面试追问：**为什么不在失败时把计划索引加一？
 
+<details>
+<summary>展开追问回答</summary>
+
 **追问回答：**下一步骤需要已确认的加法值。把调用过等同于成功会使用缺失或错误中间量。
+
+</details>
 
 ### 题 3：怎样构造模拟决策器的合法与非法请求？
 
 **题目：**使用本实验 Request 和 validate。接口 add 恰需字段 left/right，divide 恰需 numerator/denominator，值必须是有限 int 或 float、绝对值不超过 1e6，bool 和字符串不接受，除数不能为零。请写四类请求的预期：合法 add(7,5)、未知工具 shell、add 多出 text 字段、divide(12,"3")；再说明校验成功代表什么。
 
+<details>
+<summary>展开参考答案（先独立作答）</summary>
+
 **参考答案：**依次应为无错误、unknown_tool、argument_fields_mismatch、argument_must_be_numeric。校验只证明工具名和参数满足契约，尚未证明服务执行成功、选对运算或任务完成。扩展模拟决策器时应在实际执行前断言这些错误，并检查非法请求没有增加实际调用数。
+
+</details>
 
 **面试追问：**这套检查通过率可以叫模型工具成功率吗？
 
+<details>
+<summary>展开追问回答</summary>
+
 **追问回答：**它检验确定性接口和控制器。真实模型评测需另有任务集、模型生成请求、语义正确性和最终任务判据。
+
+</details>

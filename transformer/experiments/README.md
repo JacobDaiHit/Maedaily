@@ -2,28 +2,61 @@
 
 这个实验把 token、因果注意力、位置嵌入、交叉熵、反向传播和生成连起来。模型在 CPU 上学习数字按模 10 递增或递减的语法，真实更新 14,112 个参数；没有调用大模型 API、下载预训练权重或安装依赖。
 
-它是 [GOAL 项目 A](../../GOAL.md) 的初步实验：已经包含小模型训练、验证、检查点往返和学习率对照；尚未覆盖 GPU 显存/吞吐、独立多种子结论、自然语言数据与完整项目报告。因此不把本实验通过称为项目 A 全部验收完成。
+本页 A1 是 [项目 A](../../references/年度学习任务与验收.md#project-a) 的初步实验，包含小模型训练、验证、检查点往返和学习率对照。下方参考实训进一步完成独立进程恢复、错误对照、曲线与公开证据包，在登记的合成数字语法范围内通过机制验收。自然语言数据、独立多种子研究与 GPU 系统测量仍按所选扩展另做；参考运行不替学习者完成个人能力验收。
 
 完成本页后运行 `python scripts/run_lesson.py lm-resume`，按[完整检查点续训实验](模型续训实验.md)比较连续训练、恢复全部状态、漏 AdamW 和漏批次采样器四个分支。它保留实际检查点并核对每步训练轨迹，补齐本页只核对重载 logits 的范围。数据侧先做[数据资产实验](../../post_train/experiments/数据资产实验.md)；申请基模方向时，按[研究专题与复现验收](../../references/研究专题与复现验收.md)为项目 A 选一项机制对照。
 
-## 运行方式与环境
+## 项目 A 参考实训
 
-从项目根目录使用 `python scripts/run_lesson.py lm`、`python scripts/run_lesson.py embedding` 或 `python scripts/run_lesson.py attention`，会选择已有可用环境，并把各次运行保存到独立的 `study_runs` 目录。下面的直接调用用于读源码或明确控制参数；默认结果目录及覆盖行为也在下文说明。
-
-注意力与系统公式另有独立的 [attention_math_lab.py](attention_math_lab.py)。在同一 PyTorch 环境运行 `python -X utf8 transformer/experiments/attention_math_lab.py`，核对 Attention 解析 VJP、相邻配对 RoPE、带历史偏移的缓存 mask、在线 softmax、MLA 矩阵吸收与 top-k 局部梯度。2026-10-02 在 CPU float64 的对应最大误差为 0、0、约 $1.56\times10^{-14}$ 和 $2.22\times10^{-16}$；错误矩形 mask 对照产生约 2.388 的输出差异。它没有实现 GPU FlashAttention，也没有把下面的训练模型改成 MLA/RoPE。
-
-在仓库根目录 PowerShell 中执行本机已验证的解释器：
+[project_a_reference.py](project_a_reference.py)复用现有数字语法 decoder 与完整状态恢复接口，进一步把保存和恢复分开到真正的新 Python 子进程。它保留连续训练、独立保存前缀、完整恢复、漏 optimizer、漏 sampler 和第二个学习率共六个进程的证据。
 
 ```powershell
-& 'D:\anaconda\envs\pytorch_env\python.exe' transformer/experiments/tiny_causal_lm.py
+python scripts/run_lesson.py project-a
+python scripts/run_lesson.py project-a -- --steps 4 --split-step 2 --eval-every 2
+```
+
+默认 seed=7、CPU float64、40步、batch=16，在第20步保存；预先固定 lr=0.001/0.003。每个恢复步骤直接比较 batch/loss，以及包含 dtype、shape、原始字节的模型/optimizer/RNG状态SHA，最终完整 tensor与容器也逐项直接比较。缺 optimizer 必须首批/首loss相同而第一次参数更新不同，缺 sampler 必须首批和参数不同；double shift、取消因果 mask 也要被检测。两lr只能有 `optimizer.lr` 一项配置差异，并保存全部训练/验证曲线。
+
+2026-10-02 完整运行机制通过，共160次实际更新、23,048有效token、155.482秒总耗时。lr=0.003 的训练/验证loss分别为 `2.563573→0.837108`、`2.570013→1.183015`；lr=0.001 为 `2.563573→1.641162`、`2.570013→1.795121`。这些是单次合成语法结果，程序将 `mechanism_passed` 与质量测量分开记录，不要求短预算必然提升，更不能据此宣布通用LM或学习者个人能力通过。
+
+克隆后先看[公开证据与标准库复核说明](../../references/evidence/project_a_20261002/README.md)，其中JSON/两个CSV保留原字节和原始源码SHA。无需PyTorch的核对命令是：
+
+```powershell
+python references/evidence/project_a_20261002/verify.py
+```
+
+参考实训的每次新目录另保存实际checkpoint、逐步状态SHA、两lr曲线、各进程CPU时间/原生peak RSS和token预算。peak RSS包含native tensor内存，限定整个worker生命周期，不是GPU显存。源码、配置和数据摘要先登记，源文件或输入checkpoint在运行中发生变化则不算成功。
+
+完整产物可导出紧凑包，先校验原运行全部产物，再创建新导出目录：
+
+```powershell
+python transformer/experiments/project_a_reference.py --export-from study_runs/my_project_a --output-dir study_runs/my_project_a_export
+```
+
+原始环境路径仅作历史元数据，公开包校验不会访问ignored目录或原解释器。模型没有dropout/scheduler/AMP/累积，保存边界为optimizer-step；换设备/软件不保证逐位一致。自然文本、外部tokenizer和GPU是按所选范围开展的扩展，独立复写、排错与解释仍由学习者完成。
+
+完成 A 的训练与恢复闭环后，按[A/B/C 参考实训](../../post_train/experiments/A_B_C参考实训.md)继续 B/C：从固定完整预训练模型进入 SFT、DPO 和可验证奖励的真实更新。它使用自己的冻结数据、三种子与独立评测协议；不能用本页 A1 的历史 loss 替代 B/C 的基线质量门禁。
+
+北京时间 2026-10-03，B/C 的固定模型参考交付与[公共独立证据](../../references/evidence/project_bc_20261002/README.md)也已通过双解释器、无历史运行目录的复算；具体三种子九分支与预算见[完整结果表](../../post_train/experiments/A_B_C参考实训.md#v3-真实结果与公共验收)。A 的单种子数字语法与 B/C 的算术/数字规范化分别解释，不合并为通用语言能力或个人能力结论。
+
+## 运行方式与环境
+
+从项目根目录使用 `python scripts/run_lesson.py lm`、`python scripts/run_lesson.py embedding` 或 `python scripts/run_lesson.py attention`，会选择已有可用环境，并把各次运行保存到独立的 `study_runs` 目录。需要改条件时，用 `--` 传给实验；支持文件输出的课程统一写入本次 `artifacts/`，已有非空输出目录会被拒绝。
+
+注意力与系统公式另有独立的 [attention_math_lab.py](attention_math_lab.py)。在同一 PyTorch 环境运行 `python scripts/run_lesson.py attention`，核对 Attention 解析 VJP、相邻配对 RoPE、带历史偏移的缓存 mask、在线 softmax、MLA 矩阵吸收与 top-k 局部梯度。2026-10-02 在 CPU float64 的对应最大误差为 0、0、约 $1.56\times10^{-14}$ 和 $2.22\times10^{-16}$；错误矩形 mask 对照产生约 2.388 的输出差异。它没有实现 GPU FlashAttention，也没有把下面的训练模型改成 MLA/RoPE。
+
+在仓库根目录 PowerShell 中执行：
+
+```powershell
+python scripts/run_lesson.py lm
 ```
 
 本次实际环境：Python 3.11.15、PyTorch 2.7.1+cu118。即使环境能检测到 CUDA，脚本也显式使用 CPU、1 个计算线程和 1 个 interop 线程，并启用确定性算法。运行无需额外环境配置。
 
-默认 seed=7、每组 200 步、batch size=16，比较学习率 0.001 与 0.003。输出位于 [results/summary.json](results/summary.json) 和 [results/learning_curve.csv](results/learning_curve.csv)，重复执行会覆盖同名结果。保留另一组结果时指定独立目录：
+默认 seed=7、每组 200 步、batch size=16，比较学习率 0.001 与 0.003。本次输出位于独立运行目录的 `artifacts/summary.json` 与 `artifacts/learning_curve.csv`。仓库中的 [results/summary.json](results/summary.json) 和 [results/learning_curve.csv](results/learning_curve.csv) 保留历史教学参照。改变种子会自动得到另一独立目录：
 
 ```powershell
-& 'D:\anaconda\envs\pytorch_env\python.exe' transformer/experiments/tiny_causal_lm.py --seed 11 --output-dir transformer/experiments/results_seed11
+python scripts/run_lesson.py lm -- --seed 11
 ```
 
 脚本会临时保存并重载一个小检查点，核对完成后自动移除；不留下权重文件。换设备或软件版本不保证逐位一致，应重新运行数值检查。
@@ -92,41 +125,81 @@ attention 同时屏蔽未来 key 和 padding key；padding query 的输出仍可
 
 **题目：**沿用本页数字语法数据：完整序列为 BOS、n 个数字、EOS；验证 n∈{7,9}，枚举 10 个起点和 ±1 两方向共 40 条。next-token label 已移位一次。对 lr=0.001/0.003 的两个模型，把有效目标分为首个数字、第二个数字（方向尚未知）、第 3 到 n 个数字、EOS 四类。写出每类统计口径和支持“EOS 是主要差异来源”所需证据。
 
+<details>
+<summary>展开参考答案（先独立作答）</summary>
+
 **参考答案：**为四类分别累加 NLL 与数量，再算均值；全体验证 loss 必须由总 NLL/总 token 数重构，不能直接平均四类均值。两类前缀各 40 个、后续数字共 240 个、EOS 40 个，总 360 个目标。比较 EOS 对总 NLL 差的贡献以及其他类的变化，只有 EOS 贡献占主要部分时才支持该解释；统计前先固定分类，结果不预先指定。
+
+</details>
 
 **面试追问：**为什么数据共享语法，验证 loss 仍可能高？
 
+<details>
+<summary>展开追问回答</summary>
+
 **追问回答：**结束长度没有作为条件输入，训练只出现长度 6/8/10，验证用 7/9；EOS 位置偏好可能有影响，首数字和方向本身也有不确定性。需实际分解结果。
+
+</details>
 
 ### 题 2：多种子比较怎样同时保持公平？
 
 **题目：**现有种子为 7，新增 11 和 19；每种子都比较 lr=0.001 与 0.003，200 步、batch=16，同数据、初始化规则与其他优化配置。同一种子下两学习率复用相同初始参数和批次随机流。请给出输出目录、报告项及如何表述结论，不要求预先知道赢家。
 
-**参考答案：**用 CLI 分别设置 `--seed 11 --output-dir study_runs/lm_seed11` 与 seed19 对应目录，保留 seed7 原结果。对三种子的每种学习率报告训练/验证 loss、有效 token、失败和配对差，可给均值与范围。三次一致支持这组配置内排名更稳定，但仍不足以推出所有数据和规模的最优学习率。
+<details>
+<summary>展开参考答案（先独立作答）</summary>
+
+**参考答案：**分别运行 `python scripts/run_lesson.py lm -- --seed 11` 与 `python scripts/run_lesson.py lm -- --seed 19`，保留每次独立目录及 seed7 参照。对三种子的每种学习率报告训练/验证 loss、有效 token、失败和配对差，可给均值与范围。三次一致支持这组配置内排名更稳定，但仍不足以推出所有数据和规模的最优学习率。
+
+</details>
 
 **面试追问：**只保留每个种子最好的学习率再平均有什么问题？
 
+<details>
+<summary>展开追问回答</summary>
+
 **追问回答：**隐藏了调参选择与落败配置，无法公平比较固定策略。应报告所有预先指定组合及验证选型规则。
+
+</details>
 
 ### 题 3：单序列过拟合实验怎样设定？
 
 **题目：**写独立小脚本复用 TinyCausalLM，固定唯一序列 `[BOS,0,1,2,3,4,5,EOS]`，不含 padding，外部移位一次。模型维度 32、2 头、无 dropout、CPU float32；seed=7，AdamW lr=0.003、weight_decay=0，batch 只重复这一序列，最多 500 步。验收预先设为该序列 token 平均 CE<0.05。说明输入/标签形状、目标数、预期现象与失败排查；它不是完整数据集的泛化实验。
 
+<details>
+<summary>展开参考答案（先独立作答）</summary>
+
 **参考答案：**单条输入与标签均为 `[1,7]`，logits 为 `[1,7,13]`，7 个目标参与平均。固定序列每个位置的目标确定，模型应能大幅降低训练损失；若未达阈值，检查梯度、学习率、shift、mask、参数是否更新和有限数，不在运行后改判据。完整多序列集的首数字/方向不确定性不适用于此单序列诊断。
+
+</details>
 
 **面试追问：**过拟合这一条就能证明代码完全正确吗？
 
+<details>
+<summary>展开追问回答</summary>
+
 **追问回答：**仍需因果不泄漏、padding、批次归约和保存恢复的独立检查；单序列不能覆盖全部数据分支。
+
+</details>
 
 ### 题 4：GPU 吞吐测量需要哪些完整条件？
 
 **题目：**仅在可用且支持现有软件的 GPU 环境做扩展。固定本页模型、batch=16、数字长度 6/8/10、float32、同优化器和数据生成规则；计时包含前向、loss、反向和更新，排除解释器启动与数据构造。先热身 50 步，再测 200 步。说明如何同步计时、定义有效 token 吞吐、记录峰值与判定质量一致；本题不提供未经运行的 GPU 数值。
 
+<details>
+<summary>展开参考答案（先独立作答）</summary>
+
 **参考答案：**测量区间前后同步设备；记录 200 步实际有效目标 token 总数除以秒数，不用含 padding 的容量充当有效吞吐。热身后重置峰值统计，记录设备、软件、dtype、显存统计口径和耗时，验证 loss 与数值检查。峰值 allocated 与 reserved 含义不同，分别注明；没有设备时提交方案并保留实测为空。
+
+</details>
 
 **面试追问：**能把已有 CPU 秒数按 GPU 算力比例换算吗？
 
+<details>
+<summary>展开追问回答</summary>
+
 **追问回答：**不能得到可靠实测结果。内核、内存、同步和小模型启动开销不同，需要直接测量同一工作负载。
+
+</details>
 
 基础讲解可回看 [Transformer 目录](../README.md) 与 [后训练第 1 章](../../post_train/chapters/01_语言模型到后训练.md)。
 
@@ -135,7 +208,7 @@ attention 同时屏蔽未来 key 和 padding key；padding query 的输出仍可
 [embedding_math_lab.py](embedding_math_lab.py)对应[Embedding 原理前置章](../chapters/01_Embedding与表示学习.md)，可在学习注意力前独立运行：
 
 ```powershell
-python -X utf8 transformer/experiments/embedding_math_lab.py
+python scripts/run_lesson.py embedding
 ```
 
 它只用 Python 标准库，检查重复 token 的查表梯度、SGNS 解析梯度与有限差分、一次同时 SGD 更新、PMI 特例、masked mean、对比损失温度及归一化排序关系。2026-10-02 实跑时，SGNS 的六参数有限差分最大误差约 `1.55e-10`，一次更新的损失 `2.006408868 → 1.858406577`，对比损失单行手算为 `0.126928011`；无效零向量、全零 pooling mask 和零温度明确拒绝。

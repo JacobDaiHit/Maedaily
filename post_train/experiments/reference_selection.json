@@ -1,0 +1,44 @@
+{
+  "source": "train-only, final sealed",
+  "fixed_sft_learning_rate": 0.0003,
+  "fixed_sft_steps": 20,
+  "sft_development_selection": "among the preregistered learning rates [0.0001,0.0003] and steps [20,60,120], choose highest dev accuracy with qualified copy/format; tie smallest step. Selected 0.0003/20, 36/36 and 45/45. All six outcomes retained.",
+  "sampling_temperature": 2.0,
+  "sampling_selection": "choose the lowest registered candidate temperature with nonzero correctness reward variation on training groups; the observed seven groups are a result, not a preregistered count threshold",
+  "calibration": [
+    {
+      "temperature": 1.4,
+      "correct": 32,
+      "format_valid": 32,
+      "samples": 32,
+      "active_correctness_groups": 0,
+      "active_shaping_groups": 0
+    },
+    {
+      "temperature": 2.0,
+      "correct": 12,
+      "format_valid": 12,
+      "samples": 32,
+      "active_correctness_groups": 7,
+      "active_shaping_groups": 7
+    },
+    {
+      "temperature": 2.5,
+      "correct": 0,
+      "format_valid": 0,
+      "samples": 32,
+      "active_correctness_groups": 0,
+      "active_shaping_groups": 0
+    },
+    {
+      "temperature": 3.0,
+      "correct": 0,
+      "format_valid": 0,
+      "samples": 32,
+      "active_correctness_groups": 0,
+      "active_shaping_groups": 0
+    }
+  ],
+  "previous_run": "project_bc_reference_formal_20261002, failed zero signal, final unopened",
+  "no_quality_threshold_changed": true
+}

@@ -1,37 +1,25 @@
 # Maedaily：用中文学会训练、后训练与工具交互
 
-**想做完整自测或准备面试，打开 [各专题题目索引](references/面试复习与题目索引.md)。** 题目均给出完整条件、参考答案、常见追问与回答；基础讲解、手算与实验排错按专题连接。
+这个项目帮助你从“能看懂一个例子”走到“能训练、能解释、能排错”。先读中文精讲、独立手算并运行小实验，再进入系统章节和论文，最后完成有数据、训练、评测与失败记录的项目。主线是 **训练基础 → 语言模型 → SFT / DPO → RLVR → Agent 与多步交互**；循环神经网络、激活、数据与训练系统按需要补入。教学内容更新：2026-10-02；参考实训收尾：北京时间 2026-10-03。
 
-面向基模／后训练算法实习的课程已按[全项目审查与能力验收](references/全项目审查与实习能力验收.md)展开推导、实现、排错和研究作业。该页记录官方岗位依据、正文与程序核验，以及学习者需要提交的项目证据；阅读数量不代替求职能力验收。
+## 今天开始
 
-这个项目帮助你从“能看懂一个例子”走到“能训练、能解释、能排错”。第一遍读中文精讲，照着手算并运行小实验；第二遍进入系统章节和论文省流；第三步再完成真实模型项目。核心讲解和练习答案都在仓库里，不要求先读英文原书。
-
-主线是：**训练基础 → 语言模型 → 监督微调（SFT）/ 直接偏好优化（DPO）→ 强化学习 / 可验证奖励强化学习（RLVR）→ Agent 与多步交互训练**。SFT 学示范答案，DPO 学回答之间的偏好，RLVR 用可执行的规则给生成结果评分。Agent 指能依据工具反馈继续选择动作的系统。循环神经网络（RNN）、激活函数、预训练与系统知识按需要接入。教学内容更新：2026-10-02。
-
-## 第一次来，今天就这样开始
-
-先打开 [第一课：从预测到学习](入门/第一课_从预测到学习.md)。它用输入 2、目标 5 的小例子，解释模型、参数、损失、梯度和学习率，并逐步算出一次更新。
-
-然后打开 PowerShell，逐行执行：
+打开[第一课：从预测到学习](入门/第一课_从预测到学习.md)，跟着输入 2、目标 5 的例子算一次参数更新。在自己克隆的仓库根目录执行：
 
 ```powershell
-Set-Location 'D:/github_book/Maedaily'
 python scripts/run_lesson.py --check
 python scripts/run_lesson.py first
 ```
 
-第一行换成自己的项目路径。`--check` 检查已有 Python 和 PyTorch；`first` 只用 Python 标准库，即使还没准备好 PyTorch 也能先做。本机入口能自动找到已验证的 PyTorch 环境，不需要先安装新包。遇到找不到命令、`>>>`、缺少 torch 等情况，按 [环境准备与常见问题](入门/环境准备与常见问题.md) 处理。
+`first` 只需 Python 标准库。默认学习率 0.1 的结果为：损失 `4.5 → 1.125`，权重/偏置 `1/0 → 1.6/0.3`。今天的完成标准是解释这次更新，再独立预测学习率 0.05 的结果，用 `python scripts/run_lesson.py first -- --learning-rate 0.05` 核对。运行位置与环境错误见[环境准备与常见问题](入门/环境准备与常见问题.md)。
 
-第一课正常输出的关键数字是：
+## 按当前阶段选择
 
-```text
-更新前：预测=2，损失=4.5
-手算梯度：权重梯度=-6，偏置梯度=-3
-更新后：权重=1.6，偏置=0.3
-更新后：预测=3.5，损失=1.125
-```
-
-今天的完成标准是：能解释这四行，并独立算出学习率改成 0.05 后的结果。算不出就回讲义对应步骤，先把这一个例子吃透。
+| 现在的目标 | 从这里进入 | 完成后做什么 |
+| --- | --- | --- |
+| 刚开始，需要先看懂和运行 | [第一遍中文路线](#第一遍按这条中文路线学)与[两周起步安排](入门/README.md#两周起步安排) | 读例子、合上手算、运行核对、改一个条件、写复盘 |
+| 已会小实验，要补公式和排错 | [系统章节](#第二遍八个目录各自怎么用)与[完整题目索引](references/面试复习与题目索引.md) | 按章的前置、必读/选读、命令和完成标准推进，先作答再展开答案 |
+| 要做真实训练和项目交付 | [年度任务与项目定义](references/年度学习任务与验收.md#project-a)与[模型后训练实验](post_train/experiments/模型后训练实验.md) | 从小模型实际更新进入自己的数据/预训练模型，保留基线、评测与失败证据 |
 
 ## 第一遍：按这条中文路线学
 
@@ -49,63 +37,42 @@ python scripts/run_lesson.py first
 
 [入门目录](入门/README.md) 给出了每天的学习闭环和 [两周起步安排](入门/README.md#两周起步安排)。每个“学习日”可以拆成多天，以能完成练习为准。单次建议 45–90 分钟：读一个例子 → 合上文档手算 → 运行核对 → 改一个条件 → 写五句话复盘。用 [学习记录模板](入门/学习记录模板.md) 保留过程。
 
-## 实验怎样运行，结果怎样看
+## 运行当前课程
 
-全部课程通过一个入口运行：
+用 `python scripts/run_lesson.py --list` 查看课程，只运行正在学习的一课。统一入口会打印独立的 `study_runs/` 位置；先读 `结果说明.txt`，再看日志和 `artifacts/` 中的实验文件。参数变更用 `--` 传入，例如 `python scripts/run_lesson.py lm -- --seed 11`。完整目录约定、解释器选择和历史默认结果见[运行与结果说明](入门/环境准备与常见问题.md#统一入口变参实验和结果目录)。
+
+学习顺序可以从 `lm` 进入 `lm-resume` 做完整续训，再运行 `data-asset` 核对数据来源、题族切分与重建。`posttrain` 核算后训练公式；`sft-model`、`dpo-model`、`rlvr-model` 运行小型字符语言模型的真实训练，具体输入、更新与验收见[模型后训练实验](post_train/experiments/模型后训练实验.md)。
+
+要继续提高模型质量，进入[模型质量基线](post_train/experiments/模型质量基线.md)，先用开发集选模型并检查算术与 copy 门槛，再打开冻结评测。
+
+## 项目 A/B/C 的参考实训与公开证据
+
+参考实训把项目验收条目连到实际代码和保留的证据；仓库实现、一次实验的质量与学习者的独立能力分别验收。现有绿色检查不能替代自己的数据、研究、消融或答辩。
+
+| 项目 | 参考入口 | 当前交付状态 |
+| --- | --- | --- |
+| A：训练与完整恢复 | [A 参考实训说明](transformer/experiments/README.md#项目-a-参考实训)；`python scripts/run_lesson.py project-a` | 2026-10-02 固定40步机制验收通过：六个独立进程、20步精确恢复、遗漏状态负控、固定两学习率曲线和CPU资源/token预算 |
+| B：SFT / DPO | [A/B/C 参考实训](post_train/experiments/A_B_C参考实训.md)、[真实训练验收](post_train/experiments/真实模型训练与验收.md) | 2026-10-03 参考验收通过：固定 Qwen、三个 seed、实际 SFT/DPO、B1 消融和公共独立复算齐全 |
+| C：RLVR | [真实采样与更新参考](post_train/experiments/A_B_C参考实训.md#项目-c真实分布独立-pg-与-kl)、[年度项目 C](references/年度学习任务与验收.md#project-c) | 2026-10-03 参考验收通过：独立 PG、同分布 replay、C2 两项消融、九分支评测与成本完整保留 |
+
+A 的[紧凑公开证据](references/evidence/project_a_20261002/README.md)随仓库保留，克隆后无需访问历史 `study_runs` 即可复核：
 
 ```powershell
-python scripts/run_lesson.py --list
-python scripts/run_lesson.py linear
-python scripts/run_lesson.py lm
-python scripts/run_lesson.py lm-resume
-python scripts/run_lesson.py data-asset
-python scripts/run_lesson.py embedding
-python scripts/run_lesson.py attention
-python scripts/run_lesson.py rl
-python scripts/run_lesson.py posttrain
-python scripts/run_lesson.py agent
-python scripts/run_lesson.py trajectory
+python references/evidence/project_a_20261002/verify.py
+python references/evidence/project_a_20261002/verify.py --source-root .
 ```
 
-只运行正在学的那一课即可。它们不需要 API 密钥或模型下载；`linear`、`lm`、`lm-resume`、`attention` 使用 PyTorch 和 CPU，其余只用 Python 标准库。本机指定 PyTorch 环境的写法是：
+第一条用标准库校验公开文件并独立复算数据/逐步CSV，第二条再比对本次训练源码版本。完整checkpoint由参考实训重新生成。A当前结果限定合成数字语法、单种子、CPU float64；自然文本和通用语言模型能力另需数据与评测，学习者独立复写、排错和讲解仍按[年度验收](references/年度学习任务与验收.md#project-a)完成。
+
+B/C 先按[参考实训](post_train/experiments/A_B_C参考实训.md)准备固定 revision 的 `Qwen2.5-0.5B-Instruct`，核对[九文件清单](post_train/experiments/reference_model.json)，再运行本地离线矩阵。开发选择、三个实际种子和九个分支由公开[配置](post_train/experiments/reference_config.json)及[选择记录](post_train/experiments/reference_selection.json)固定。首轮 C 的零策略信号和早期解码隐藏特殊 token 的问题保留为失败记录；V2 虽然程序 summary 为 passed，但独立校验拒绝了源码身份不一致，只留作诊断。V3 修复并增加环境、资源、逐 token 对齐证据，真实 summary 与公开包双解释器独立复算通过。最终指标只覆盖合成算术和数字规范化，各分支的未提升、无效与负结果全部保留。项目状态按[版本记录](references/版本与验证记录.md)追加，不将工程检查通过解释成基线质量、人的能力或自然语言 benchmark 通过。
+
+B/C 的[公共证据与复现说明](references/evidence/project_bc_20261002/README.md)包含 5,373 条逐题记录、三种子九分支、阶段/源码身份和真实预算。克隆后只用 Python 标准库复算，不需要模型权重或历史运行目录：
 
 ```powershell
-python scripts/run_lesson.py lm --python 'D:/anaconda/envs/pytorch_env/python.exe'
+python -S references/evidence/project_bc_20261002/scripts/verify_reference_run.py --verify-package references/evidence/project_bc_20261002
 ```
 
-每次自动创建一个独立的 `study_runs/时间_课程名/`，终端会打印位置。先看其中的 **`结果说明.txt`**，再看 `console.txt` 完整日志。`run.json` 记录命令与是否通过；训练类课程还有 `summary.json` 和 `learning_curve.csv`。个人运行目录已加入 Git 忽略，各实验目录中原有的教学参照结果另行保留。
-
-新增 `lm-resume` 和 `data-asset` 的检查点、对照表或数据审计文件放在本轮目录的 `artifacts/` 子目录。分别按[模型续训实验](transformer/experiments/模型续训实验.md)和[数据资产实验](post_train/experiments/数据资产实验.md)查看；日志与中文结果说明仍在父目录。
-
-指定输出位置可以用 `--output-dir 'study_runs/第一次线性训练'`；目录已有内容时会停止，避免把上次结果覆盖掉。
-
-| 课程 | 默认配置的重要结果 | 怎样理解 |
-| --- | --- | --- |
-| `first` | 损失 4.5 → 1.125 | 手写解析梯度完成一次更新 |
-| `linear` | 学到权重约 `[2,-3]`、偏置 0.5；恢复下一步误差 0 | 真实 PyTorch 训练；遗漏动量会改变下一步更新 |
-| `lm` | lr=0.001 的验证损失约 1.053525；lr=0.003 约 1.187625 | 同一初始化和预算下，训练更低不一定验证更好 |
-| `lm-resume` | 连续 40 步与完整恢复的 20+20 步，每步参数和损失差 0 | 保存模型、AdamW、数据位置与随机源；遗漏状态的两种对照都会产生差异 |
-| `data-asset` | 50 条输入保留 44 条、过滤 6 条；分组切分为 28/6/10 | 保留来源、审计和版本，逐字重建；显式题族与精确重复不跨划分 |
-| `embedding` | SGNS 损失 2.006409 → 1.858407；有限差分误差约 1.55e-10 | 核对查表、负采样、pooling、温度与检索排序 |
-| `attention` | RoPE 缓存与完整因果计算误差 0；错误矩形 mask 偏差约 2.388 | 核对 Attention 梯度、在线 softmax 与 MLA 等价 |
-| `rl` | 起点价值 1.6，选择先投入再完成 | 表格 Q-learning 与独立手算一致 |
-| `posttrain` | 45 项数值检查；DPO loss 约 0.554355 | 检查概率、掩码、偏好、组优势和验证器 |
-| `agent` | 42 项检查；正常计算和暂时故障恢复都得到 4 | 检查规则控制器的工具流程与请求级重试编号 |
-| `trajectory` | 正确动作 mask 的损失 0.25 | 工具观察不应混入策略动作损失 |
-
-不同机器的耗时和浮点末位可能不同，先看脚本检查是否通过和结果方向是否一致。微型 LM 是真实的数字语法模型训练；后训练数学、工具状态机与轨迹核算还不包含真实 LLM 的 SFT / DPO / RLVR 训练。进入年度项目 B/C 时，按[真实模型训练工坊](post_train/experiments/真实模型训练与验收.md)逐阶段检查配置、监督、参数更新、采样与保存恢复，并按[数据资产与评测交付规范](references/数据资产与评测交付规范.md)建立主任务、迁移与回归三个评测面板。
-
-## 教材里的重要内容，已经整理到哪里
-
-| 参考材料 | 已整理的关键内容 | 中文学习入口 |
-| --- | --- | --- |
-| 《动手学深度学习》官方中文版 | 数据形状、反向传播、线性回归、非线性、RNN、attention | 上面的框架、序列补课与 Transformer 精讲 |
-| 《Deep Learning》 | 概率、损失、梯度、优化与泛化的区别 | 第一课与框架精讲的原创算例 |
-| 《Reinforcement Learning: Theory and Algorithms》 | 第 1 章策略、价值、Bellman、价值迭代 | RL 精讲，附实际读过的 PDF 页码 |
-| Lambert《Reinforcement Learning from Human Feedback》 | SFT、奖励模型、策略梯度、GRPO、DPO | 后训练精讲，附章节、页码、完整手算与答案 |
-| 《Speech and Language Processing》第三版草稿 | 检索与生成的分工、证据怎样进入回答 | 工具交互第一课与 Agent 章节 |
-
-这些内容用中文重新讲解，配本项目设计的例子和代码。原书负责来源，精讲负责让你在项目内学明白。更完整的对应关系、官方中文教材链接和第二遍选读位置见 [教材重点中文索引与书籍地图](references/参考书籍与课程地图.md)。
+Python 3.11/3.13 的包内入口及无 ignored 目录副本均实际通过。共同 SFT 基线三种子主任务 `34/34`、数字规范化 `45/45`；后续分支迁移累计仅多一两条正确记录且区间含零，见[全部结果与成本](post_train/experiments/A_B_C参考实训.md#v3-真实结果与公共验收)。人工评分仍为 `not_reviewed`；参考交付通过不替代学习者独立复写和答辩。
 
 ## 第二遍：八个目录各自怎么用
 
@@ -120,36 +87,14 @@ python scripts/run_lesson.py lm --python 'D:/anaconda/envs/pytorch_env/python.ex
 | [agent_design](agent_design/README.md) | 3 章讲工具、记忆、检索、规划与可靠性 | 为交互训练准备系统基础 |
 | [agentic_rl](agentic_rl/README.md) | 3 章讲多步奖励、信用分配、训练系统与实验设计 | 第 9–10 月可选专题 |
 
-正文中的公式和条件是第二遍重点。每章至少能解释一个公式、定位一段代码、说明一个失败条件，然后再扩展规模。[发展脉络](references/学习路线与发展脉络.md) 解释方法为何出现；[年度任务与验收](references/年度学习任务与验收.md) 把它们连到项目 A/B/C。术语、论文与版本记录可从[阅读附录](references/README.md)按问题查阅。本地详细目标保存在 [GOAL](GOAL.md)。
+正文中的公式和条件是第二遍重点。每章至少能解释一个公式、定位一段代码、说明一个失败条件，然后再扩展规模。[发展脉络](references/学习路线与发展脉络.md) 解释方法为何出现；[年度任务与验收](references/年度学习任务与验收.md) 把它们连到项目 A/B/C。术语、论文与版本记录可从[阅读附录](references/README.md)按问题查阅。完整项目范围与交付条件见[年度项目与验收](references/年度学习任务与验收.md#project-a)。
 
-第 7–10 月按[研究专题与复现验收](references/研究专题与复现验收.md)只选一个深入问题。后训练仍是主线；申请基模算法时，可用优化与稳定性、数据与 Scaling 或结构与效率之一替换深入专题，并升级项目 A。先完成预实验、固定预算和评测精度，再做机制复现与消融，保留负结果和独立审阅记录。
+## 教材、论文与项目验收
 
-## 什么时候开始读论文
+教材对应关系见[参考书籍与课程地图](references/参考书籍与课程地图.md)。能解释对应章节和小实验后，从[20 篇论文省流索引](references/论文索引.md)挑一篇直接相关的论文；首次只跟一个问题。资料检索截止 2026-09-26，最新收录稿为 2026-09-23，版本不会自动更新。术语和读论文的依据见[阅读附录](references/README.md)。
 
-能读懂对应中文精讲、完成手算和小实验后，先看 [20 篇论文的省流索引](references/论文索引.md)。每篇都有中文说明：发表身份与阅读价值、解决什么问题、具体实验、已展示应用、限制，以及对当前项目的用途。
+阶段验收依次要求独立复算、改条件并解释、定位一类错误，以及在自己的数据与模型上完成基线、训练、评测和消融。具体交付以[年度项目 A/B/C](references/年度学习任务与验收.md#project-a)、[数据与评测规范](references/数据资产与评测交付规范.md)和[研究专题验收](references/研究专题与复现验收.md)为准。[全项目审查与能力验收](references/全项目审查与实习能力验收.md)给出课程覆盖、岗位依据和证据范围。
 
-首次只选与当前问题有关的一篇，例如 attention 对应 Transformer，偏好目标对应 DPO，组内奖励对应 DeepSeekMath。公式不懂回本地章节，实验结论不清楚查省流中的基线与预算；英文 PDF 作为原始证据保存，无需为了跟进新论文先通读全部原文。
+## 资料和维护
 
-经典与近期论文是精选，检索截止 2026-09-26，最新收录稿为 2026-09-23，不自动更新。常用词可查 [中文术语表](references/术语与符号.md)，新论文的判断方法见 [证据标准](references/阅读方法与证据标准.md)。
-
-## 学到什么程度，算真正完成一阶段
-
-- **读懂：** 能用自己的话解释定义，独立复算例子。
-- **会做：** 能找到关键代码，改一个变量前先预测，修改后解释结果。
-- **会查错：** 能定位标签、形状、mask、梯度或评测中的一类错误。
-- **能做项目：** 在真实数据和模型上建立基线、训练、评测与消融，保留失败记录。
-
-每阶段的具体交付见年度验收；周投入暂按 10–15 小时安排，尚未确认。运行脚本成功是第一步，真实模型训练与独立实验能力需要接着完成。
-
-## 资料和维护入口
-
-目前有 33 个系统教学章节、上述新手中文精讲、20 篇论文省流及 PDF、2 本公开参考书稿。Embedding 新章另附 Word2Vec、GloVe、SBERT、SimCSE 与 DPR 的原始资料链接，未加入已下载 PDF 的计数。出处与版本见 [资料清单](references/readings.json)，校验记录见 [下载记录](references/downloads.json)，实跑情况见 [版本与验证记录](references/版本与验证记录.md)。
-
-只有需要检查或补齐原始文件时，才运行下面的资料命令；它不是学习第一步：
-
-```powershell
-python scripts/download_readings.py --verify-only
-python scripts/download_readings.py
-```
-
-已匹配的 PDF 不会重复下载。正文为原创中文教学整理，原始资料保留各自许可与权利。新增论文按 [省流模板](references/论文省流模板.md) 记录出处、版本和证据，避免只增加文件数量而没有学习内容。
+仓库包含 33 个系统单元、中文入门精讲、20 篇论文省流及 PDF、2 本公开书稿；Embedding 章另列原始资料链接。出处、校验与历史实跑记录分别见[资料清单](references/readings.json)、[下载记录](references/downloads.json)和[版本与验证记录](references/版本与验证记录.md)。需要核查原始 PDF 时运行 `python scripts/download_readings.py --verify-only`，缺文件再运行 `python scripts/download_readings.py`。新增资料按[省流模板](references/论文省流模板.md)记录出处、版本和证据；原始资料保留各自许可与权利。

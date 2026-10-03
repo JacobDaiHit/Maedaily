@@ -1,0 +1,42 @@
+{
+  "schema_version": "maedaily-public-project-a-package-v1",
+  "public_scope": "Original JSON/CSV byte integrity plus independent standard-library CSV/data recomputation; raw checkpoint tensors remain in original run and can be reproduced.",
+  "original_run": {
+    "summary_sha256": "0d2a2abe8d6cbf1a2505ee23b31d0c8e969fe795d35764e54a9402dc81b6d33d",
+    "verified_original_artifacts": 37,
+    "source_run_field": "Historical environment metadata, not a clone dependency; verifier does not access this location."
+  },
+  "original_source_sha256": {
+    "transformer/experiments/project_a_reference.py": "a9b49b289203b96fcf9d5f8b75bfff1845f9f04683b675d207d0c5a8d52f5de4",
+    "transformer/experiments/lm_resume_lab.py": "a1e05c2fccffe3082de9fce5a91d109c48aa2c4ecb274c2d7f332d64b60edeea",
+    "transformer/experiments/tiny_causal_lm.py": "ed847f4f51f5ed7b57bdb1d62af90b0b4d08287cba11343f5759e78192b660af",
+    "scripts/lesson_runtime.py": "1dcaecc9654f043ccf484acb4d426b38e4a3cbce4b2531c0991209808087d91f"
+  },
+  "environment_fields": "Original executable, paths, platform and PIDs are historical run metadata; select your own existing interpreter.",
+  "files": {
+    "evidence.json": {
+      "sha256": "2135531fec87c76f412996edabb1d78ba1fbe1c7fbee013ae97fcd5f0fa66445",
+      "bytes": 14332
+    },
+    "export_receipt.json": {
+      "sha256": "bc73ac15feac42450651a40b9e0fc05e8e07478b9ba9facec35cd9e18524962c",
+      "bytes": 372
+    },
+    "learning_curves.csv": {
+      "sha256": "bf7470bd5941ecd91194a5bd9600a043f625b3741aace05d1e32a4fb33be3099",
+      "bytes": 953
+    },
+    "README.md": {
+      "sha256": "a45401073f8c7fe05a62f5bd0fa2137caab9e9ad541b8919ddb29895f86615fe",
+      "bytes": 3417
+    },
+    "step_comparison.csv": {
+      "sha256": "07fc06b45111f015065a911d31d0e0707bf0ff70d450aa687e6d07403e3d3f65",
+      "bytes": 57068
+    },
+    "verify.py": {
+      "sha256": "67bfa5ab0860497ad95d15ae777793e2697c7999cf898141d095ec1a64057b47",
+      "bytes": 9041
+    }
+  }
+}

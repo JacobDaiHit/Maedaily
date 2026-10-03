@@ -1,0 +1,45 @@
+{
+  "schema_version": "maedaily-reference-resource-probe-v1",
+  "status": "passed",
+  "load_measurement": "caller-measured environment_receipt.load_seconds; object is already loaded here",
+  "device": "cuda",
+  "forward_seconds": 0.47158429998671636,
+  "backward_optimizer_seconds": 0.2736136000021361,
+  "generation_seconds": 0.11240720000932924,
+  "input_tokens": 124,
+  "target_tokens": 8,
+  "generated_tokens": 2,
+  "generation_prompt_tokens": 36,
+  "samples": 3,
+  "source_sample_ids": [
+    "train:arith:0+0=",
+    "train:arith:0-1=",
+    "train:copy:99:two-leading-zeros"
+  ],
+  "temporary_optimizer_steps": 1,
+  "update_check": {
+    "loss": 2.8554887771606445,
+    "gradient_norm": 47.50518035888672,
+    "parameter_delta_norm": 0.00031258843083470627,
+    "weight_before": "c1b899d27cf6cd154160b21b54b6fac86e469bb43b5d0b5cb9470a3017b03370",
+    "weight_after": "b376dc512d6f237dcbd002541fd536c75c729cdb8fb58d5099653472931682ed"
+  },
+  "generation_termination": "eos",
+  "cpu_before": {
+    "status": "measured",
+    "peak_resident_bytes": 3602182144,
+    "method": "Windows PeakWorkingSetSize",
+    "scope": "whole process lifetime including previously loaded native tensors; cannot reset CPU peak"
+  },
+  "cpu_after": {
+    "status": "measured",
+    "peak_resident_bytes": 3602182144,
+    "method": "Windows PeakWorkingSetSize",
+    "scope": "whole process lifetime including previously loaded native tensors; cannot reset CPU peak"
+  },
+  "cuda_peak_allocated_bytes": 2337101824,
+  "cuda_peak_scope": "isolated forward/backward/update/generation after peak reset; loaded model included; counters cannot be restored",
+  "frozen_base_sha256": "e22f86b9f52146a40806b8f1423cb1c4c98d4c5e61b5c48c5c608279b81e82c9",
+  "state_restored": true,
+  "frozen_base_unchanged": true
+}
